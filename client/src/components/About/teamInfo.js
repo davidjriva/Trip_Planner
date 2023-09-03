@@ -11,8 +11,11 @@ export const teamData =
 
 export const memberData = [
     {
-        name: "Team Member 1",
-        bio: "Bio Here",
+        name: "David Riva",
+        bio: "Highly motivated and dedicated Computer Science student currently pursuing a B.S. degree at Colorado State University." 
+        + "As an avid learner, I possess a solid foundation in data-structures, mathematics, and logic."
+        + "My passion for problem-solving drives me to seek a career that thrives on teamwork, tackling unique and stimulating challenges." 
+        + "I am eager to contribute my skills and enthusiasm to a dynamic and innovative work environment.",
         homeTown: "Hometown",
         imagePath: memberPic
     },
