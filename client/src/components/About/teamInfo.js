@@ -1,5 +1,5 @@
 import memberPic from "../../static/images/Placeholder.jpg";
-import teamPic from "../../static/images/PlaceholderTeam.jpg";
+import teamPic from "../../static/images/team-image.png";
 
 export const teamData =
     {
