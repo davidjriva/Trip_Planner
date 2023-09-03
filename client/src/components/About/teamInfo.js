@@ -11,9 +11,9 @@ export const teamData =
 
 export const memberData = [
     {
-        name: "Team Member 1",
+        name: "David Riva",
         bio: "Bio Here",
-        homeTown: "Hometown",
+        homeTown: "Santa Cruz, CA.",
         imagePath: memberPic
     },
     {
