@@ -1,5 +1,6 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import teamPic from "../../static/images/team-image.png";
+import alexRubsamPic from "../../static/images/Alex-Rubsam-headshot.jpg"
 
 export const teamData =
     {
@@ -20,7 +21,7 @@ export const memberData = [
         name: "Team Member 2 ",
         bio: "Bio Here",
         homeTown: "Hometown",
-        imagePath: memberPic
+        imagePath: alexRubsamPic
     },
     {
         name: "Team Member 3",
