@@ -30,7 +30,7 @@ export const memberData = [
         imagePath: memberPic
     },
     {
-        name: "Team Member 3",
+        name: "Adam Aouaj",
         bio: "Current Computer Science student at CSU pursuing a degree and career in software engineering."
         + " Growing up, I've always been passionate about technology and the impact it has on the world we live in."
         + " Today, I hope to use my passion-driven knowledge on computer science and technology as a whole to create things that can one day affect the lives of many."
