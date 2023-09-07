@@ -48,11 +48,12 @@ export const memberData = [
         imagePath: memberPic
     },
     {
-        name: "Team Member 5",
+
+        name: "Hans Thedinga",
         bio: "I'm an online student from Alaska pursuing a B.S. degree in computer science from CSU"
         + " I've always been fascinated by computers, what they can do now, and what they'll be able to do in the future."
         + " I am looking forward to working with team 11 on this class project and learning some of the practices behind how software is created.",
-        homeTown: "Hometown",
+        homeTown: "Juneau, AK",
         imagePath: memberPic
     },
 ];
