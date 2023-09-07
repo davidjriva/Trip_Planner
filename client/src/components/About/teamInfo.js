@@ -35,7 +35,7 @@ export const memberData = [
         + " Growing up, I've always been passionate about technology and the impact it has on the world we live in."
         + " Today, I hope to use my passion-driven knowledge on computer science and technology as a whole to create things that can one day affect the lives of many."
         + " Excited to put my skills to work, I am looking forward to learning more during my time as a team 11 member.",
-        homeTown: "Hometown",
+        homeTown: "Aurora, CO",
         imagePath: memberPic
     },
     {
