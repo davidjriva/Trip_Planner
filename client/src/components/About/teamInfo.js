@@ -9,8 +9,11 @@ import HansPic from "../../static/images/Hans Thedinga Headshot.jpg"
 
 export const teamData =
     {
-        teamName: "Team Name",
-        missionStatement: "Mission Statement",
+        teamName: "The Chronicles of JavaScript",
+        missionStatement: "Committed to bringing the world dynamic and innovated web apps, The Chronicles of JavaScript pave the way for a unique and user-friendly online experience."
+        + "Together, we unite our diverse life and industry experiences to solve unique challenges."
+        + "We prioritize high-quality engineering work over speed and are dedicated to satisfying our stakeholders while demonstrating our expertise in the field. Our ultimate goal, as a team, is to create an outstanding and dynamic web application that anyone can use."
+        + "At the heart of our company lies a deep devotion to providing users with a satisfying and stress-free space, and we appreciate the continued aid of all our supporters.",
         imagePath: teamPic,
     };
 
