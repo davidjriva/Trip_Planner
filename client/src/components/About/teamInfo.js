@@ -1,4 +1,5 @@
 import memberPic from "../../static/images/Placeholder.jpg";
+import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
 import teamPic from "../../static/images/team-image.png";
 
 export const teamData =
@@ -17,7 +18,7 @@ export const memberData = [
         + " My passion for problem-solving drives me to seek a career that thrives on teamwork, tackling unique and stimulating challenges." 
         + " I am eager to contribute my skills and enthusiasm to a dynamic and innovative work environment.",
         homeTown: "Santa Cruz, CA.",
-        imagePath: memberPic
+        imagePath: davidRivaImg
     },
     {
         name: "Alex Rubsam",
