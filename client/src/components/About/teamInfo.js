@@ -4,6 +4,7 @@ import alexRubsamPic from "../../static/images/Alex-Rubsam-headshot.jpg"
 import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
 import guanhuaLuoImg from "../../static/images/Guanhua-Luo headshot.jpg"
 import teamPic from "../../static/images/team-image.jpg";
+import HansPic from "../../static/images/Hans Thedinga Headshot.jpg"
 
 
 export const teamData =
@@ -51,12 +52,11 @@ export const memberData = [
         imagePath: guanhuaLuoImg
     },
     {
-
         name: "Hans Thedinga",
         bio: "I'm an online student from Alaska pursuing a B.S. degree in computer science from CSU"
         + " I've always been fascinated by computers, what they can do now, and what they'll be able to do in the future."
         + " I am looking forward to working with team 11 on this class project and learning some of the practices behind how software is created.",
         homeTown: "Juneau, AK",
-        imagePath: memberPic
+        imagePath: HansPic
     },
 ];
