@@ -2,6 +2,7 @@ import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
 import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
 import teamPic from "../../static/images/team-image.jpg";
+import HansPic from "../../static/images/Hans Thedinga Headshot.jpg"
 
 
 export const teamData =
@@ -50,6 +51,6 @@ export const memberData = [
         name: "Team Member 5",
         bio: "Bio Here",
         homeTown: "Hometown",
-        imagePath: memberPic
+        imagePath: HansPic
     },
 ];
