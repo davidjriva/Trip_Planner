@@ -1,5 +1,6 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
+import alexRubsamPic from "../../static/images/Alex-Rubsam-headshot.jpg"
 import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
 import teamPic from "../../static/images/team-image.jpg";
 
@@ -29,7 +30,7 @@ export const memberData = [
         + " I am familiar with the demands of a working environment and aim to enhance my technical skills and apply them to a field that will being increased quality of life and accessibility"
         + " to those who need it. Computers have always been a passion of mine and I love learning more about how they work and discovering amazing new ways to use them to solve complex problems and better the world.",
         homeTown: "Lake Tomahawk, WI.",
-        imagePath: memberPic
+        imagePath: alexRubsamPic
     },
     {
         name: "Adam Aouaj",
