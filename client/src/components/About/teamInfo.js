@@ -2,6 +2,7 @@ import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
 import alexRubsamPic from "../../static/images/Alex-Rubsam-headshot.jpg"
 import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
+import guanhuaLuoImg from "../../static/images/Guanhua-Luo headshot.jpg"
 import teamPic from "../../static/images/team-image.jpg";
 
 
@@ -47,7 +48,7 @@ export const memberData = [
         + " Although my major is not computer science, but I still love cs deeply."
         + " I enjoy the process of learning code, I hope I can understand them more and use them to solve the problems in my life.",
         homeTown: "Shenzhen, Guangdong.",
-        imagePath: memberPic
+        imagePath: guanhuaLuoImg
     },
     {
 
