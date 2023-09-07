@@ -1,6 +1,8 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
+import alexRubsamPic from "../../static/images/Alex-Rubsam-headshot.jpg"
 import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
+import guanhuaLuoImg from "../../static/images/Guanhua-Luo headshot.jpg"
 import teamPic from "../../static/images/team-image.jpg";
 import HansPic from "../../static/images/Hans Thedinga Headshot.jpg"
 
@@ -30,7 +32,7 @@ export const memberData = [
         + " I am familiar with the demands of a working environment and aim to enhance my technical skills and apply them to a field that will being increased quality of life and accessibility"
         + " to those who need it. Computers have always been a passion of mine and I love learning more about how they work and discovering amazing new ways to use them to solve complex problems and better the world.",
         homeTown: "Lake Tomahawk, WI.",
-        imagePath: memberPic
+        imagePath: alexRubsamPic
     },
     {
         name: "Adam Aouaj",
@@ -43,14 +45,18 @@ export const memberData = [
     },
     {
         name: "Guanhua Luo",
-        bio: "Bio Here",
+        bio: "Data Science student who is pursuing a B.S. degree at Colorado State University."
+        + " Although my major is not computer science, but I still love cs deeply."
+        + " I enjoy the process of learning code, I hope I can understand them more and use them to solve the problems in my life.",
         homeTown: "Shenzhen, Guangdong.",
-        imagePath: memberPic
+        imagePath: guanhuaLuoImg
     },
     {
-        name: "Team Member 5",
-        bio: "Bio Here",
-        homeTown: "Hometown",
+        name: "Hans Thedinga",
+        bio: "I'm an online student from Alaska pursuing a B.S. degree in computer science from CSU"
+        + " I've always been fascinated by computers, what they can do now, and what they'll be able to do in the future."
+        + " I am looking forward to working with team 11 on this class project and learning some of the practices behind how software is created.",
+        homeTown: "Juneau, AK",
         imagePath: HansPic
     },
 ];
