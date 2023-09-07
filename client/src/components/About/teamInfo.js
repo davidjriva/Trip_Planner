@@ -1,5 +1,6 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
+import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
 import teamPic from "../../static/images/team-image.png";
 
 export const teamData =
@@ -36,7 +37,7 @@ export const memberData = [
         + " Today, I hope to use my passion-driven knowledge on computer science and technology as a whole to create things that can one day affect the lives of many."
         + " Excited to put my skills to work, I am looking forward to learning more during my time as a team 11 member.",
         homeTown: "Aurora, CO",
-        imagePath: memberPic
+        imagePath: adamAouajImg
     },
     {
         name: "Team Member 4",
