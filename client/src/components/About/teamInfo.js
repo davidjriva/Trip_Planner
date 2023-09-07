@@ -1,6 +1,9 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
-import teamPic from "../../static/images/team-image.png";
+import alexRubsamPic from "../../static/images/Alex-Rubsam-headshot.jpg"
+import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
+import teamPic from "../../static/images/team-image.jpg";
+
 
 export const teamData =
     {
@@ -27,26 +30,29 @@ export const memberData = [
         + " I am familiar with the demands of a working environment and aim to enhance my technical skills and apply them to a field that will being increased quality of life and accessibility"
         + " to those who need it. Computers have always been a passion of mine and I love learning more about how they work and discovering amazing new ways to use them to solve complex problems and better the world.",
         homeTown: "Lake Tomahawk, WI.",
-        imagePath: memberPic
+        imagePath: alexRubsamPic
     },
     {
-        name: "Team Member 3",
+        name: "Adam Aouaj",
         bio: "Current Computer Science student at CSU pursuing a degree and career in software engineering."
         + " Growing up, I've always been passionate about technology and the impact it has on the world we live in."
         + " Today, I hope to use my passion-driven knowledge on computer science and technology as a whole to create things that can one day affect the lives of many."
         + " Excited to put my skills to work, I am looking forward to learning more during my time as a team 11 member.",
-        homeTown: "Hometown",
-        imagePath: memberPic
+        homeTown: "Aurora, CO",
+        imagePath: adamAouajImg
     },
     {
-        name: "Team Member 4",
+        name: "Guanhua Luo",
         bio: "Bio Here",
-        homeTown: "Hometown",
+        homeTown: "Shenzhen, Guangdong.",
         imagePath: memberPic
     },
     {
+
         name: "Hans Thedinga",
-        bio: "Bio Here",
+        bio: "I'm an online student from Alaska pursuing a B.S. degree in computer science from CSU"
+        + " I've always been fascinated by computers, what they can do now, and what they'll be able to do in the future."
+        + " I am looking forward to working with team 11 on this class project and learning some of the practices behind how software is created.",
         homeTown: "Juneau, AK",
         imagePath: memberPic
     },
