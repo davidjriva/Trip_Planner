@@ -1,6 +1,6 @@
 import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
-import teamPic from "../../static/images/team-image.png";
+import teamPic from "../../static/images/team-image.jpg";
 
 export const teamData =
     {
