@@ -42,7 +42,9 @@ export const memberData = [
     },
     {
         name: "Guanhua Luo",
-        bio: "Bio Here",
+        bio: "Data Science student who is pursuing a B.S. degree at Colorado State University."
+        + " Although my major is not computer science, but I still love cs deeply."
+        + " I enjoy the process of learning code, I hope I can understand them more and use them to solve the problems in my life.",
         homeTown: "Shenzhen, Guangdong.",
         imagePath: memberPic
     },
