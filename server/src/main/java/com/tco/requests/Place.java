@@ -1,5 +1,7 @@
 package com.tco.requests;
 
+import java.util.HashMap;
+import com.tco.misc.GeographicCoordinate;
 import static java.lang.Double.parseDouble;
 import static java.lang.Math.toRadians;
 
@@ -7,7 +9,7 @@ class Place extends HashMap<String, String> implements GeographicCoordinate{
     //For testing purposes
     Place (String lat, String lon){
         this.put("latitude", lat);
-        this.put("longitude", lon)
+        this.put("longitude", lon);
     }
 
     //Required for GSON
