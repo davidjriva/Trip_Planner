@@ -1,3 +1,4 @@
+import memberPic from "../../static/images/Placeholder.jpg";
 import davidRivaImg from "../../static/images/david-riva-headshot.jpg"
 import alexRubsamPic from "../../static/images/Alex-Rubsam-headshot.jpg"
 import adamAouajImg from "../../static/images/Adam-Aouaj-headshot.jpg"
