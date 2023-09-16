@@ -1,0 +1,25 @@
+package com.tco.requests;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static java.lang.Math.PI;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TestPlace{
+    @Test
+    @DisplayName("driva: test origin Place")
+    public void testorigin() {
+        Place place = new Place("0", "0");
+        assertEquals(0.0, place.latRadians());
+        assertEquals(0.0, place.lonRadians());
+    }
+
+    @Test
+    @DisplayName("driva: test dateline postive")
+    public void testDatelinePositive() {
+        Place place = new Place("0", "180");
+        assertEquals(0.0, place.latRadians());
+        assertEquals(PI, place.lonRadians());
+    }
+}
