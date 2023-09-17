@@ -22,4 +22,12 @@ public class TestPlace{
         assertEquals(0.0, place.latRadians());
         assertEquals(PI, place.lonRadians());
     }
+
+    @Test
+    @DisplayName("bachrock: test dateline negative")
+    public void testDatelineNegative() {
+        Place place = new Place("0", "-180");
+        assertEquals(0.0, place.latRadians());
+        assertEquals(-PI, place.lonRadians());
+    }
 }
