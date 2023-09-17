@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestPlace{
     @Test
     @DisplayName("driva: test origin Place")
-    public void testorigin() {
+    public void testOrigin() {
         Place place = new Place("0", "0");
         assertEquals(0.0, place.latRadians());
         assertEquals(0.0, place.lonRadians());
