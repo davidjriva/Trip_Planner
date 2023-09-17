@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPlace{
     @Test
-    @DisplayName("driva: test origin Place")
+    @DisplayName("dmatt: test origin Place")
     public void testOrigin() {
         Place place = new Place("0", "0");
         assertEquals(0.0, place.latRadians());
@@ -16,7 +16,7 @@ public class TestPlace{
     }
 
     @Test
-    @DisplayName("driva: test dateline postive")
+    @DisplayName("dmatt: test dateline postive")
     public void testDatelinePositive() {
         Place place = new Place("0", "180");
         assertEquals(0.0, place.latRadians());
