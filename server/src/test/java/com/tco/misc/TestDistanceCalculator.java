@@ -1,0 +1,64 @@
+package com.tco.misc;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static com.tco.misc.DistanceCalculator.calculate;
+import static java.lang.Math.toRadians;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TestDistanceCalculator {
+    static class Geo implements GeographicCoordinate {
+        private double degreesLatitude;
+        private double degreesLongitude;
+
+        public Geo(Double lat, Double lon){
+            this.degreesLatitude = lat;
+            this.degreesLongitude = lon;
+        }
+
+        public Double latRadians() {
+            return toRadians(degreesLatitude);
+        }
+
+        public Double lonRadians() {
+            return toRadians(degreesLongitude);
+        }
+    }
+    
+    // From lecture:
+    final Geo origin = new Geo(0.0, 0.0);
+    final Geo n180 = new Geo(180.0, 0.0);
+    final Geo s180 = new Geo(-180.0, 0.0)
+    final Geo e180 = new Geo(0.0, 180.0);
+    final Geo w180 = new Geo(0, -180.0);
+
+    final static long small = 1L;
+    final static long piSmall = Math.round(Math.PI * small);
+    final static long piHalfSmall = Math.round(Math.PI / 2.0 * small);
+
+    final static long big = 100000000000000L;
+    final static long piBig = Math.round(Math.PI * big);
+    final static long piHalfBig = Math.round(Math.PI / 2.0 * big);
+
+    @Test
+    @DisplayName("davematt: distance to self should be zero")
+    public void testDistanceToSelf() {
+        assertEquals(0L, calculate(origin, origin, big));
+        assertEquals(0L, calculate(origin, origin, small));
+    }
+
+    @Test
+    @DisplayName("davematt: distance to same place should be zero (East/West)")
+    public void testDistanceToSamePlace() {
+        assertEquals(0L, calculate(e180, w180, big));
+        assertEquals(0L, calculate(e180, w180, small));
+    }
+
+    @Test
+    @DisplayName("driva: distance to same place should be zero (North/South)")
+    public void testVerticalDistanceToSamePlace() {
+        assertEquals(0L, calculate(n180, s180, big));
+        assertEquals(0L, calculate(n180, s180, small));
+    }
+}
