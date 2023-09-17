@@ -30,4 +30,20 @@ public class TestPlace{
         assertEquals(0.0, place.latRadians());
         assertEquals(-PI, place.lonRadians());
     }
+
+    Test
+    @DisplayName("driva: test dateline positive 1/2")
+    public void testDatelineOneHalfPositive() {
+        Place place = new Place("0", "90");
+        assertEquals(0.0, place.latRadians());
+        assertEquals(PI/2, place.lonRadians());
+    }
+
+    Test
+    @DisplayName("driva: test dateline negative 1/2")
+    public void testDatelineOneHalfNegative() {
+        Place place = new Place("0", "-90");
+        assertEquals(0.0, place.latRadians());
+        assertEquals(-PI/2, place.lonRadians());
+    }
 }
