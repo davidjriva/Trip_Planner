@@ -46,4 +46,20 @@ public class TestDistances {
         assertEquals(4, distances.size());
         assertEquals(-1L, distances.total());
     }
-}
+
+    @Test
+    @DisplayName("driva: Testing same distances")
+    public void sameDistances() {
+        Distances distances = new Distances();
+        distances.add(1L);
+        distances.add(1L);
+        distances.add(1L);
+        distances.add(1L);
+        distances.add(1L);
+        distances.add(1L);
+        distances.add(1L);
+        distances.add(1L);
+        assertEquals(8, distances.size());
+        assertEquals(8L, distances.total());
+    }
+} 
