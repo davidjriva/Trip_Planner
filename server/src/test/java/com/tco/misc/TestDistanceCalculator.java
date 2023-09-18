@@ -74,4 +74,21 @@ public class TestDistanceCalculator {
         assertEquals(244L, calculate(p3, p4, 142.0));
         assertEquals(352L, calculate(p4, p1, 142.0));
     }
+
+    final Geo p5 = new Geo(55.7558, 37.6176);
+    final Geo p6 = new Geo(49.2827, -123.1207);
+    final Geo p7 = new Geo(-33.8752, 151.2135);
+    final Geo p8 = new Geo(-22.8274, -43.1498);
+    @Test
+    @DisplayName("guanhualuo: tests from anjoke.json")
+    public void testAnjokeJson() {
+        assertEquals(308L, calculate(p5, p6, 1024.0));
+        assertEquals(403L, calculate(p6, p7, 1024.0));
+        assertEquals(244L, calculate(p7, p8, 1024.0));
+        assertEquals(352L, calculate(p8, p5, 1024.0));
+    }
+
+
+
+
 }
