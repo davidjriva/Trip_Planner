@@ -82,10 +82,10 @@ public class TestDistanceCalculator {
     @Test
     @DisplayName("guanhualuo: tests from anjoke.json")
     public void testAnjokeJson() {
-        assertEquals(308L, calculate(p5, p6, 1024.0));
-        assertEquals(403L, calculate(p6, p7, 1024.0));
-        assertEquals(244L, calculate(p7, p8, 1024.0));
-        assertEquals(352L, calculate(p8, p5, 1024.0));
+        assertEquals(1318L, calculate(p5, p6, 1024.0));
+        assertEquals(2009L, calculate(p6, p7, 1024.0));
+        assertEquals(2175L, calculate(p7, p8, 1024.0));
+        assertEquals(1854L, calculate(p8, p5, 1024.0));
     }
 
 
