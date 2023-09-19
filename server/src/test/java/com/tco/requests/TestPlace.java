@@ -35,7 +35,7 @@ public class TestPlace{
     @DisplayName("bachrock: test north pole")
     public void testNorthPole() {
         Place place = new Place("90", "0");
-        assertEquals(0.0, place.latRadians());
-        assertEquals(PI/2, place.lonRadians());
+        assertEquals(PI/2, place.latRadians());
+        assertEquals(0.0, place.lonRadians());
     }
 }
