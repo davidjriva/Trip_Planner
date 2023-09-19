@@ -88,6 +88,18 @@ public class TestDistanceCalculator {
         assertEquals(1854L, calculate(p8, p5, 1024.0));
     }
 
+    final Geo p9 = new Geo(-33.9, -151.2);
+    final Geo p10 = new Geo(21.3, 157.9);
+    final Geo p11 = new Geo(25.0, 121.6);
+    final Geo p12 = new Geo(-12.0, 77.0);
+    @DisplayName("bachrock: tests from bachrock.json")
+    public void testBachrockJson() {
+        assertEquals(998L, calculate(p9, p10, 1029));
+        assertEquals(2109L, calculate(p10, p11, 1029));
+        assertEquals(1650L, calculate(p11, p12, 1029));
+        assertEquals(3328L, calculate(p12, p9, 1029));
+    }
+
     final Geo pt1 = new Geo(64.074, -141.938);
     final Geo pt2 = new Geo(69.165, 172.265);
     final Geo pt3 = new Geo(-28.603, -65.108);
@@ -101,8 +113,6 @@ public class TestDistanceCalculator {
         assertEquals(6945620L, calculate(pt3, pt4, 3483705.0));
         assertEquals(6703313L, calculate(pt4, pt1, 3483705.0));
     }
-
-
 
 
 }
