@@ -1,6 +1,7 @@
 package com.tco.misc;
 
 import com.tco.requests.ConfigRequest;
+import com.tco.requests.DistancesRequest;
 
 import java.lang.reflect.Type;
 
@@ -54,4 +55,10 @@ public class TestJSONValidator {
             test("{\"requestType\":\"config\"}", ConfigRequest.class, false);
         }
     }
+
+    @Test
+    @DisplayName("alexr11: Distances request json validator")
+    public void testDistancesRequestPass() {
+        test("{\"requestType\":\"distances\",\"places\": [{\"latitude\": \"21\", \"longitude\": \"21\"}],\"earthRadius\":21}", DistancesRequest.class, true);
+        }
 }
