@@ -88,6 +88,20 @@ public class TestDistanceCalculator {
         assertEquals(1854L, calculate(p8, p5, 1024.0));
     }
 
+    final Geo pt1 = new Geo(64.074, -141.938);
+    final Geo pt2 = new Geo(69.165, 172.265);
+    final Geo pt3 = new Geo(-28.603, -65.108);
+    final Geo pt4 = new Geo(-30.511, 145.125);
+    
+    @Test
+    @DisplayName("alexr11: tests from alexr11.json and small distance tests")
+    public void testAlexRubsamJson() {
+        assertEquals(1117741L, calculate(pt1, pt2, 3483705.0));
+        assertEquals(7783278L, calculate(pt2, pt3, 3483705.0));
+        assertEquals(6945620L, calculate(pt3, pt4, 3483705.0));
+        assertEquals(6703313L, calculate(pt4, pt1, 3483705.0));
+    }
+
 
 
 
