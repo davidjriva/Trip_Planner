@@ -32,6 +32,14 @@ public class TestPlace{
     }
 
     @Test
+    @DisplayName("bachrock: test north pole")
+    public void testNorthPole() {
+        Place place = new Place("90", "0");
+        assertEquals(PI/2, place.latRadians());
+        assertEquals(0.0, place.lonRadians());
+    }
+        
+    @Test
     @DisplayName("driva: test dateline positive 1/2")
     public void testDatelineOneHalfPositive() {
         Place place = new Place("0", "90");
@@ -45,5 +53,6 @@ public class TestPlace{
         Place place = new Place("0", "-90");
         assertEquals(0.0, place.latRadians());
         assertEquals(-PI/2, place.lonRadians());
+
     }
 }
