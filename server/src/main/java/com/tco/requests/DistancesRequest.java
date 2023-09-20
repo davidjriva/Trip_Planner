@@ -26,7 +26,7 @@ public class DistancesRequest extends Request{
                     places.get(i).latRadians(), places.get(i).lonRadians(),
                     places.get(j).latRadians(), places.get(j).lonRadians()
                 )
-                disList.add((long) distance);
+                distList.add((long) distance);
             }
         }
         return distList;
