@@ -25,7 +25,7 @@ public class DistancesRequest extends Request{
                 double distance = computeHaversineDistance(
                     places.get(i).latRadians(), places.get(i).lonRadians(),
                     places.get(j).latRadians(), places.get(j).lonRadians()
-                )
+                );
                 distList.add((long) distance);
             }
         }
