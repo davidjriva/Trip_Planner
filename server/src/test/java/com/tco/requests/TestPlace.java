@@ -37,7 +37,8 @@ public class TestPlace{
         Place place = new Place("90", "0");
         assertEquals(PI/2, place.latRadians());
         assertEquals(0.0, place.lonRadians());
-
+    }
+        
     @Test
     @DisplayName("driva: test dateline positive 1/2")
     public void testDatelineOneHalfPositive() {
