@@ -2,6 +2,7 @@ package com.tco.requests;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.tco.misc.DistanceCalculator;
 
 public class DistancesRequest extends Request{
     
@@ -19,7 +20,17 @@ public class DistancesRequest extends Request{
 
     private Distances buildDistanceList(){
         Distances distList = new Distances();
+
         // Loop through places and add their distances to distList
+        for(int i = 0; i < places.size(); i++) {
+            if(i == (places.size() - 1))
+                distList.add(DistanceCalculator.calculate(places.get(i), places.get(0), earthRadius));
+            for(int j = i + 1; j < places.size(); j++) {
+                long distance = DistanceCalculator.calculate(places.get(i), places.get(j), earthRadius);
+                distList.add(distance);
+                break;
+            }
+        }
         return distList;
     }
 
