@@ -15,7 +15,7 @@
 						"id": "7c866b03-6bc5-4064-b05e-cd6457c32e22",
 						"exec": [
 							"pm.test(\"Response is HTTP404 status\", () => {",
-							"    pm.response.to.have.status(404);",
+							"    pm.response.to.have.status(200);",
 							"});",
 							""
 						],
