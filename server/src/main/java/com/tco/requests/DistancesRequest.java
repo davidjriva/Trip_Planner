@@ -22,12 +22,12 @@ public class DistancesRequest extends Request{
         Distances distList = new Distances();
 
         // Loop through places and add their distances to distList
-        for(int i = 0; i < places.size; i++) {
-            if(i == (places.size - 1))
-                distances.add(DistanceCalculator.calculate(places.get(i), places.get(0), earthRadius));
-            for(int j = i + 1; j < places.size; j++) {
+        for(int i = 0; i < places.size(); i++) {
+            if(i == (places.size() - 1))
+                distList.add(DistanceCalculator.calculate(places.get(i), places.get(0), earthRadius));
+            for(int j = i + 1; j < places.size(); j++) {
                 long distance = DistanceCalculator.calculate(places.get(i), places.get(j), earthRadius);
-                distances.add(distance);
+                distList.add(distance);
                 break;
             }
         }
