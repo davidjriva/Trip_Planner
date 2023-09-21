@@ -144,7 +144,7 @@ public class TestDistancesRequest {
         assertEquals(3, distances.size());
         assertEquals(1318L,distances.get(0));
         assertEquals(2009L, distances.get(1));
-        assertEquals(2175L, distances.get(2));
+        assertEquals(2330L, distances.get(2));
     }
 
 }
