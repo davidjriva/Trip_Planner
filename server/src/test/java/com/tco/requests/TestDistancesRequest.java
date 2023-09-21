@@ -126,4 +126,24 @@ public class TestDistancesRequest {
         assertEquals(4, request.places().size());
         assertEquals(radius, request.earthRadius());
     }
+
+    @Test
+    @DisplayName("anjoke: testing buildDistanceList()")
+    public void testBuildDistanceList() {
+        long radius = 1024L;
+        request = new DistancesRequest(radius, places);
+        Place Moscow = new Place("55.7558", "37.6176");
+        Place Vancouver = new Place("49.2827", "-123.1207");
+        Place Sydney = new Place("-33.8752", "151.2135");
+        places.add(Moscow);
+        places.add(Vancouver);
+        places.add(Sydney);
+        request.buildResponse();
+        distances = request.distances();
+        assertEquals(3, distances.size());
+        assertEquals(1318L,distances.get(0));
+        assertEquals(2009L, distances.get(1));
+        assertEquals(2175L, distances.get(2));
+    }
+    
 }
