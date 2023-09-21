@@ -22,7 +22,7 @@ public class TestDistancesRequest {
     @BeforeEach
     public void beforeEach() {
         places = new Places();
-        request = new DistanceRequest(bigRadius, places);
+        request = new DistancesRequest(bigRadius, places);
         
     }
 
