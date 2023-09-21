@@ -22,6 +22,7 @@ public class TestDistancesRequest {
     @BeforeEach
     public void beforeEach() {
         places = new Places();
+        request = new DistanceRequest(bigRadius, places);
         
     }
 
@@ -145,5 +146,5 @@ public class TestDistancesRequest {
         assertEquals(2009L, distances.get(1));
         assertEquals(2175L, distances.get(2));
     }
-    
+
 }
