@@ -4,6 +4,8 @@ import { Table, Collapse } from 'reactstrap';
 import { latLngToText, placeToLatLng } from '../../../utils/transformers';
 import { BsChevronDown } from 'react-icons/bs';
 import PlaceActions from './PlaceActions';
+import Units from './Units';
+import { IoChevronDownOutline } from "react-icons/io5";
 
 export default function Itinerary(props) {
 	const placeListProps = {
@@ -32,8 +34,12 @@ function TripHeader(props) {
 					className='trip-header-title'
 					data-testid='trip-header-title'
 				>
-					{props.tripName}
+
+					{props.tripName} is {props.total} <Units/>
 				</th>
+				<td align={'center'}> <IoChevronDownOutline fontSize={24}/></td>
+				<td align={'center'}><IoChevronDownOutline fontSize={24}/></td>
+				<td></td>
 			</tr>
 		</thead>
 	);
