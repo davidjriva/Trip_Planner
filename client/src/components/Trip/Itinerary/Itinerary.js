@@ -5,6 +5,7 @@ import { latLngToText, placeToLatLng } from '../../../utils/transformers';
 import { BsChevronDown } from 'react-icons/bs';
 import PlaceActions from './PlaceActions';
 import Units from './Units';
+import Distances from './Distance';
 import { IoChevronDownOutline } from "react-icons/io5";
 
 export default function Itinerary(props) {
@@ -79,6 +80,8 @@ function PlaceRow(props) {
 				<strong>{name}</strong>
 				<AdditionalPlaceInfo {...props} showFullName={showFullName} location={location}/>
 			</td>
+			<td align={'right'}><Distances distance={1234}/></td>
+			<td align={'right'}><Distances distance={56789}/></td>
 			<RowArrow toggleShowFullName={toggleShowFullName} index={props.index}/>
 		</tr>
 	);
