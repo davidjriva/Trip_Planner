@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useToggle } from '../../../hooks/useToggle';
-import { usedistances } from '../../../hooks/useDistances';
+import { useDistances } from '../../../hooks/useDistances';
 import { Table, Collapse } from 'reactstrap';
 import { latLngToText, placeToLatLng } from '../../../utils/transformers';
 import { BsChevronDown } from 'react-icons/bs';
