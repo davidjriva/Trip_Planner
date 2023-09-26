@@ -23,7 +23,7 @@ export default function Itinerary(props) {
 
 	const placeListProps = {
 		places: props.places,
-		distances: props.distances,
+		distances: distances,
 		placeActions: props.placeActions,
 		selectedIndex: props.selectedIndex
 	}
