@@ -9,6 +9,11 @@ import Distances from './Distance';
 import { IoChevronDownOutline } from "react-icons/io5";
 
 export default function Itinerary(props) {
+	const [earthRadius, setEarthRadius] = useState(6371); //earth radius in km is 6,371
+	const [distanceUnits, setDistanceUnits] = useState("miles");
+
+	
+
 	const placeListProps = {
 		places: props.places,
 		placeActions: props.placeActions,
