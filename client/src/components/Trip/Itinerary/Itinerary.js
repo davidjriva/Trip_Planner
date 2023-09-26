@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useToggle } from '../../../hooks/useToggle';
+import { usedistances } from '../../../hooks/useDistances';
 import { Table, Collapse } from 'reactstrap';
 import { latLngToText, placeToLatLng } from '../../../utils/transformers';
 import { BsChevronDown } from 'react-icons/bs';
@@ -11,6 +12,7 @@ import { IoChevronDownOutline } from "react-icons/io5";
 export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
 	const [distanceUnits, setDistanceUnits] = useState("miles");
+	const { distances } = useDistances( props.places, earthRadius, props.serverSettings);
 
 	const unitsProps = {
 		earthRadius,
@@ -21,6 +23,7 @@ export default function Itinerary(props) {
 
 	const placeListProps = {
 		places: props.places,
+		distances: props.distances,
 		placeActions: props.placeActions,
 		selectedIndex: props.selectedIndex
 	}
