@@ -7,6 +7,7 @@ import PlaceActions from './PlaceActions';
 import Units from './Units';
 import Distances from './Distance';
 import { IoChevronDownOutline } from "react-icons/io5";
+import { TbSum } from "react-icons/tb";
 
 export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
@@ -49,7 +50,7 @@ function TripHeader(props) {
 					{props.tripName} is 0 <Units {...props}/>
 				</th>
 				<td align={'center'}> <IoChevronDownOutline fontSize={24}/></td>
-				<td align={'center'}><IoChevronDownOutline fontSize={24}/></td>
+				<td align={'center'}><TbSum fontSize={24}/></td>
 				<td></td>
 			</tr>
 		</thead>
