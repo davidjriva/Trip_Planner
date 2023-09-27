@@ -113,6 +113,20 @@ public class TestDistanceCalculator {
         assertEquals(6945620L, calculate(pt3, pt4, 3483705.0));
         assertEquals(6703313L, calculate(pt4, pt1, 3483705.0));
     }
+    
+    final Geo pl1 = new Geo(40.70986392889512, -73.99067902670826);
+    final Geo pl2 = new Geo(-22.827408929741306, -43.14976462493434);
+    final Geo pl3 = new Geo(48.85724432669951, 2.35080897215182);
+    final Geo pl4 = new Geo(-33.87517392788854, 151.2134527627967);
+    
+    @Test
+    @DisplayName("aaouaj: tests from aaouaj.json")
+    public void testAaouajJson() {
+        assertEquals(3042L, calculate(pl1, pl2, 2500));
+        assertEquals(3594L, calculate(pl2, pl3, 2500));
+        assertEquals(6656L, calculate(pl3, pl4, 2500));
+        assertEquals(6275L, calculate(pl4, pl1, 2500));
+    }
 
 
 }
