@@ -18,6 +18,7 @@ public class ConfigRequest extends Request {
         serverName = "t11 The Chronicles of JavaScript";
         features = new ArrayList<>();
         features.add("config");
+        features.add("distances");
         log.trace("buildResponse -> {}", this);
     }
 
