@@ -4,8 +4,22 @@ import { Table, Collapse } from 'reactstrap';
 import { latLngToText, placeToLatLng } from '../../../utils/transformers';
 import { BsChevronDown } from 'react-icons/bs';
 import PlaceActions from './PlaceActions';
+import Units from './Units';
+import Distances from './Distance';
+import { IoChevronDownOutline } from "react-icons/io5";
+import { TbSum } from "react-icons/tb";
 
 export default function Itinerary(props) {
+	const [earthRadius, setEarthRadius] = useState(3959);
+	const [distanceUnits, setDistanceUnits] = useState("miles");
+
+	const unitsProps = {
+		earthRadius,
+		setEarthRadius,
+		distanceUnits,
+		setDistanceUnits
+	}
+
 	const placeListProps = {
 		places: props.places,
 		placeActions: props.placeActions,
@@ -15,6 +29,7 @@ export default function Itinerary(props) {
 	return (
 		<Table responsive>
 			<TripHeader
+				{...unitsProps}
 				tripName={props.tripName}
 			/>
 			<PlaceList 
@@ -32,8 +47,11 @@ function TripHeader(props) {
 					className='trip-header-title'
 					data-testid='trip-header-title'
 				>
-					{props.tripName}
+					{props.tripName} is 0 <Units {...props}/>
 				</th>
+				<td align={'center'}> <IoChevronDownOutline fontSize={24}/></td>
+				<td align={'center'}><TbSum fontSize={24}/></td>
+				<td></td>
 			</tr>
 		</thead>
 	);
@@ -73,6 +91,8 @@ function PlaceRow(props) {
 				<strong>{name}</strong>
 				<AdditionalPlaceInfo {...props} showFullName={showFullName} location={location}/>
 			</td>
+			<td align={'right'}><Distances distance={1234}/></td>
+			<td align={'right'}><Distances distance={56789}/></td>
 			<RowArrow toggleShowFullName={toggleShowFullName} index={props.index}/>
 		</tr>
 	);

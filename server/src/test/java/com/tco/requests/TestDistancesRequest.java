@@ -147,4 +147,28 @@ public class TestDistancesRequest {
         assertEquals(2330L, distances.get(2));
     }
 
+    @Test
+    @DisplayName("driva: test 4 places large")
+    public void testFourPlacesLarge() {
+        long radius = 3483705L;
+        request = new DistancesRequest(radius, places);
+
+        places.add(new Place("64.074", "-141.938"));
+        places.add(new Place("69.165", "172.265"));
+        places.add(new Place("-28.603", "-65.108"));
+        places.add(new Place("-30.511", "145.125"));
+        
+        request.buildResponse();
+
+        distances = request.distances();
+        assertEquals(4, distances.size());
+        assertEquals(22549952L, distances.total());
+        assertEquals(1117741L, distances.get(0));
+        assertEquals(7783278L, distances.get(1));
+        assertEquals(6945620L, distances.get(2));
+        assertEquals(6703313L, distances.get(3));
+
+        assertEquals(4, request.places().size());
+        assertEquals(radius, request.earthRadius());
+    }
 }
