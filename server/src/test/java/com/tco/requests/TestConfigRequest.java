@@ -32,7 +32,7 @@ public class TestConfigRequest {
 
     @Test
     @DisplayName("base: Features includes \"distances\"")
-    public void testFeatures(){
+    public void testFeatures2(){
         assertTrue(conf.validFeature("distances"));
     }
 
