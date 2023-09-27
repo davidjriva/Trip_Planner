@@ -51,6 +51,144 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "alexr11: test one place",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c866b03-6bc5-4064-b05e-cd6457c32e22",
+						"exec": [
+							"pm.test(\"Response is HTTP404 status\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "81639908-fc52-4181-a116-1c746adbfcca",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [],\n    \"earthRadius\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test 4 places",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c866b03-6bc5-4064-b05e-cd6457c32e22",
+						"exec": [
+							"pm.test(\"Response is HTTP404 status\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "7e1d30b5-cf11-4637-ad51-0d55277d575b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [],\n    \"earthRadius\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test 4 places max values",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c866b03-6bc5-4064-b05e-cd6457c32e22",
+						"exec": [
+							"pm.test(\"Response is HTTP404 status\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "4881b68e-53b6-4d20-a9e2-b1ef73a66ed1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [],\n    \"earthRadius\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
