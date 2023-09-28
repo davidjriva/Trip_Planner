@@ -91,3 +91,9 @@ $link: $dark-slate;
 // Bootstrap
 
 @import "~bootstrap/scss/bootstrap";
+
+//Itinerary styles
+.leg, .cumulative {
+    color: white !important;
+    background-color: darkgreen !important; 
+}
