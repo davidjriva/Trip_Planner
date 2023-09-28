@@ -284,6 +284,89 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "driva-one-place",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0dceb19b-2a5c-4722-82b1-fa97101d0007",
+						"exec": [
+							"pm.test(\"driva: Status Test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"driva: requestType test\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"distances\")",
+							"})",
+							"",
+							"pm.test(\"driva: earthRadius test\", function (){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.earthRadius).to.equal(142);",
+							"});",
+							"",
+							"pm.test(\"places test\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(1)",
+							"})",
+							"",
+							"pm.test(\"distances test\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.distances).to.not.equal(null);",
+							"    pm.expect(jsonData.distances.length).to.equal(1);",
+							"    pm.expect(jsonData.distances[0]).to.equal(0)",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "713f9e01-8fb4-455e-a939-89e3b3e65aaa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"distances\",\n    \"earthRadius\": 142,\n    \"places\": [\n        { \"latitude\": \"-26.202\", \"longitude\": \"28.028\" }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "driva-two-place",
+			"id": "3ad92337-ca6b-4069-aa11-7bed5a632f8c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
