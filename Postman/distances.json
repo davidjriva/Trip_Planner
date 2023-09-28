@@ -358,13 +358,146 @@
 		},
 		{
 			"name": "driva-two-place",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60af7623-b722-41da-a16e-64ec7394f65c",
+						"exec": [
+							"pm.test(\"driva: Status Test(two places)\", function (){",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"driva: requestType test(two places)\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"distances\")",
+							"})",
+							"",
+							"pm.test(\"driva: earthRadius test(two places)\", function (){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.earthRadius).to.equal(142);",
+							"});",
+							"",
+							"pm.test(\"driva: places test(two places)\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(2)",
+							"})",
+							"",
+							"pm.test(\"driva: distances test(two places)\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.distances).to.not.equal(null);",
+							"    pm.expect(jsonData.distances.length).to.equal(2);",
+							"    pm.expect(jsonData.distances[0]).to.equal(308);",
+							"    pm.expect(jsonData.distances[1]).to.equal(308);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "3ad92337-ca6b-4069-aa11-7bed5a632f8c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"distances\",\n    \"earthRadius\": 142,\n    \"places\": [\n        { \"latitude\": \"-26.202\", \"longitude\": \"28.028\" },\n        { \"latitude\": \"43.061\", \"longitude\": \"141.350\"}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "driva-three-place",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ecd5ddf2-f087-4819-9b8f-bdc0273a26a3",
+						"exec": [
+							"pm.test(\"driva: Status Test(three places)\", function (){",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"driva: requestType test(three places)\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"distances\")",
+							"})",
+							"",
+							"pm.test(\"driva: earthRadius test(three places)\", function (){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.earthRadius).to.equal(142);",
+							"});",
+							"",
+							"pm.test(\"driva: places test(three places)\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(3)",
+							"})",
+							"",
+							"pm.test(\"driva: distances test(three places)\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.distances).to.not.equal(null);",
+							"    pm.expect(jsonData.distances.length).to.equal(3);",
+							"    pm.expect(jsonData.distances[0]).to.equal(308);",
+							"    pm.expect(jsonData.distances[1]).to.equal(403);",
+							"    pm.expect(jsonData.distances[2]).to.equal(180);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "6aeae4a3-f448-486e-9116-ede8529b7e13",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"distances\",\n    \"earthRadius\": 142,\n    \"places\": [\n        { \"latitude\": \"-26.202\", \"longitude\": \"28.028\" },\n        { \"latitude\": \"43.061\", \"longitude\": \"141.350\"},\n        { \"latitude\": \"-34.603\", \"longitude\": \"-58.396\"}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/distances",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"distances"
+					]
+				}
 			},
 			"response": []
 		}
