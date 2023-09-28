@@ -1,3 +1,3 @@
 export default function Distance(props) {
-    return props.distance
+    return props.distance.toLocaleString();
   }
