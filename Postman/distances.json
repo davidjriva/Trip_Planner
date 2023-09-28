@@ -60,9 +60,39 @@
 					"script": {
 						"id": "7c866b03-6bc5-4064-b05e-cd6457c32e22",
 						"exec": [
-							"pm.test(\"Response is HTTP404 status\", () => {",
+							"pm.test(\"Status\", function ()",
+							"{",
 							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
 							"});",
+							"",
+							"pm.test(\"requestType test\", function () ",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"distances\");",
+							"});",
+							"",
+							"pm.test(\"earthRadius test\", function()",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.earthRadius).to.eql(9999999);",
+							"});",
+							"",
+							"pm.test(\"places test\", function()",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places.length).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"distances test\", function()",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.distances.length).to.eql(1);",
+							"    pm.expect(jsonData.distances[0]).to.eql(0);",
+							"",
+							"});",
+							"",
 							""
 						],
 						"type": "text/javascript"
@@ -78,7 +108,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [],\n    \"earthRadius\": 1\n}",
+					"raw": "{\n\t\"requestType\": \"distances\",\n\t\"places\": \n          [{\"name\": \"max\",\"latitude\": \"90.0\",\"longitude\": \"180.0\"}],\n\t\"earthRadius\": 9999999\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -106,9 +136,42 @@
 					"script": {
 						"id": "7c866b03-6bc5-4064-b05e-cd6457c32e22",
 						"exec": [
-							"pm.test(\"Response is HTTP404 status\", () => {",
+							"pm.test(\"Status\", function ()",
+							"{",
 							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
 							"});",
+							"",
+							"pm.test(\"requestType test\", function () ",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"distances\");",
+							"});",
+							"",
+							"pm.test(\"earthRadius test\", function()",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.earthRadius).to.eql(3483705);",
+							"});",
+							"",
+							"pm.test(\"places test\", function()",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places.length).to.eql(4);",
+							"});",
+							"",
+							"pm.test(\"distances test\", function()",
+							"{",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.distances.length).to.eql(4);",
+							"    pm.expect(jsonData.distances[0]).to.eql(1117741);",
+							"    pm.expect(jsonData.distances[1]).to.eql(7783278);",
+							"    pm.expect(jsonData.distances[2]).to.eql(6945620);",
+							"    pm.expect(jsonData.distances[3]).to.eql(6703313);",
+							"",
+							"});",
+							"",
 							""
 						],
 						"type": "text/javascript"
@@ -124,7 +187,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"requestType\": \"distances\",\n    \"places\": [],\n    \"earthRadius\": 1\n}",
+					"raw": "{\n\t\"requestType\": \"distances\",\n\t\"places\": \n          [{\"name\": \"Chicken\",\"latitude\": \"64.074\",\"longitude\": \"-141.938\"},\n   \t\t   {\"name\": \"Bystry\",\"latitude\": \"69.165\",\"longitude\": \"172.265\"}, \n    \t   {\"name\": \"Frias\",\"latitude\": \"-28.603\",\"longitude\": \"-65.108\"},\n\t\t   {\"name\": \"Louth\",\"latitude\": \"-30.511\",\"longitude\": \"145.125\"}],\n\t\"earthRadius\": 3483705\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
