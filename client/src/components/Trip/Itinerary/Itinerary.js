@@ -7,7 +7,6 @@ import { BsChevronDown } from 'react-icons/bs';
 import PlaceActions from './PlaceActions';
 import Units from './Units';
 import Distances from './Distance';
-import './Itinerary.css';
 
 export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
@@ -32,6 +31,7 @@ export default function Itinerary(props) {
 		<Table responsive>
 			<TripHeader
 				{...unitsProps}
+				{...placeListProps}
 				tripName={props.tripName}
 			/>
 			<PlaceList 
@@ -49,7 +49,7 @@ function TripHeader(props) {
 					className='trip-header-title'
 					data-testid='trip-header-title'
 				>
-					{props.tripName} is 0 <Units {...props}/>
+					{props.tripName} is <Distances distance={props.distances.total}/> <Units {...props}/>
 				</th>
 				<td className='leg'>
 					Leg
