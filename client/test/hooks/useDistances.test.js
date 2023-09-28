@@ -97,7 +97,7 @@ describe('useDistances', () => {
         await act(async () => hook.current.placeActions.append(mock_places_2[1]));
       
         expect(hook.current.places).toHaveLength(2);
-        //expect(hook.current.distances).toEqual({leg:[0,0], cumulative:[0,0], total:0});
+        // expect(hook.current.distances).toEqual({leg:[1234,4567], cumulative:[1234,5801], total:5801});
         // Use this to test API once server side is completed
         expect(hook.current.distances).toEqual({leg:[1234,4567], cumulative:[1234,5801], total:5801});
 
