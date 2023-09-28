@@ -97,7 +97,7 @@ function PlaceRow(props) {
 				<AdditionalPlaceInfo {...props} showFullName={showFullName} location={location}/>
 			</td>
 			<td align={'right'}><Distances distance={props.distances.leg[props.index] || 0}/></td>
-			<td align={'right'}><Distances distance={56789}/></td>
+			<td align={'right'}><Distances distance={props.distances.cumulative[props.index] || 0}/></td>
 			<RowArrow toggleShowFullName={toggleShowFullName} index={props.index}/>
 		</tr>
 	);
