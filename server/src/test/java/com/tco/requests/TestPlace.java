@@ -53,6 +53,23 @@ public class TestPlace{
         Place place = new Place("0", "-90");
         assertEquals(0.0, place.latRadians());
         assertEquals(-PI/2, place.lonRadians());
+    }
 
+    @Test
+    @DisplayName("driva: testing ID feature of Place")
+    public void testID(){
+        Place place = new Place();
+        place.put("id", "123");
+        assertEquals("123", place.id());
+    }
+
+    @Test
+    @DisplayName("driva: testing default ctor")
+    void testDefaultConstructor() {
+        Place place = new Place();
+        
+        assertNull(place.get("latitude"));
+        assertNull(place.get("longitude"));
+        assertNull(place.id());
     }
 }
