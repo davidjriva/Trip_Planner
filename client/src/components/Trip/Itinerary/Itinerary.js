@@ -5,8 +5,7 @@ import { Table, Collapse } from 'reactstrap';
 import { latLngToText, placeToLatLng } from '../../../utils/transformers';
 import { BsChevronDown } from 'react-icons/bs';
 import PlaceActions from './PlaceActions';
-import Units from './Units';
-import Distances from './Distance';
+import Distances from './Distances';
 import UnitsSelector from './UnitsSelector';
 
 export default function Itinerary(props) {
