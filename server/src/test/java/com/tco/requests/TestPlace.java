@@ -94,4 +94,19 @@ public class TestPlace{
         Place place = new Place("40.7128", "-74.0060");
         assertEquals(Math.toRadians(-74.0060), place.lonRadians(), 0.0001);
     }
+
+    @Test
+    @DisplayName("bachrock: testing id() with ctor and two arguments")
+    public void testIdWithCtorAndTwoArgs() {
+        Place place = new Place("61.218", "-149.900");
+        place.put("id", "Anchorage");
+        assertEquals("Anchorage", place.id());
+    }
+
+    @Test
+    @DisplayName("bachrock: testing isempty() for place")
+    public void isPlaceEmpty() {
+        Place place = new Place();
+        assertEquals(true, place.isEmpty());
+    }
 }
