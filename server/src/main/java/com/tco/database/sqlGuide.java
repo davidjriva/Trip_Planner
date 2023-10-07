@@ -72,7 +72,9 @@ public class sqlGuide {
 					place.put(col, results.getString(col));
 				}
 				place.put("index", String.format("%d",++count));
-				log.error(place.toString());
+
+				//IMPORTANT: BELOW STATEMENT IS USED TO DISPLAY EACH PLACE TO TERMINAL, UNCOMMENT TO SEE:
+				//log.error(place.toString());
 				places.add(place);
 			}
 			return places;
