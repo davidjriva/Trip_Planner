@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.lang.Exception;
 
+import com.tco.database.DatabaseOperations; 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,17 +32,10 @@ public class sqlGuide {
 				Statement query = conn.createStatement();
 				ResultSet results = query.executeQuery(sql)
 			) {
-				return count(results);
+				return DatabaseOperations.count(results);
 			} catch (Exception e) {
 				throw e;
 			}
-		}
-
-		private static Integer count(ResultSet results) throws Exception {
-			if (results.next()) {
-				return results.getInt("count");
-			}
-			throw new Exception("No count results in found query.");
 		}
 
 
@@ -55,29 +50,10 @@ public class sqlGuide {
 				Statement  query   = conn.createStatement();
 				ResultSet  results = query.executeQuery(sql);
 			) {
-				return convertQueryResultsToPlaces(results, COLUMNS);
+				return DatabaseOperations.convertQueryResultsToPlaces(results, COLUMNS);
 			} catch (Exception e) {
 				throw e;
 			}
-		}
-
-
-		private static Places convertQueryResultsToPlaces(ResultSet results, String columns) throws Exception {
-			int count = 0;
-			String[] cols = columns.split(",");
-			Places places = new Places();
-			while (results.next()) {
-				Place place = new Place();
-				for (String col: cols) {
-					place.put(col, results.getString(col));
-				}
-				place.put("index", String.format("%d",++count));
-
-				//IMPORTANT: BELOW STATEMENT IS USED TO DISPLAY EACH PLACE TO TERMINAL, UNCOMMENT TO SEE:
-				//log.error(place.toString());
-				places.add(place);
-			}
-			return places;
 		}
 	}
 }

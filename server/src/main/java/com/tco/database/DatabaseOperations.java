@@ -22,6 +22,8 @@ public class DatabaseOperations {
             for (String col : cols) {
                 place.put(col, results.getString(col));
             }
+            //IMPORTANT: BELOW STATEMENT IS USED TO DISPLAY EACH PLACE TO TERMINAL, UNCOMMENT TO SEE:
+			//log.error(place.toString());
             place.put("index", String.format("%d", ++count));
             places.add(place);
         }
