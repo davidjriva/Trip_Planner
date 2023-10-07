@@ -3,9 +3,19 @@ package com.tco.database;
 public class Credential {
     final static String USER = "cs314-db";
     final static String PASSWORD = "eiK5liet1uej";
-    final static String URL = "jdbc:mariadb://127.0.0.1:56247/cs314";
-
+    
     static String url() {
-        return URL;
+        String useTunnel = System.getenv("CS314_USE_DATABASE_TUNNEL");
+        String onDocker = System.getenv("CS314_DOCKER");
+        // Note that if the variable isn't defined, System.getenv will return null
+        if(useTunnel != null && useTunnel.equals("true")) {
+            return "jdbc:mariadb://127.0.0.1:56247/cs314";
+        }
+        else if(onDocker != null && onDocker.equals("true")) {
+            return "jdbc:mariadb://127.0.0.1:3306/cs314";
+        }
+        else {
+            return "jdbc:mariadb://faure.cs.colostate.edu/cs314";
+        }
     }
 }
