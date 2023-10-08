@@ -37,6 +37,12 @@ public class TestConfigRequest {
     }
 
     @Test
+    @DisplayName("base: Features includes \"find\"")
+    public void testFeatures2(){
+        assertTrue(conf.validFeature("find"));
+    }
+
+    @Test
     @DisplayName("base: Team name is correct")
     public void testServerName() {
         String name = conf.getServerName();
