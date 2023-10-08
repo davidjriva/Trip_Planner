@@ -38,7 +38,7 @@ public class TestConfigRequest {
 
     @Test
     @DisplayName("base: Features includes \"find\"")
-    public void testFeatures2(){
+    public void testFeatures3(){
         assertTrue(conf.validFeature("find"));
     }
 
