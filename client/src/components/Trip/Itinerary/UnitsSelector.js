@@ -1,15 +1,10 @@
 import React from 'react';
 
-const UnitsSelector = () => {
-    const [selectedUnit, setSelectedUnit] = React.useState('miles');
+const UnitsSelector = ({ earthRadius, setEarthRadius, distanceUnits, setDistanceUnits, handleUnitsChange }) => {
     const units = ['miles', 'kilometers', 'nautical miles'];
 
-    const handleUnitsChange = (e) => {
-        setSelectedUnit(e.target.value);
-    };
-
     return (
-        <select value={selectedUnit} onChange={handleUnitsChange}>
+        <select value={distanceUnits} onChange={(e) => handleUnitsChange(e.target.value)}>
             {units.map((unit) => (
                 <option key={unit} value={unit}>
                     {unit}
