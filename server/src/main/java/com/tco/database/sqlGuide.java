@@ -18,7 +18,7 @@ public class sqlGuide {
 	private static final transient Logger log = LoggerFactory.getLogger(sqlGuide.class);
 
 	public final static String TABLE = "world";
-	public final static String COLUMNS = "id,name,municipality,iso_region,iso_country,continent,latitude,longitude,altitude";
+	public final static String COLUMNS = "world.id,world.name,municipality,iso_region,world.iso_country,world.continent,continent.name,country.name,region.name,latitude,longitude,altitude";
 
 	public static class Place extends HashMap<String,String> {}
 	public static class Places extends ArrayList<Place> {}
