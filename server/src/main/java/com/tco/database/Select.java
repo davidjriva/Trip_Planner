@@ -14,6 +14,9 @@ public class Select {
         return "SELECT "
                 + data
                 + " FROM " + sqlGuide.TABLE
+                + " INNER JOIN continent ON world.continent = continent.id"
+                + " INNER JOIN country ON world.iso_country = country.id"
+                + " INNER JOIN region ON world.iso_region = region.id"
                 + " WHERE name LIKE \"%" + match + "%\" "
                 + limit
                 + " ;";
