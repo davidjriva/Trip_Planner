@@ -25,7 +25,7 @@ public class TestSqlGuide {
         }
 
 
-        assertEquals(places.get(0).get("world.continent"), "NA");
+        assertEquals(places.get(0).get("iso_continent"), "NA");
         assertEquals(places.get(0).get("altitude"), "5170");
         assertEquals(places.get(0).get("iso_country"), "US");
         assertEquals(places.get(0).get("latitude"), "40.0332984924");

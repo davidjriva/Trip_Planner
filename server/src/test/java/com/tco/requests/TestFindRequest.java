@@ -33,7 +33,7 @@ public class TestFindRequest {
 
         found = request.found();
         assertEquals(found, 16);
-        assertEquals(places.get(0).get("world.continent"), "NA");
+        assertEquals(places.get(0).get("iso_continent"), "NA");
         assertEquals(places.get(0).get("altitude"), "5170");
         assertEquals(places.get(0).get("iso_country"), "US");
         assertEquals(places.get(0).get("latitude"), "40.0332984924");
@@ -61,7 +61,7 @@ public class TestFindRequest {
         assertEquals(found, 2);
         assertEquals(places.get(0).get("name"), "Husky Airport");
         assertEquals(places.get(0).get("id"), "MX-0310");
-        assertEquals(places.get(0).get("world.continent"), "NA");
+        assertEquals(places.get(0).get("iso_continent"), "NA");
         assertEquals(places.get(0).get("continent"), "North America");
         assertEquals(places.get(0).get("iso_country"), "MX");
         assertEquals(places.get(0).get("country"), "Mexico");
@@ -72,7 +72,7 @@ public class TestFindRequest {
 
         assertEquals(places.get(1).get("name"), "Husky Haven Airport");
         assertEquals(places.get(1).get("id"), "P32");
-        assertEquals(places.get(1).get("world.continent"), "NA");
+        assertEquals(places.get(1).get("iso_continent"), "NA");
         assertEquals(places.get(1).get("continent"), "North America");
         assertEquals(places.get(1).get("iso_country"), "US");
         assertEquals(places.get(1).get("country"), "United States");
