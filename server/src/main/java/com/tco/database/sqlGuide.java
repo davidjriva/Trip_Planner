@@ -18,8 +18,8 @@ public class sqlGuide {
 	private static final transient Logger log = LoggerFactory.getLogger(sqlGuide.class);
 
 	public final static String TABLE = "world";
-	public final static String COLUMNS = "world.id as id,world.name as name,municipality,iso_region,continent.name as continent,world.iso_country as iso_country,world.continent,country.name as country,region.name as region,latitude,longitude,altitude";
-	public final static String DISPLAYCOLUMNS = "id,name,municipality,continent,world.continent,iso_country,iso_region,country,region,latitude,longitude,altitude";
+	public final static String COLUMNS = "world.id as id,world.name as name,municipality,iso_region,continent.name as continent,world.iso_country as iso_country,world.continent as iso_continent,country.name as country,region.name as region,latitude,longitude,altitude";
+	public final static String DISPLAYCOLUMNS = "id,name,municipality,continent,iso_continent,iso_country,iso_region,country,region,latitude,longitude,altitude";
 
 	public static class Place extends HashMap<String,String> {}
 	public static class Places extends ArrayList<Place> {}
