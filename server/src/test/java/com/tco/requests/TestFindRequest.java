@@ -44,4 +44,41 @@ public class TestFindRequest {
         assertEquals(places.get(0).get("world.id"), "0CO1");
         assertEquals(places.get(0).get("longitude"), "-105.124000549");
     }
+
+    @Test
+    @DisplayName("alexr11: test table joins")
+    public void testjoins() {
+        String match = "husky";
+        int limit = 2;
+
+        request = new FindRequest(match, limit);
+        request.buildResponse();
+
+        places = request.places();
+        assertEquals(2, places.size());
+
+        found = request.found();
+        assertEquals(found, 2);
+        assertEquals(places.get(0).get("world.name"), "Husky Airport");
+        assertEquals(places.get(0).get("world.id"), "MX-0310");
+        assertEquals(places.get(0).get("world.continent"), "NA");
+        assertEquals(places.get(0).get("continent.name"), "North America");
+        assertEquals(places.get(0).get("world.iso_country"), "MX");
+        assertEquals(places.get(0).get("country.name"), "Mexico");
+        assertEquals(places.get(0).get("iso_region"), "MX-TAM");
+        assertEquals(places.get(0).get("region.name"), "Tamaulipas");
+        assertEquals(places.get(0).get("latitude"), "22.7891");
+        assertEquals(places.get(0).get("longitude"), "-98.49");
+
+        assertEquals(places.get(1).get("world.name"), "Husky Haven Airport");
+        assertEquals(places.get(1).get("world.id"), "P32");
+        assertEquals(places.get(1).get("world.continent"), "NA");
+        assertEquals(places.get(1).get("continent.name"), "North America");
+        assertEquals(places.get(1).get("world.iso_country"), "US");
+        assertEquals(places.get(1).get("country.name"), "United States");
+        assertEquals(places.get(1).get("iso_region"), "US-PA");
+        assertEquals(places.get(1).get("region.name"), "Pennsylvania");
+        assertEquals(places.get(1).get("latitude"), "41.78900146484375");
+        assertEquals(places.get(1).get("longitude"), "-75.88990020751953");
+    }
 }
