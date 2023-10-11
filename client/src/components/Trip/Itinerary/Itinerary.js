@@ -12,12 +12,24 @@ export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
 	const [distanceUnits, setDistanceUnits] = useState("miles");
 	const { distances } = useDistances( props.places, earthRadius, props.serverSettings);
+	
+	const handleUnitsChange = (newUnits) => {
+        setDistanceUnits(newUnits);
+        if (newUnits === 'miles') {
+            setEarthRadius(3959);
+        } else if (newUnits === 'kilometers') {
+            setEarthRadius(6371);
+        } else if (newUnits === 'nautical miles') {
+            setEarthRadius(3440);
+        }
+    };
 
 	const unitsProps = {
 		earthRadius,
 		setEarthRadius,
 		distanceUnits,
-		setDistanceUnits
+		setDistanceUnits,
+		handleUnitsChange
 	}
 
 	const placeListProps = {
