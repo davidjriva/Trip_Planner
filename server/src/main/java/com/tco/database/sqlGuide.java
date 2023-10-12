@@ -18,7 +18,8 @@ public class sqlGuide {
 	private static final transient Logger log = LoggerFactory.getLogger(sqlGuide.class);
 
 	public final static String TABLE = "world";
-	public final static String COLUMNS = "world.id,world.name,municipality,iso_region,world.iso_country,world.continent,continent.name,country.name,region.name,latitude,longitude,altitude";
+	public final static String COLUMNS = "world.id as id,world.name as name,municipality,continent.name as continent,country.name as country,region.name as region,latitude,longitude,altitude";
+	public final static String DISPLAYCOLUMNS = "id,name,municipality,continent,country,region,latitude,longitude,altitude";
 
 	public static class Place extends HashMap<String,String> {}
 	public static class Places extends ArrayList<Place> {}
@@ -50,7 +51,7 @@ public class sqlGuide {
 			Statement query = conn.createStatement();
 			ResultSet results = query.executeQuery(sql);
 		) {
-			return DatabaseOperations.convertQueryResultsToPlaces(results, COLUMNS);
+			return DatabaseOperations.convertQueryResultsToPlaces(results, DISPLAYCOLUMNS);
 		} catch (Exception e) {
 			throw e;
 		}
