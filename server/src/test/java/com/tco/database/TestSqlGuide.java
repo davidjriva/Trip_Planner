@@ -24,14 +24,13 @@ public class TestSqlGuide {
             throw new Exception("Error with: " + e.getMessage());
         }
 
-
-        assertEquals(places.get(0).get("iso_continent"), "NA");
+        assertEquals(places.get(0).get("continent"), "North America");
         assertEquals(places.get(0).get("altitude"), "5170");
-        assertEquals(places.get(0).get("iso_country"), "US");
+        assertEquals(places.get(0).get("country"), "United States");
         assertEquals(places.get(0).get("latitude"), "40.0332984924");
         assertEquals(places.get(0).get("name"), "Dave's Airport");
         assertEquals(places.get(0).get("municipality"), "Louisville");
-        assertEquals(places.get(0).get("iso_region"), "US-CO");
+        assertEquals(places.get(0).get("region"), "Colorado");
         assertEquals(places.get(0).get("index"), "1");
         assertEquals(places.get(0).get("id"), "0CO1");
         assertEquals(places.get(0).get("longitude"), "-105.124000549");
