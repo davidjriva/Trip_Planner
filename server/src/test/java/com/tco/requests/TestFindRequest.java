@@ -32,7 +32,7 @@ public class TestFindRequest {
         assertEquals(3, places.size());
 
         found = request.found();
-        assertEquals(found, 16);
+        assertEquals(found, 28);
         assertEquals(places.get(0).get("continent"), "North America");
         assertEquals(places.get(0).get("altitude"), "5170");
         assertEquals(places.get(0).get("country"), "United States");

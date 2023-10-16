@@ -36,6 +36,6 @@ public class TestSqlGuide {
         assertEquals(places.get(0).get("longitude"), "-105.124000549");
 
         assertEquals(places.size(), 3);
-        assertEquals(value, 16);
+        assertEquals(value, 28);
     }
 }

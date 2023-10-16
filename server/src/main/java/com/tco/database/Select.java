@@ -18,6 +18,10 @@ public class Select {
                 + " INNER JOIN country ON world.iso_country = country.id"
                 + " INNER JOIN region ON world.iso_region = region.id"
                 + " WHERE world.name LIKE \"%" + match + "%\""
+                + " OR world.id LIKE \"%" + match + "%\""
+                + " OR world.municipality LIKE \"%" + match + "%\""
+                + " OR region.name LIKE \"%" + match + "%\""
+                + " OR country.name LIKE \"%" + match + "%\""
                 + limit
                 + " ;";
     }
