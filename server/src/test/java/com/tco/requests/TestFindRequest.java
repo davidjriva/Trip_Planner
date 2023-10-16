@@ -78,4 +78,28 @@ public class TestFindRequest {
         assertEquals(places.get(1).get("latitude"), "41.78900146484375");
         assertEquals(places.get(1).get("longitude"), "-75.88990020751953");
     }
+
+    @Test
+    @DisplayName("alexr11: test 0 limit")
+    public void testZeroLimit() {
+        String match = "ryp";
+        int limit = 0;
+
+        request = new FindRequest(match, limit);
+        request.buildResponse();
+
+        places = request.places();
+        assertEquals(4, places.size());
+
+        found = request.found();
+        assertEquals(found, 4);
+        assertEquals(places.get(0).get("name"), "Plum Island Airport");
+        assertEquals(places.get(0).get("id"), "2B2");
+        assertEquals(places.get(0).get("continent"), "North America");
+        assertEquals(places.get(0).get("country"), "United States");
+        assertEquals(places.get(0).get("region"), "Massachusetts");
+        assertEquals(places.get(0).get("municipality"), "Newburyport");
+        assertEquals(places.get(0).get("latitude"), "42.7958984375");
+        assertEquals(places.get(0).get("longitude"), "-70.84120178222656");
+    }
 }
