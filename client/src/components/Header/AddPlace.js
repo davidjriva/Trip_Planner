@@ -14,13 +14,14 @@ import { FaHome } from 'react-icons/fa';
 import Coordinates from 'coordinate-parser';
 import { DEFAULT_STARTING_POSITION } from '../../utils/constants';
 import { reverseGeocode } from '../../utils/reverseGeocode';
-import { FaSearch } from 'react-icons/fa';
-import { getOriginalServerUrl, sendAPIRequest } from '../../utils/restfulAPI';
+import { useFind } from '../../hooks/useFind';
 
 export default function AddPlace(props) {
 	const [foundPlace, setFoundPlace] = useState();
 	const [coordString, setCoordString] = useState('');
 	const [match, setMatch] = useState('');
+
+	const results = useFind(match);
 
 	const addPlaceProps = {
 		foundPlace,
@@ -54,11 +55,6 @@ function FindSearchBar(props) {
 						placeholder='Enter A Name To Match...'
 						value={props.match}
 					/>
-					{ props.match.length >= 3 ?
-					(<Button onClick={() => sendFindRequest(props.match)}>
-						<FaSearch/>
-					</Button>)
-					:  (<></>) }
 				</InputGroup>
 			</Col>
 		</ModalBody>
@@ -141,19 +137,4 @@ async function verifyCoordinates(coordString, setFoundPlace) {
 
 function isLatLngValid(lat,lng) {
 	return (lat !== undefined && lng !== undefined);
-}
-
-async function sendFindRequest(searchMatch) {
-	const serverUrl = getOriginalServerUrl();
-	const defaultLimit = 10; 
-	const requestBody = { requestType: 'find', match: searchMatch, limit:defaultLimit }; 
-
-	const findResponse = await sendAPIRequest(requestBody,serverUrl);
-        if (findResponse) {
-            return findResponse;
-        } else {
-            showMessage(`Search request to ${serverUrl} failed. Check the log for more details.`, 'error');
-        }
-
-	return '';
 }
