@@ -57,9 +57,11 @@ function FindSearchBar(props) {
 						placeholder='Enter A Name To Match...'
 						value={props.match}
 					/>
-					<Button>
+					{ props.match.length >= 3 ?
+					(<Button>
 						<FaSearch/>
-					</Button>
+					</Button>)
+					:  (<></>) }
 				</InputGroup>
 			</Col>
 		</ModalBody>
