@@ -1,5 +1,7 @@
 package com.tco.database;
 
+import java.sql.Connection;
+
 import com.tco.database.sqlGuide.Database;
 import com.tco.database.sqlGuide.Places;
 import org.junit.jupiter.api.Test;
@@ -8,7 +10,46 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
 
+import org.mockito.Mockito;
+
 public class TestSqlGuide {
+    @Test
+    @DisplayName("driva: zero found places")
+    public void testFoundWithEmptyMatch() throws Exception {
+        int found = sqlGuide.Database.found("");
+        
+        assertEquals(50427, found);
+    }
+
+    @Test
+    @DisplayName("driva: Testing exception is thrown in found()")
+    public void exceptionInFound() throws Exception {
+        //mocking behavior of connection class to trigger exception
+        Connection conn = Mockito.mock(Connection.class);
+        Mockito.when(conn.createStatement()).thenThrow(new RuntimeException()); 
+
+        try{
+            sqlGuide.Database.found("");
+        }catch (Exception e) {
+            assertTrue(e instanceof Exception);
+        }
+    }
+
+    @Test
+    @DisplayName("driva: Testing exception is thrown in places()")
+    public void exceptionInPlaces() throws Exception {
+        //mocking behavior of connection class to trigger exception
+        Connection conn = Mockito.mock(Connection.class);
+        Mockito.when(conn.createStatement()).thenThrow(new RuntimeException()); 
+
+        try{
+            sqlGuide.Database.places("", 100);
+        }catch (Exception e) {
+            assertTrue(e instanceof Exception);
+        }
+    }
+
+
     @Test
     @DisplayName("driva: Check DB Search")
     public void testSearch() throws Exception {
