@@ -15,6 +15,7 @@ import Coordinates from 'coordinate-parser';
 import { DEFAULT_STARTING_POSITION } from '../../utils/constants';
 import { reverseGeocode } from '../../utils/reverseGeocode';
 import { FaSearch } from 'react-icons/fa';
+import { getOriginalServerUrl, sendAPIRequest } from '../../utils/restfulAPI';
 
 export default function AddPlace(props) {
 	const [foundPlace, setFoundPlace] = useState();
@@ -44,10 +45,6 @@ export default function AddPlace(props) {
 }
 
 function FindSearchBar(props) {	
-	/*
-		@Alex-Rubsam: This is where you can connect your API logic. Add an onClick to the Button component to make a call to your function
-		(i.e. onClick={functionCall()}) and use the props.match as the string you need to match to.
-	*/
     return (
 		<ModalBody>
 			<Col>
@@ -58,7 +55,7 @@ function FindSearchBar(props) {
 						value={props.match}
 					/>
 					{ props.match.length >= 3 ?
-					(<Button>
+					(<Button onClick={() => sendFindRequest(props.match)}>
 						<FaSearch/>
 					</Button>)
 					:  (<></>) }
@@ -144,4 +141,19 @@ async function verifyCoordinates(coordString, setFoundPlace) {
 
 function isLatLngValid(lat,lng) {
 	return (lat !== undefined && lng !== undefined);
+}
+
+async function sendFindRequest(searchMatch) {
+	const serverUrl = getOriginalServerUrl();
+	const defaultLimit = 10; 
+	const requestBody = { requestType: 'find', match: searchMatch, limit:defaultLimit }; 
+
+	const findResponse = await sendAPIRequest(requestBody,serverUrl);
+        if (findResponse) {
+            return findResponse;
+        } else {
+            showMessage(`Search request to ${serverUrl} failed. Check the log for more details.`, 'error');
+        }
+
+	return '';
 }
