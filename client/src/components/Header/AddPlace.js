@@ -55,7 +55,6 @@ function FindSearchBar(props) {
 					<Input
 						onChange={(input) => props.setMatch(input.target.value)}
 						placeholder='Enter A Name To Match...'
-						data-testid='coord-input'
 						value={props.match}
 					/>
 					<Button>
