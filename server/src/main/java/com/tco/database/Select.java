@@ -3,7 +3,7 @@ package com.tco.database;
 public class Select {
 
     public static String match(String match, int limit) {
-        return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + limit);
+        return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + checkLimit(limit));
     }
 
     public static String found(String match) {
@@ -24,5 +24,17 @@ public class Select {
                 + " OR country.name LIKE \"%" + match + "%\""
                 + limit
                 + " ;";
+    }
+
+    public static int checkLimit(int inputLimit)
+    {
+        if ((inputLimit > 0) && (inputLimit < 100))
+        {
+            return inputLimit;
+        }
+        else
+        {
+            return 100;
+        }
     }
 }
