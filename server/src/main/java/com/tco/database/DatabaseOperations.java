@@ -4,7 +4,12 @@ import java.sql.ResultSet;
 import com.tco.database.sqlGuide.Place;
 import com.tco.database.sqlGuide.Places;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class DatabaseOperations {
+
+    private static final transient Logger log = LoggerFactory.getLogger(DatabaseOperations.class);
 
     public static Integer count(ResultSet results) throws Exception {
         if (results.next()) {
