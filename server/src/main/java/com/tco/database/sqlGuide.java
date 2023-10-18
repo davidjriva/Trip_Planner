@@ -25,36 +25,36 @@ public class sqlGuide {
 	public static class Places extends ArrayList<Place> {}
 
 	public static class Database {
-	public static Integer found(String match) throws Exception {
-		String sql = Select.found(match);
-		try (
-			// connect to the database and query
-			Connection conn = DriverManager.getConnection(Credential.url(), Credential.USER, Credential.PASSWORD);
-			Statement query = conn.createStatement();
-			ResultSet results = query.executeQuery(sql)
-		) {
-			return DatabaseOperations.count(results);
-		} catch (Exception e) {
-			throw e;
+		public static Integer found(String match) throws Exception {
+			String sql = Select.found(match);
+			try (
+				// connect to the database and query
+				Connection conn = DriverManager.getConnection(Credential.url(), Credential.USER, Credential.PASSWORD);
+				Statement query = conn.createStatement();
+				ResultSet results = query.executeQuery(sql)
+			) {
+				return DatabaseOperations.count(results);
+			} catch (Exception e) {
+				throw e;
+			}
 		}
-	}
 
-	public static Places places(String match, Integer limit) throws Exception {
-		String sql = Select.match(match, limit);
-		String url = Credential.url();
-		String user = Credential.USER;
-		String password = Credential.PASSWORD;
-		
-		try (
-			// connect to the database and query
-			Connection conn = DriverManager.getConnection(url, user, password);
-			Statement query = conn.createStatement();
-			ResultSet results = query.executeQuery(sql);
-		) {
-			return DatabaseOperations.convertQueryResultsToPlaces(results, DISPLAYCOLUMNS);
-		} catch (Exception e) {
-			throw e;
+		public static Places places(String match, Integer limit) throws Exception {
+			String sql = Select.match(match, limit);
+			String url = Credential.url();
+			String user = Credential.USER;
+			String password = Credential.PASSWORD;
+			
+			try (
+				// connect to the database and query
+				Connection conn = DriverManager.getConnection(url, user, password);
+				Statement query = conn.createStatement();
+				ResultSet results = query.executeQuery(sql);
+			) {
+				return DatabaseOperations.convertQueryResultsToPlaces(results, DISPLAYCOLUMNS);
+			} catch (Exception e) {
+				throw e;
+			}
 		}
-	}
 	}
 }
