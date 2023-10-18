@@ -58,7 +58,7 @@ function FindSearchBar(props) {
 						data-testid='coord-input'
 						value={props.match}
 					/>
-					<Button data-testid='match-button'>
+					<Button>
 						<FaSearch/>
 					</Button>
 				</InputGroup>
