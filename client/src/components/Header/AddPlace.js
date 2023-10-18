@@ -14,18 +14,23 @@ import { FaHome } from 'react-icons/fa';
 import Coordinates from 'coordinate-parser';
 import { DEFAULT_STARTING_POSITION } from '../../utils/constants';
 import { reverseGeocode } from '../../utils/reverseGeocode';
+import { FaSearch } from 'react-icons/fa';
 
 export default function AddPlace(props) {
 	const [foundPlace, setFoundPlace] = useState();
-
 	const [coordString, setCoordString] = useState('');
+	const [match, setMatch] = useState('');
+
 	const addPlaceProps = {
 		foundPlace,
 		setFoundPlace,
 		coordString,
 		setCoordString,
-		append: props.placeActions.append
-	}
+		append: props.placeActions.append,
+		match,
+		setMatch
+	};
+
 	return (
 		<Modal isOpen={props.showAddPlace} toggle={props.toggleAddPlace}>
 			<AddPlaceHeader toggleAddPlace={props.toggleAddPlace} />
@@ -33,9 +38,35 @@ export default function AddPlace(props) {
 			<AddPlaceFooter
 				{...addPlaceProps}
 			/>
+			<FindSearchBar {...addPlaceProps}/>
 		</Modal>
 	);
 }
+
+function FindSearchBar(props) {	
+	/*
+		@Alex-Rubsam: This is where you can connect your API logic. Add an onClick to the Button component to make a call to your function
+		(i.e. onClick={functionCall()}) and use the props.match as the string you need to match to.
+	*/
+    return (
+		<ModalBody>
+			<Col>
+				<InputGroup>
+					<Input
+						onChange={(input) => props.setMatch(input.target.value)}
+						placeholder='Enter A Name To Match...'
+						value={props.match}
+					/>
+					{ props.match.length >= 3 ?
+					(<Button>
+						<FaSearch/>
+					</Button>)
+					:  (<></>) }
+				</InputGroup>
+			</Col>
+		</ModalBody>
+    );
+};
 
 function AddPlaceHeader(props) {
 	return (
