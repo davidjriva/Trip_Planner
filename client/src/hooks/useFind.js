@@ -18,7 +18,7 @@ export function useFind(match) {
 }
 
 async function makeFindRequest(match, findActions) {
-    if (match != '' && match.length >= 3){
+    if (match.length >= 3){
         const { setResults } = findActions;
 
         const defaultLimit = 10; 
