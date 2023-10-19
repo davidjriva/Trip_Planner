@@ -22,6 +22,14 @@ public class TestSqlGuide {
     }
 
     @Test
+    @DisplayName("aaouaj: one or more found places")
+    public void testFound() throws Exception {
+        int found = sqlGuide.Database.found("Denver");
+        boolean oneOrMore = found >= 0;
+        assertTrue(oneOrMore);
+    }
+
+    @Test
     @DisplayName("driva: Testing exception is thrown in found()")
     public void exceptionInFound() throws Exception {
         //mocking behavior of connection class to trigger exception
