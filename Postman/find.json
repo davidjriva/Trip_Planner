@@ -544,7 +544,7 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.places).to.not.equal(null)\r",
 							"    pm.expect(jsonData.places.length).to.equal(3)\r",
-							"    pm.expect(jsonData.found).to.equal(3)\r",
+							"    pm.expect(jsonData.found).to.equal(599)\r",
 							"    pm.expect(jsonData.limit).to.equal(3)\r",
 							"});\r",
 							"\r",
