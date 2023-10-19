@@ -39,7 +39,7 @@ export default function AddPlace(props) {
 			<AddPlaceFooter
 				{...addPlaceProps}
 			/>
-			<FindSearchBar {...addPlaceProps}/>
+			{ /*<FindSearchBar {...addPlaceProps}/>*/ }
 		</Modal>
 	);
 }
