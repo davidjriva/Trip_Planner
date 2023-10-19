@@ -150,6 +150,379 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "alexr11: test find request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "777cc200-e443-4a32-aaab-f6f7ee877778",
+						"exec": [
+							"pm.test(\"alexr11: Request is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"alexr11: Request type is find\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"find\")",
+							"})",
+							"pm.test(\"alexr11: Response contains the expected number of places\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(2)",
+							"    pm.expect(jsonData.found).to.equal(5)",
+							"    pm.expect(jsonData.limit).to.equal(2)",
+							"});",
+							"",
+							"pm.test(\"alexr11: test first place\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.places[0].altitude).to.equal(\"590\");",
+							"    pm.expect(jsonData.places[0].name).to.equal(\"Bresett'S Mountainside Airport\");",
+							"    pm.expect(jsonData.places[0].country).to.equal(\"United States\");",
+							"    pm.expect(jsonData.places[0].latitude).to.equal(\"47.2025\");",
+							"    pm.expect(jsonData.places[0].municipality).to.equal(\"Van Buren\");",
+							"    pm.expect(jsonData.places[0].index).to.equal(\"1\");",
+							"    pm.expect(jsonData.places[0].id).to.equal(\"17ME\");",
+							"    pm.expect(jsonData.places[0].region).to.equal(\"Maine\");",
+							"    pm.expect(jsonData.places[0].longitude).to.equal(\"-67.991667\");",
+							"});",
+							"",
+							"pm.test(\"alexr11: test second place\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.places[1].altitude).to.equal(\"5318\");",
+							"    pm.expect(jsonData.places[1].name).to.equal(\"Mountains Community Hospital Heliport\");",
+							"    pm.expect(jsonData.places[1].country).to.equal(\"United States\");",
+							"    pm.expect(jsonData.places[1].latitude).to.equal(\"34.26530075073242\");",
+							"    pm.expect(jsonData.places[1].municipality).to.equal(\"Lake Arrowhead\");",
+							"    pm.expect(jsonData.places[1].index).to.equal(\"2\");",
+							"    pm.expect(jsonData.places[1].id).to.equal(\"47CA\");",
+							"    pm.expect(jsonData.places[1].region).to.equal(\"California\");",
+							"    pm.expect(jsonData.places[1].longitude).to.equal(\"-117.16799926757812\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "9488f45a-791c-4234-8b9c-e32afa76b2d2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"mountains\",\n    \"limit\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test 0 limit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "777cc200-e443-4a32-aaab-f6f7ee877778",
+						"exec": [
+							"pm.test(\"alexr11: Request is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"alexr11: Request type is find\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"find\")",
+							"})",
+							"pm.test(\"alexr11: Response contains the expected number of places\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(2)",
+							"    pm.expect(jsonData.found).to.equal(2)",
+							"    pm.expect(jsonData.limit).to.equal(0)",
+							"});",
+							"",
+							"pm.test(\"alexr11: test first place\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.places[0].altitude).to.equal(\"233\");",
+							"    pm.expect(jsonData.places[0].name).to.equal(\"Mario's Flying Pizza Airport\");",
+							"    pm.expect(jsonData.places[0].country).to.equal(\"United States\");",
+							"    pm.expect(jsonData.places[0].latitude).to.equal(\"29.747699737548828\");",
+							"    pm.expect(jsonData.places[0].municipality).to.equal(\"Sealy\");",
+							"    pm.expect(jsonData.places[0].index).to.equal(\"1\");",
+							"    pm.expect(jsonData.places[0].id).to.equal(\"2TA4\");",
+							"    pm.expect(jsonData.places[0].region).to.equal(\"Texas\");",
+							"    pm.expect(jsonData.places[0].longitude).to.equal(\"-96.2927017211914\");",
+							"    pm.expect(jsonData.places[0].continent).to.equal(\"North America\");",
+							"});",
+							"",
+							"pm.test(\"alexr11: test second place\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.places[1].altitude).to.equal(\"3223\");",
+							"    pm.expect(jsonData.places[1].name).to.equal(\"Nelson Pizzani Airport\");",
+							"    pm.expect(jsonData.places[1].country).to.equal(\"Brazil\");",
+							"    pm.expect(jsonData.places[1].latitude).to.equal(\"-27.21269989013672\");",
+							"    pm.expect(jsonData.places[1].municipality).to.equal(\"Monte Carlo\");",
+							"    pm.expect(jsonData.places[1].index).to.equal(\"2\");",
+							"    pm.expect(jsonData.places[1].id).to.equal(\"SIWE\");",
+							"    pm.expect(jsonData.places[1].region).to.equal(\"Santa Catarina\");",
+							"    pm.expect(jsonData.places[1].longitude).to.equal(\"-50.95650100708008\");",
+							"    pm.expect(jsonData.places[1].continent).to.equal(\"South America\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "bb9c7886-ef45-4617-8a1b-59e9fb35d77e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"pizza\",\n    \"limit\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test municipality search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "777cc200-e443-4a32-aaab-f6f7ee877778",
+						"exec": [
+							"pm.test(\"alexr11: Request is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"alexr11: Request type is find\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"find\")",
+							"})",
+							"pm.test(\"alexr11: Response contains the expected number of places\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(1)",
+							"    pm.expect(jsonData.found).to.equal(1)",
+							"    pm.expect(jsonData.limit).to.equal(10)",
+							"});",
+							"",
+							"pm.test(\"alexr11: test first place\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.places[0].altitude).to.equal(\"1625\");",
+							"    pm.expect(jsonData.places[0].name).to.equal(\"Dolhun Field\");",
+							"    pm.expect(jsonData.places[0].country).to.equal(\"United States\");",
+							"    pm.expect(jsonData.places[0].latitude).to.equal(\"45.82659912109375\");",
+							"    pm.expect(jsonData.places[0].municipality).to.equal(\"Lake Tomahawk\");",
+							"    pm.expect(jsonData.places[0].index).to.equal(\"1\");",
+							"    pm.expect(jsonData.places[0].id).to.equal(\"WI36\");",
+							"    pm.expect(jsonData.places[0].region).to.equal(\"Wisconsin\");",
+							"    pm.expect(jsonData.places[0].longitude).to.equal(\"-89.62010192871094\");",
+							"    pm.expect(jsonData.places[0].continent).to.equal(\"North America\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "849c6977-71cd-4dc8-b78d-3595af67941d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"lake tomahawk\",\n    \"limit\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test ID search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "777cc200-e443-4a32-aaab-f6f7ee877778",
+						"exec": [
+							"pm.test(\"alexr11: Request is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"alexr11: Request type is find\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"find\")",
+							"})",
+							"pm.test(\"alexr11: Response contains the expected number of places\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(1)",
+							"    pm.expect(jsonData.found).to.equal(1)",
+							"    pm.expect(jsonData.limit).to.equal(10)",
+							"});",
+							"",
+							"pm.test(\"alexr11: test first place\", function () {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.expect(jsonData.places[0].altitude).to.equal(\"6650\");",
+							"    pm.expect(jsonData.places[0].name).to.equal(\"Circle 8 Ranch Airport\");",
+							"    pm.expect(jsonData.places[0].country).to.equal(\"United States\");",
+							"    pm.expect(jsonData.places[0].latitude).to.equal(\"39.33470153808594\");",
+							"    pm.expect(jsonData.places[0].municipality).to.equal(\"Elizabeth\");",
+							"    pm.expect(jsonData.places[0].index).to.equal(\"1\");",
+							"    pm.expect(jsonData.places[0].id).to.equal(\"CO42\");",
+							"    pm.expect(jsonData.places[0].region).to.equal(\"Colorado\");",
+							"    pm.expect(jsonData.places[0].longitude).to.equal(\"-104.5459976196289\");",
+							"    pm.expect(jsonData.places[0].continent).to.equal(\"North America\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "e493e7b3-c479-41d3-8821-ea627a2a0346",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"CO42\",\n    \"limit\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test no results",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "777cc200-e443-4a32-aaab-f6f7ee877778",
+						"exec": [
+							"pm.test(\"alexr11: Request is successful\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"alexr11: Request type is find\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"find\")",
+							"})",
+							"pm.test(\"alexr11: Response contains the expected number of places\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(0)",
+							"    pm.expect(jsonData.found).to.equal(0)",
+							"    pm.expect(jsonData.limit).to.equal(10)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "438a2f25-6633-4e62-aaff-2a3998a42b3a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requestType\": \"find\",\n    \"match\": \"the small brown fox jumps over the lazy dog\",\n    \"limit\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
