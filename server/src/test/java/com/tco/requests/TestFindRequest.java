@@ -102,4 +102,13 @@ public class TestFindRequest {
         assertEquals(places.get(0).get("latitude"), "42.7958984375");
         assertEquals(places.get(0).get("longitude"), "-70.84120178222656");
     }
+
+     @Test
+    @DisplayName("alexr11: test methods")
+    public void testconstuctor() {
+            FindRequest conTest = new FindRequest("matchTest", 12);
+            assertEquals(conTest.match(), "matchTest");
+            assertEquals(conTest.limit(), 12);
+
+        }
 }
