@@ -13,7 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestDatabase {
-
+    
     private static final transient Logger log = LoggerFactory.getLogger(TestDatabase.class);
 
     @Test
@@ -22,7 +22,6 @@ public class TestDatabase {
         Connection conn;
         ResultSet results;
         try {
-        //c
         conn = DatabaseConnector.connect();
         assertEquals(conn.isValid(500), true);
         results = DatabaseConnector.executeQuery(conn, "select * from world limit 5;");
@@ -33,11 +32,5 @@ public class TestDatabase {
             log.error("Error with: " + e.getMessage());
         
         }
-
-        /*try {
-        //DatabaseConnector.closeConnection(conn);
-        } catch(Exception e){
-            log.error("Error with: " + e.getMessage());
-        } */
     }
 }
