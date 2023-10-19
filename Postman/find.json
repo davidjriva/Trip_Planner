@@ -523,6 +523,67 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "aaouaj:  test region search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85b435df-e86d-42ba-b739-080da5fb3064",
+						"exec": [
+							"pm.test(\"aaouaj: Request is successful\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"aaouaj: Request type is find\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.requestType).to.eql(\"find\")\r",
+							"})\r",
+							"pm.test(\"aaouaj: Response contains the expected number of regions\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.places).to.not.equal(null)\r",
+							"    pm.expect(jsonData.places.length).to.equal(3)\r",
+							"    pm.expect(jsonData.found).to.equal(599)\r",
+							"    pm.expect(jsonData.limit).to.equal(3)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"aaouaj: test places are requested region\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.places[0].region).to.equal(\"Wisconsin\");\r",
+							"    pm.expect(jsonData.places[1].region).to.equal(\"Wisconsin\");\r",
+							"    pm.expect(jsonData.places[2].region).to.equal(\"Wisconsin\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c304e00a-cbeb-4c7b-9002-3495dffb9326",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestType\": \"find\",\r\n    \"match\": \"Wisconsin\",\r\n    \"limit\": 3\r\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/find",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"find"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
