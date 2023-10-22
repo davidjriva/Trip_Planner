@@ -22,7 +22,7 @@ export default function AddPlace(props) {
 	const [match, setMatch] = useState('');
 
 	const results = useFind(match);
-
+	
 	const addPlaceProps = {
 		foundPlace,
 		setFoundPlace,
@@ -55,7 +55,7 @@ function AddPlaceHeader(props) {
 
 function PlaceSearch(props) {
 	useEffect(() => {
-		verifyCoordinates(props.coordString, props.setFoundPlace);
+		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch);
 	}, [props.coordString]);
 
 	return (
@@ -105,7 +105,7 @@ function AddPlaceFooter(props) {
 	);
 }
 
-async function verifyCoordinates(coordString, setFoundPlace) {
+async function verifyCoordinates(coordString, setFoundPlace, setMatch) {
 	try {
 		const latLngPlace = new Coordinates(coordString);
 		const lat = latLngPlace.getLatitude();
