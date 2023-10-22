@@ -39,9 +39,6 @@ export default function AddPlace(props) {
 		<Modal isOpen={props.showAddPlace} toggle={props.toggleAddPlace}>
 			<AddPlaceHeader toggleAddPlace={props.toggleAddPlace} />
 			<PlaceSearch {...addPlaceProps}/>
-			<AddPlaceFooter
-				{...addPlaceProps}
-			/>
 		</Modal>
 	);
 }
@@ -123,24 +120,6 @@ function PlaceInfo(props) {
 				</Button>
 			</div>
 		</Collapse>
-	);
-}
-
-function AddPlaceFooter(props) {
-	return (
-		<ModalFooter>
-			<Button
-				color='primary'
-				onClick={() => {
-					props.append(props.foundPlace);
-					props.setCoordString('');
-				}}
-				data-testid='add-place-button'
-				disabled={!props.foundPlace}
-			>
-				Add Place
-			</Button>
-		</ModalFooter>
 	);
 }
 
