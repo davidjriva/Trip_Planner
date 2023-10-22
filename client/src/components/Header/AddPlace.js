@@ -30,7 +30,8 @@ export default function AddPlace(props) {
 		setCoordString,
 		append: props.placeActions.append,
 		match,
-		setMatch
+		setMatch,
+		results
 	};
 
 	return (
@@ -40,7 +41,6 @@ export default function AddPlace(props) {
 			<AddPlaceFooter
 				{...addPlaceProps}
 			/>
-			{ /*<FindSearchBar {...addPlaceProps}/>*/ }
 		</Modal>
 	);
 }
@@ -132,6 +132,7 @@ async function verifyCoordinates(coordString, setFoundPlace) {
 		}
 	} catch (error) {
 		setFoundPlace(undefined);
+		setMatch(coordString);
 	}
 }
 
