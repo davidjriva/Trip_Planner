@@ -63,20 +63,25 @@ function PlaceSearch(props) {
 
 	const renderResults = () => {
 		if (!props.results.results || props.results.results.length === 0) {
-			return null;
+		  return null;
 		}
 	
 		return (
-			<div>
+		  <div>
 			{props.results.results.map((place, index) => (
-				<div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
+			  <div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
 				<div>{place.name}</div>
-				</div>
+				<Button
+				  color="primary"
+				  onClick={() => props.append(props.results.results[index])}
+				>
+				  +
+				</Button>
+			  </div>
 			))}
-			</div>
+		  </div>
 		);
 	};
-	
 
 	return (
 		<ModalBody>
