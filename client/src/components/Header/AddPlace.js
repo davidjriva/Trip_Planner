@@ -97,7 +97,7 @@ function PlaceSearch(props) {
 						<FaHome/>
 					</Button>
 				</InputGroup>
-				<PlaceInfo foundPlace={props.foundPlace} />
+				<PlaceInfo append = {props.append} setCoordString = {props.setCoordString} foundPlace={props.foundPlace} />
 				{ renderResults() }
 			</Col>
 		</ModalBody>
@@ -108,7 +108,20 @@ function PlaceInfo(props) {
 	return (
 		<Collapse isOpen={!!props.foundPlace}>
 			<br />
-			{props.foundPlace?.formatPlace()}
+			<div style={{ display: "flex", justifyContent: 'space-between' }}>
+				{props.foundPlace?.formatPlace()}
+				<Button
+					color='primary'
+					onClick={() => {
+						props.append(props.foundPlace);
+						props.setCoordString('');
+					}}
+					data-testid='add-place-button'
+					disabled={!props.foundPlace}
+				>
+				+
+				</Button>
+			</div>
 		</Collapse>
 	);
 }
