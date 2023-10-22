@@ -45,22 +45,6 @@ export default function AddPlace(props) {
 	);
 }
 
-function FindSearchBar(props) {	
-    return (
-		<ModalBody>
-			<Col>
-				<InputGroup>
-					<Input
-						onChange={(input) => props.setMatch(input.target.value)}
-						placeholder='Enter A Name To Match...'
-						value={props.match}
-					/>
-				</InputGroup>
-			</Col>
-		</ModalBody>
-    );
-};
-
 function AddPlaceHeader(props) {
 	return (
 		<ModalHeader className='ml-2' toggle={props.toggleAddPlace}>
