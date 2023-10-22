@@ -21,6 +21,9 @@ describe('AddPlace', () => {
 			append: jest.fn(),
 		},
 		showAddPlace: true,
+		serverSettings: {
+			serverUrl: "testing"
+		}
 	};
 
 	beforeEach(() => {
@@ -29,6 +32,7 @@ describe('AddPlace', () => {
 				placeActions={props.placeActions}
 				showAddPlace={props.showAddPlace}
 				toggleAddPlace={props.toggleAddPlace}
+				serverSettings={props.serverSettings}
 			/>
 		);
 	});

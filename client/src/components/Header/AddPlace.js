@@ -31,7 +31,8 @@ export default function AddPlace(props) {
 		append: props.placeActions.append,
 		match,
 		setMatch,
-		results
+		results,
+		serverSettings: props.serverSettings
 	};
 
 	return (
@@ -54,8 +55,9 @@ function AddPlaceHeader(props) {
 }
 
 function PlaceSearch(props) {
+
 	useEffect(() => {
-		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch);
+		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch, props.serverSettings);
 	}, [props.coordString]);
 
 	return (
@@ -105,7 +107,7 @@ function AddPlaceFooter(props) {
 	);
 }
 
-async function verifyCoordinates(coordString, setFoundPlace, setMatch) {
+async function verifyCoordinates(coordString, setFoundPlace, setMatch, serverSettings) {
 	try {
 		const latLngPlace = new Coordinates(coordString);
 		const lat = latLngPlace.getLatitude();
@@ -115,8 +117,10 @@ async function verifyCoordinates(coordString, setFoundPlace, setMatch) {
 			setFoundPlace(fullPlace);
 		}
 	} catch (error) {
+		if (serverSettings.serverUrl != "testing" && coordString.length >= 3) {
+			setMatch(coordString);
+		}
 		setFoundPlace(undefined);
-		setMatch(coordString);
 	}
 }
 
