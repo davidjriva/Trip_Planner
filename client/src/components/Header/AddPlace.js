@@ -39,9 +39,6 @@ export default function AddPlace(props) {
 		<Modal isOpen={props.showAddPlace} toggle={props.toggleAddPlace}>
 			<AddPlaceHeader toggleAddPlace={props.toggleAddPlace} />
 			<PlaceSearch {...addPlaceProps}/>
-			<AddPlaceFooter
-				{...addPlaceProps}
-			/>
 		</Modal>
 	);
 }
@@ -63,20 +60,25 @@ function PlaceSearch(props) {
 
 	const renderResults = () => {
 		if (!props.results.results || props.results.results.length === 0) {
-			return null;
+		  return null;
 		}
 	
 		return (
-			<div>
+		  <div>
 			{props.results.results.map((place, index) => (
-				<div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
+			  <div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
 				<div>{place.name}</div>
-				</div>
+				<Button
+				  color="primary"
+				  onClick={() => props.append(props.results.results[index])}
+				>
+				  +
+				</Button>
+			  </div>
 			))}
-			</div>
+		  </div>
 		);
 	};
-	
 
 	return (
 		<ModalBody>
@@ -92,7 +94,7 @@ function PlaceSearch(props) {
 						<FaHome/>
 					</Button>
 				</InputGroup>
-				<PlaceInfo foundPlace={props.foundPlace} />
+				<PlaceInfo append = {props.append} setCoordString = {props.setCoordString} foundPlace={props.foundPlace} />
 				{ renderResults() }
 			</Col>
 		</ModalBody>
@@ -103,26 +105,21 @@ function PlaceInfo(props) {
 	return (
 		<Collapse isOpen={!!props.foundPlace}>
 			<br />
-			{props.foundPlace?.formatPlace()}
+			<div style={{ display: "flex", justifyContent: 'space-between' }}>
+				{props.foundPlace?.formatPlace()}
+				<Button
+					color='primary'
+					onClick={() => {
+						props.append(props.foundPlace);
+						props.setCoordString('');
+					}}
+					data-testid='add-place-button'
+					disabled={!props.foundPlace}
+				>
+				+
+				</Button>
+			</div>
 		</Collapse>
-	);
-}
-
-function AddPlaceFooter(props) {
-	return (
-		<ModalFooter>
-			<Button
-				color='primary'
-				onClick={() => {
-					props.append(props.foundPlace);
-					props.setCoordString('');
-				}}
-				data-testid='add-place-button'
-				disabled={!props.foundPlace}
-			>
-				Add Place
-			</Button>
-		</ModalFooter>
 	);
 }
 
