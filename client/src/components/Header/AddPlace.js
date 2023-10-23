@@ -60,6 +60,24 @@ function PlaceSearch(props) {
 		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch, props.serverSettings);
 	}, [props.coordString]);
 
+
+	const renderResults = () => {
+		if (!props.results.results || props.results.results.length === 0) {
+			return null;
+		}
+	
+		return (
+			<div>
+			{props.results.results.map((place, index) => (
+				<div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
+				<div>{place.name}</div>
+				</div>
+			))}
+			</div>
+		);
+	};
+	
+
 	return (
 		<ModalBody>
 			<Col>
@@ -75,6 +93,7 @@ function PlaceSearch(props) {
 					</Button>
 				</InputGroup>
 				<PlaceInfo foundPlace={props.foundPlace} />
+				{ renderResults() }
 			</Col>
 		</ModalBody>
 	);
