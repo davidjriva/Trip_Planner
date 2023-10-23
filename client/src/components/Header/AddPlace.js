@@ -22,7 +22,7 @@ export default function AddPlace(props) {
 	const [match, setMatch] = useState('');
 
 	const results = useFind(match);
-
+	
 	const addPlaceProps = {
 		foundPlace,
 		setFoundPlace,
@@ -30,7 +30,9 @@ export default function AddPlace(props) {
 		setCoordString,
 		append: props.placeActions.append,
 		match,
-		setMatch
+		setMatch,
+		results,
+		serverSettings: props.serverSettings
 	};
 
 	return (
@@ -40,26 +42,9 @@ export default function AddPlace(props) {
 			<AddPlaceFooter
 				{...addPlaceProps}
 			/>
-			{ /*<FindSearchBar {...addPlaceProps}/>*/ }
 		</Modal>
 	);
 }
-
-function FindSearchBar(props) {	
-    return (
-		<ModalBody>
-			<Col>
-				<InputGroup>
-					<Input
-						onChange={(input) => props.setMatch(input.target.value)}
-						placeholder='Enter A Name To Match...'
-						value={props.match}
-					/>
-				</InputGroup>
-			</Col>
-		</ModalBody>
-    );
-};
 
 function AddPlaceHeader(props) {
 	return (
@@ -70,8 +55,9 @@ function AddPlaceHeader(props) {
 }
 
 function PlaceSearch(props) {
+
 	useEffect(() => {
-		verifyCoordinates(props.coordString, props.setFoundPlace);
+		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch, props.serverSettings);
 	}, [props.coordString]);
 
 	return (
@@ -121,7 +107,7 @@ function AddPlaceFooter(props) {
 	);
 }
 
-async function verifyCoordinates(coordString, setFoundPlace) {
+async function verifyCoordinates(coordString, setFoundPlace, setMatch, serverSettings) {
 	try {
 		const latLngPlace = new Coordinates(coordString);
 		const lat = latLngPlace.getLatitude();
@@ -131,6 +117,9 @@ async function verifyCoordinates(coordString, setFoundPlace) {
 			setFoundPlace(fullPlace);
 		}
 	} catch (error) {
+		if (serverSettings.serverUrl != "testing" && coordString.length >= 3) {
+			setMatch(coordString);
+		}
 		setFoundPlace(undefined);
 	}
 }
