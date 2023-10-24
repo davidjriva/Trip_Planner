@@ -50,28 +50,6 @@ function AddPlaceHeader(props) {
 	);
 }
 
-function ResultsList({ results, checkedResults, toggleResult }) {
-	if (!results.results || results.results.length === 0){
-		return null;
-	}
-
-	return (
-		<div>
-			{results.results.map((place, index) => {
-				<div key={index} style ={{ display: "flex", justifyContent: "space-between" }}>
-					<div> {place.name} </div>
-					<Button
-						color="primary"
-						onClick={() => toggleResults(index)}
-					>
-						{checkedResults[index] ? "✓" : "+"}
-					</Button>	
-				</div>
-			})}
-		</div>
-	)
-}
-
 function PlaceSearch(props) {
 	const [checkedResults, setCheckedResults] = useState(new Array(props.results.results.length).fill(false));
 
