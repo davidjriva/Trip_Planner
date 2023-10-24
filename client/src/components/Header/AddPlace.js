@@ -7,8 +7,7 @@ import {
 	ModalHeader,
 	Input,
 	InputGroup,
-	Collapse,
-	ModalFooter,
+	Collapse
 } from 'reactstrap';
 import { FaHome } from 'react-icons/fa';
 import Coordinates from 'coordinate-parser';
@@ -51,7 +50,30 @@ function AddPlaceHeader(props) {
 	);
 }
 
+function ResultsList({ results, checkedResults, toggleResult }) {
+	if (!results.results || results.results.length === 0){
+		return null;
+	}
+
+	return (
+		<div>
+			{results.results.map((place, index) => {
+				<div key={index} style ={{ display: "flex", justifyContent: "space-between" }}>
+					<div> {place.name} </div>
+					<Button
+						color="primary"
+						onClick={() => toggleResults(index)}
+					>
+						{checkedResults[index] ? "✓" : "+"}
+					</Button>	
+				</div>
+			})}
+		</div>
+	)
+}
+
 function PlaceSearch(props) {
+	const [checkedResults, setCheckedResults] = useState(new Array(props.results.results.length).fill(false));
 
 	useEffect(() => {
 		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch, props.serverSettings);
@@ -60,24 +82,31 @@ function PlaceSearch(props) {
 
 	const renderResults = () => {
 		if (!props.results.results || props.results.results.length === 0) {
-		  return null;
+			return null;
 		}
-	
+		
 		return (
-		  <div>
-			{props.results.results.map((place, index) => (
-			  <div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
-				<div>{place.name}</div>
-				<Button
-				  color="primary"
-				  onClick={() => props.append(props.results.results[index])}
-				>
-				  +
-				</Button>
-			  </div>
-			))}
-		  </div>
-		);
+				<div>
+				{props.results.results.map((place, index) => (
+					<div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
+					<div>{place.name}</div>
+					<Button
+						color="primary"
+						onClick={() => {
+						if (!checkedResults[index]) {
+							props.append(props.results.results[index]);
+						}
+						const updatedCheckedResults = [...checkedResults];
+						updatedCheckedResults[index] = true;
+						setCheckedResults(updatedCheckedResults);
+						}}
+					>
+						{checkedResults[index] ? "✓" : "+"}
+					</Button>
+					</div>
+				))}
+				</div>
+			);
 	};
 
 	return (
