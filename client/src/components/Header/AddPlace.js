@@ -66,8 +66,9 @@ function PlaceSearch(props) {
 		return (
 				<div>
 				{props.results.results.map((place, index) => (
-					<div key={index} style={{ display: "flex", justifyContent: 'space-between' }}>
-					<div>{place.name}</div>
+					<div key={index} style={{ display: "flexbox", width: "100%", justifyContent: 'space-between' }}>
+					<hr></hr>
+					<strong>
 					<Button
 						color="primary"
 						onClick={() => {
@@ -81,6 +82,10 @@ function PlaceSearch(props) {
 					>
 						{checkedResults[index] ? "✓" : "+"}
 					</Button>
+					{place.name}
+					</strong>
+					<div>{place.municipality + ", " + place.region + ", " + place.country} </div>
+					<div>{parseFloat(place.latitude).toFixed(4) + ", " + parseFloat(place.longitude).toFixed(4)} </div>
 					</div>
 				))}
 				</div>
@@ -93,7 +98,7 @@ function PlaceSearch(props) {
 				<InputGroup>
 					<Input
 						onChange={(input) => props.setCoordString(input.target.value)}
-						placeholder='Enter Place Coordinates'
+						placeholder='Enter A Search Or Coordinates'
 						data-testid='coord-input'
 						value={props.coordString}
 					/>
