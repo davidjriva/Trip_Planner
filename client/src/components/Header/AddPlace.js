@@ -97,7 +97,10 @@ function PlaceSearch(props) {
 			<Col>
 				<InputGroup>
 					<Input
-						onChange={(input) => props.setCoordString(input.target.value)}
+						onChange={(input) => {
+							props.setCoordString(input.target.value)
+							setCheckedResults(new Array(props.results.results.length).fill(false))
+						}}
 						placeholder='Enter A Search Or Coordinates'
 						data-testid='coord-input'
 						value={props.coordString}
