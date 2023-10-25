@@ -57,7 +57,6 @@ function PlaceSearch(props) {
 		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch, props.serverSettings);
 	}, [props.coordString]);
 
-
 	const renderResults = () => {
 		if (!props.results.results || props.results.results.length === 0) {
 			return null;
@@ -65,29 +64,32 @@ function PlaceSearch(props) {
 		
 		return (
 				<div>
-				{props.results.results.map((place, index) => (
-					<div key={index} style={{ display: "flexbox", width: "100%", justifyContent: 'space-between' }}>
-					<hr></hr>
-					<strong>
-					<Button
-						color="primary"
-						onClick={() => {
-						if (!checkedResults[index]) {
-							props.append(props.results.results[index]);
-						}
-						const updatedCheckedResults = [...checkedResults];
-						updatedCheckedResults[index] = true;
-						setCheckedResults(updatedCheckedResults);
-						}}
-					>
-						{checkedResults[index] ? "✓" : "+"}
-					</Button>
-					{place.name}
-					</strong>
-					<div>{place.municipality + ", " + place.region + ", " + place.country} </div>
-					<div>{parseFloat(place.latitude).toFixed(4) + ", " + parseFloat(place.longitude).toFixed(4)} </div>
-					</div>
-				))}
+					{props.results.results.map((place, index) => (
+						<div key={index} style={{ display: "flexbox", width: "100%", justifyContent: 'space-between' }}>
+							<strong>
+								{place.name}
+							</strong>
+							<div>
+								{`${place.municipality}, ${place.region}, ${place.country}`} 
+							</div>
+							<div> 
+								{`${parseFloat(place.latitude).toFixed(4)}, ${parseFloat(place.longitude).toFixed(4)}`} 
+							</div>
+							<Button
+								color="primary"
+								onClick={() => {
+								if (!checkedResults[index]) {
+									props.append(props.results.results[index]);
+								}
+								const updatedCheckedResults = [...checkedResults];
+								updatedCheckedResults[index] = true;
+								setCheckedResults(updatedCheckedResults);
+								}}
+							>
+								{ checkedResults[index] ? "✓" : "+" }
+							</Button>
+						</div>
+					))}
 				</div>
 			);
 	};
@@ -97,7 +99,10 @@ function PlaceSearch(props) {
 			<Col>
 				<InputGroup>
 					<Input
-						onChange={(input) => props.setCoordString(input.target.value)}
+						onChange={(input) => {
+							props.setCoordString(input.target.value)
+							setCheckedResults(new Array(props.results.results.length).fill(false))
+						}}
 						placeholder='Enter A Search Or Coordinates'
 						data-testid='coord-input'
 						value={props.coordString}
