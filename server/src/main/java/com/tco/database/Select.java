@@ -2,7 +2,7 @@ package com.tco.database;
 
 public class Select {
 
-      public final static String RANDOMOPTIONS = " order by rand()";
+    public final static String RANDOMOPTIONS = " order by rand()";
 
     public static String match(String match, int limit) {
         return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + checkLimit(limit), "");
