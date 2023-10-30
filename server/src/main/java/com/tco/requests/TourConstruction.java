@@ -51,14 +51,12 @@ public class TourConstruction {
                 long minDistance = Long.MAX_VALUE;
                 int nextCity = -1;
 
-                
                 for (int city = 0; city < numPlaces; city++) {
                     if (remainingCities[city] && distanceMatrix[currentCity][city] < minDistance) {
                         minDistance = distanceMatrix[currentCity][city];
                         nextCity = city;
                     }
-                }
-                
+                }    
 
                 totalDistance += minDistance;
                 currentCity = nextCity;
@@ -80,11 +78,9 @@ public class TourConstruction {
         tourResults = shortestTour;
     }
 
-
     public static void initializeRemainingCities(boolean[] remainingCities) {
         for (int i = 0; i < remainingCities.length; i++) {
             remainingCities[i] = true;
         }
     }
-
 }
