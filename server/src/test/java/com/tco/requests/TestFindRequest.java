@@ -16,7 +16,7 @@ public class TestFindRequest {
 
     @BeforeEach
     public void beforeEach() {
-    places = new Places();
+        places = new Places();
     }
 
     @Test
@@ -103,7 +103,7 @@ public class TestFindRequest {
         assertEquals(places.get(0).get("longitude"), "-70.84120178222656");
     }
 
-     @Test
+    @Test
     @DisplayName("alexr11: test methods")
     public void testconstuctor() {
             FindRequest conTest = new FindRequest("matchTest", 12);

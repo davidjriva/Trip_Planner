@@ -3,10 +3,6 @@ package com.tco.requests;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tco.database.sqlGuide.Database;
-import com.tco.database.sqlGuide.Place;
-import com.tco.database.sqlGuide.Places;
-
 public class TourRequest extends Request {
     private static final transient Logger log = LoggerFactory.getLogger(FindRequest.class);
 
@@ -27,6 +23,7 @@ public class TourRequest extends Request {
         this.requestType = "tour";
         this.earthRadius = earthRadius;
         this.response = response;
+        this.places = places;
     }
 
     public Double earthRadius() {
