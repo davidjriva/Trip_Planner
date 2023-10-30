@@ -8,7 +8,7 @@ public class TourConstruction {
   boolean[] unvisitedCities;
   Long[][] distanceMatrix;
 
-  public void createDistanceMatrix(Place[] places) {
+    public void createDistanceMatrix(Place[] places) {
         Long[][] matrix = new Long[places.length][places.length];
 
         for (int i = 0; i < places.length; i++) {
@@ -22,5 +22,61 @@ public class TourConstruction {
         }
 
         this.distanceMatrix = matrix;
-  }
+    }
+
+    public void nearestNeighbor(Place[] places) {
+        createDistanceMatrix(places);
+        int numPlaces = places.length;
+        int[] shortestTour = null;
+        long shortestDistance = Long.MAX_VALUE;
+
+        for (int startCityIndex = 0; startCityIndex < numPlaces; startCityIndex++) {
+            int[] tour = new int[numPlaces];
+            int currentCity = startCityIndex;
+            boolean[] remainingCities = new boolean[numPlaces];
+            int remainingCitiesCount = numPlaces;
+            long totalDistance = 0;
+
+            for (int i = 0; i < numPlaces; i++) {
+                remainingCities[i] = true;
+            }
+
+            for (int i = 0; i < numPlaces; i++) {
+                tour[i] = currentCity;
+                remainingCities[currentCity] = false;
+                remainingCitiesCount--;
+
+                if (remainingCitiesCount == 0) {
+                    break;
+                }
+
+                long minDistance = Long.MAX_VALUE;
+                int nextCity = -1;
+
+                for (int city = 0; city < numPlaces; city++) {
+                    if (remainingCities[city] && distanceMatrix[currentCity][city] < minDistance) {
+                        minDistance = distanceMatrix[currentCity][city];
+                        nextCity = city;
+                    }
+                }
+
+                totalDistance += minDistance;
+                currentCity = nextCity;
+            }
+
+            totalDistance += distanceMatrix[currentCity][startCityIndex];
+
+            if (totalDistance < shortestDistance) {
+                shortestTour = tour.clone();
+                shortestDistance = totalDistance;
+            }
+        }
+
+        Place[] shortestTourPlaces = new Place[numPlaces];
+        for (int i = 0; i < numPlaces; i++) {
+            shortestTourPlaces[i] = places[shortestTour[i]];
+        }
+
+        tourResults = shortestTour;
+    }
 }
