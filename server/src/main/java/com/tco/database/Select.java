@@ -5,7 +5,14 @@ public class Select {
     public final static String RANDOMOPTIONS = " order by rand()";
 
     public static String match(String match, int limit) {
-        return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + checkLimit(limit), "");
+        if (match.equals(""))
+        {
+            return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + checkLimit(limit), RANDOMOPTIONS);
+        }
+        else
+        {
+            return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + checkLimit(limit), "");
+        }
     }
 
     public static String found(String match) {
