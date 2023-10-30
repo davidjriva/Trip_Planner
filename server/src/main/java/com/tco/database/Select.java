@@ -2,15 +2,17 @@ package com.tco.database;
 
 public class Select {
 
+    public final static String RANDOMOPTIONS = " order by rand()";
+
     public static String match(String match, int limit) {
-        return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + checkLimit(limit));
+        return statement(match, "DISTINCT " + sqlGuide.COLUMNS, "LIMIT " + checkLimit(limit), "");
     }
 
     public static String found(String match) {
-        return statement(match, "COUNT(*) AS count ", "");
+        return statement(match, "COUNT(*) AS count ", "", "");
     }
 
-    public static String statement(String match, String data, String limit) {
+    public static String statement(String match, String data, String limit, String options) {
         return "SELECT "
                 + data
                 + " FROM " + sqlGuide.TABLE
@@ -22,6 +24,7 @@ public class Select {
                 + " OR world.municipality LIKE \"%" + match + "%\""
                 + " OR region.name LIKE \"%" + match + "%\""
                 + " OR country.name LIKE \"%" + match + "%\""
+                + options
                 + limit
                 + " ;";
     }
