@@ -56,7 +56,7 @@ public class TourConstruction {
                         minDistance = distanceMatrix[currentCity][city];
                         nextCity = city;
                     }
-                }    
+                }
 
                 totalDistance += minDistance;
                 currentCity = nextCity;
