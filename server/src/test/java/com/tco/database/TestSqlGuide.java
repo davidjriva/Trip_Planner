@@ -87,4 +87,23 @@ public class TestSqlGuide {
         assertEquals(places.size(), 3);
         assertEquals(value, 28);
     }
+
+    @Test
+    @DisplayName("alexr11: test random")
+    public void testRandom() throws Exception {
+        int value;
+        Places places;
+        try{
+            value = Database.found("");
+            places = Database.places("", 10);
+
+            assertNotNull(places);
+            assertFalse(places.isEmpty());
+        } catch(Exception e){
+            throw new Exception("Error with: " + e.getMessage());
+        }
+
+        assertEquals(places.size(), 10);
+        assertEquals(value, 50427);
+    }
 }
