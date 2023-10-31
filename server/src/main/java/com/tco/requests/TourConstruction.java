@@ -37,9 +37,7 @@ public class TourConstruction {
             int remainingCitiesCount = numPlaces;
             long totalDistance = 0;
 
-            for (int i = 0; i < numPlaces; i++) {
-                remainingCities[i] = true;
-            }
+            initializeRemainingCities(remainingCities);
 
             for (int i = 0; i < numPlaces; i++) {
                 tour[i] = currentCity;
@@ -78,5 +76,11 @@ public class TourConstruction {
         }
 
         tourResults = shortestTour;
+    }
+
+    public static void initializeRemainingCities(boolean[] remainingCities) {
+        for (int i = 0; i < remainingCities.length; i++) {
+            remainingCities[i] = true;
+        }
     }
 }
