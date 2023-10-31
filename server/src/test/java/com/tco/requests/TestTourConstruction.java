@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static java.lang.Math.PI;
 import static org.junit.jupiter.api.Assertions.*;
+import static com.tco.requests.TourConstruction.initializeRemainingCities;
 
 public class TestTourConstruction{
     @Test
@@ -94,7 +95,7 @@ public class TestTourConstruction{
 
     @Test
     @DisplayName ("bachrock: tests initializeRemainingCities with array of one value")
-    public void testInitializeRemainingCities() {
+    public void testInitializeRemainingCitiesOneValue() {
         boolean[] remainingCities = new boolean[1];
         initializeRemainingCities(remainingCities);
 
@@ -103,7 +104,7 @@ public class TestTourConstruction{
 
     @Test
     @DisplayName ("bachrock: tests initializeRemainingCities with false array of ten values")
-    public void testInitializeRemainingCities() {
+    public void testInitializeRemainingCitiesTenValues() {
         boolean[] remainingCities = new boolean[10];
         for(boolean remainingCity : remainingCities) {
             remainingCity = false;
@@ -116,7 +117,7 @@ public class TestTourConstruction{
 
     @Test
     @DisplayName ("bachrock: tests initializeRemainingCities with false array")
-    public void testInitializeRemainingCities() {
+    public void testInitializeRemainingCitiesFalseArray() {
         boolean[] remainingCities = new boolean[3];
         remainingCities[0] = false;
         remainingCities[1] = false;
@@ -131,10 +132,12 @@ public class TestTourConstruction{
 
     @Test
     @DisplayName ("bachrock: tests initializeRemainingCities with large array")
-    public void testInitializeRemainingCities() {
+    public void testInitializeRemainingCitiesLargeArray() {
         boolean[] remainingCities = new boolean[1000000];
+        initializeRemainingCities(remainingCities);
+
         for(boolean remainingCity : remainingCities) {
-            assertTrue(initializeRemainingCities(remainingCity));
+            assertTrue(remainingCity);
         }
     }
 }
