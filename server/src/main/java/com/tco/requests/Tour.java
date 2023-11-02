@@ -3,10 +3,14 @@ package com.tco.requests;
 import com.tco.misc.DistanceCalculator;
 import com.tco.misc.GeographicCoordinate;
 
-public class TourConstruction {
-  int[] tourResults;
-  boolean[] unvisitedCities;
-  Long[][] distanceMatrix;
+abstract class Tour {
+    //fields
+    Long[][] distanceMatrix;
+    int[] tourResults;
+
+    public void shorter(Place[] places) {
+        nearestNeighbor(places);
+    }
 
     public void createDistanceMatrix(Place[] places) {
         Long[][] matrix = new Long[places.length][places.length];
@@ -70,11 +74,6 @@ public class TourConstruction {
             }
         }
 
-        Place[] shortestTourPlaces = new Place[numPlaces];
-        for (int i = 0; i < numPlaces; i++) {
-            shortestTourPlaces[i] = places[shortestTour[i]];
-        }
-
         tourResults = shortestTour;
     }
 
@@ -83,4 +82,6 @@ public class TourConstruction {
             remainingCities[i] = true;
         }
     }
+
+    abstract void improve();
 }
