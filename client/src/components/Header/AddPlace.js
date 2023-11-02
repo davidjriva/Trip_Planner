@@ -53,6 +53,15 @@ function AddPlaceHeader(props) {
 function PlaceSearch(props) {
 	const [checkedResults, setCheckedResults] = useState(new Array(props.results.results.length).fill(false));
 
+	const handleClick = (index) => {
+		if (!checkedResults[index]) {
+			props.append(props.results.results[index]);
+		}
+		const updatedCheckedResults = [...checkedResults];
+		updatedCheckedResults[index] = true;
+		setCheckedResults(updatedCheckedResults);
+	};
+	
 	useEffect(() => {
 		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch, props.serverSettings);
 	}, [props.coordString]);
@@ -77,14 +86,7 @@ function PlaceSearch(props) {
 							</div>
 							<Button
 								color="primary"
-								onClick={() => {
-								if (!checkedResults[index]) {
-									props.append(props.results.results[index]);
-								}
-								const updatedCheckedResults = [...checkedResults];
-								updatedCheckedResults[index] = true;
-								setCheckedResults(updatedCheckedResults);
-								}}
+								onClick={() => handleClick(index)}
 							>
 								{ checkedResults[index] ? "✓" : "+" }
 							</Button>
