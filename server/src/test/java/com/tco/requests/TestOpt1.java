@@ -3,34 +3,31 @@ package com.tco.requests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static java.lang.Math.PI;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestOpt1 {
     @Test
     @DisplayName("driva: test single place")
     public void testCreateDistanceMatrixSinglePlace() {
-        Place[] places = {
-            new Place("1.0", "2.0")
-        };
+        Places places = new Places();
+        places.add(new Place("1.0", "2.0"));
 
         Opt1 op1 = new Opt1();
         op1.createDistanceMatrix(places);
         Long[][] distanceMatrix = op1.distanceMatrix;
 
         assertNotNull(distanceMatrix);
-        assertEquals(places.length, distanceMatrix.length);
+        assertEquals(places.size(), distanceMatrix.length);
         assertEquals(0L, distanceMatrix[0][0].longValue());
     }
 
     @Test
     @DisplayName("driva: test 1")
     public void testCreateDistanceMatrixMultiplePlaces() {
-        Place[] places = {
-            new Place("1.0", "2.0"),
-            new Place("3.0", "4.0"),
-            new Place("5.0", "6.0")
-        };
+        Places places = new Places();
+        places.add(new Place("1.0", "2.0"));
+        places.add(new Place("3.0", "4.0"));
+        places.add(new Place("5.0", "6.0"));
 
         Opt1 op1 = new Opt1();
 
@@ -38,7 +35,7 @@ public class TestOpt1 {
         Long[][] distanceMatrix = op1.distanceMatrix;
 
         assertNotNull(distanceMatrix);
-        assertEquals(places.length, distanceMatrix.length);
+        assertEquals(places.size(), distanceMatrix.length);
         assertEquals(0L, distanceMatrix[0][0].longValue());
         assertEquals(314L, distanceMatrix[0][1].longValue());
         assertEquals(629L, distanceMatrix[0][2].longValue());
@@ -47,36 +44,34 @@ public class TestOpt1 {
     @Test
     @DisplayName("driva: test nn single place")
     public void testNearestNeighborSinglePlace() {
-        Place[] places = {
-            new Place("1.0", "2.0")
-        };
+        Places places = new Places();
+        places.add(new Place("1.0", "2.0"));
 
         Opt1 op1 = new Opt1();
         op1.nearestNeighbor(places);
         int[] tourResults = op1.tourResults;
-        
+
         assertNotNull(tourResults);
-        assertEquals(places.length, tourResults.length);
+        assertEquals(places.size(), tourResults.length);
         assertEquals(0, tourResults[0]);
     }
 
     @Test
     @DisplayName("driva: test nn multiple places")
     public void testNearestNeighborMultiplePlaces() {
-        Place[] places = {
-            new Place("1.0", "2.0"),
-            new Place("3.0", "4.0"),
-            new Place("5.0", "6.0")
-        };
+        Places places = new Places();
+        places.add(new Place("1.0", "2.0"));
+        places.add(new Place("3.0", "4.0"));
+        places.add(new Place("5.0", "6.0"));
 
         Opt1 op1 = new Opt1();
         op1.nearestNeighbor(places);
         int[] tourResults = op1.tourResults;
 
         assertNotNull(tourResults);
-        assertEquals(places.length, tourResults.length);
+        assertEquals(places.size(), tourResults.length);
 
-        boolean[] visited = new boolean[places.length];
+        boolean[] visited = new boolean[places.size()];
         for (int city : tourResults) {
             assertFalse(visited[city]);
             visited[city] = true;

@@ -4,23 +4,23 @@ import com.tco.misc.DistanceCalculator;
 import com.tco.misc.GeographicCoordinate;
 
 abstract class Tour {
-    //fields
     Long[][] distanceMatrix;
     int[] tourResults;
 
-    public void shorter(Place[] places) {
+    public void shorter(Places places) {
         nearestNeighbor(places);
     }
 
-    public void createDistanceMatrix(Place[] places) {
-        Long[][] matrix = new Long[places.length][places.length];
+    public void createDistanceMatrix(Places places) {
+        Long[][] matrix = new Long[places.size()][places.size()];
+        int numPlaces = places.size();
 
-        for (int i = 0; i < places.length; i++) {
-            for (int j = 0; j < places.length; j++) {
+        for (int i = 0; i < numPlaces; i++) {
+            for (int j = 0; j < numPlaces; j++) {
                 if (i == j) {
-                    matrix[i][j] = 0L; 
+                    matrix[i][j] = 0L;
                 } else {
-                    matrix[i][j] = DistanceCalculator.calculate(places[i], places[j], 6371);
+                    matrix[i][j] = DistanceCalculator.calculate(places.get(i), places.get(j), 6371);
                 }
             }
         }
@@ -28,9 +28,9 @@ abstract class Tour {
         this.distanceMatrix = matrix;
     }
 
-    public void nearestNeighbor(Place[] places) {
+    public void nearestNeighbor(Places places) {
         createDistanceMatrix(places);
-        int numPlaces = places.length;
+        int numPlaces = places.size();
         int[] shortestTour = null;
         long shortestDistance = Long.MAX_VALUE;
 
