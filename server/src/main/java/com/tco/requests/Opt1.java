@@ -1,7 +1,7 @@
 package com.tco.requests;
 
 class Opt1 extends Tour {
-    private Places places;
+    public Places places;
 
     public Opt1(Places places) {
         this.places = places;

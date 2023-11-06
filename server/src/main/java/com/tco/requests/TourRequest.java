@@ -14,6 +14,7 @@ public class TourRequest extends Request {
     public void buildResponse() {
         Opt1 optimize = new Opt1(places);
         optimize.improve();
+        this.places = optimize.places;
         log.trace("buildResponse -> {}", this);
     }
 
