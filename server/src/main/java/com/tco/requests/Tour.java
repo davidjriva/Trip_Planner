@@ -83,5 +83,9 @@ abstract class Tour {
         }
     }
 
+    public int[] getTourResults() {
+        return tourResults;
+    }
+
     abstract void improve();
 }

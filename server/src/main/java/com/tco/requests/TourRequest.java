@@ -12,6 +12,8 @@ public class TourRequest extends Request {
 
     @Override
     public void buildResponse() {
+        Opt1 optimize = new Opt1(places);
+        optimize.improve();
         log.trace("buildResponse -> {}", this);
     }
 

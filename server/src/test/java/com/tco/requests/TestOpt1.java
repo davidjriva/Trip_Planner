@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestOpt1 {
     @Test
-    @DisplayName("driva: test single place")
+    @DisplayName("driva: test single place distrance matrix")
     public void testCreateDistanceMatrixSinglePlace() {
         Places places = new Places();
         places.add(new Place("1.0", "2.0"));
 
-        Opt1 op1 = new Opt1();
+        Opt1 op1 = new Opt1(places);
         op1.createDistanceMatrix(places);
         Long[][] distanceMatrix = op1.distanceMatrix;
 
@@ -22,14 +22,14 @@ public class TestOpt1 {
     }
 
     @Test
-    @DisplayName("driva: test 1")
+    @DisplayName("driva: test multiple places distance matrix")
     public void testCreateDistanceMatrixMultiplePlaces() {
         Places places = new Places();
         places.add(new Place("1.0", "2.0"));
         places.add(new Place("3.0", "4.0"));
         places.add(new Place("5.0", "6.0"));
 
-        Opt1 op1 = new Opt1();
+        Opt1 op1 = new Opt1(places);
 
         op1.createDistanceMatrix(places);
         Long[][] distanceMatrix = op1.distanceMatrix;
@@ -41,13 +41,14 @@ public class TestOpt1 {
         assertEquals(629L, distanceMatrix[0][2].longValue());
     }
 
+
     @Test
     @DisplayName("driva: test nn single place")
     public void testNearestNeighborSinglePlace() {
         Places places = new Places();
         places.add(new Place("1.0", "2.0"));
 
-        Opt1 op1 = new Opt1();
+        Opt1 op1 = new Opt1(places);
         op1.nearestNeighbor(places);
         int[] tourResults = op1.tourResults;
 
@@ -64,7 +65,7 @@ public class TestOpt1 {
         places.add(new Place("3.0", "4.0"));
         places.add(new Place("5.0", "6.0"));
 
-        Opt1 op1 = new Opt1();
+        Opt1 op1 = new Opt1(places);
         op1.nearestNeighbor(places);
         int[] tourResults = op1.tourResults;
 
