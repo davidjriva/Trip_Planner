@@ -19,6 +19,7 @@ export default function AddPlace(props) {
 	const [foundPlace, setFoundPlace] = useState();
 	const [coordString, setCoordString] = useState('');
 	const [match, setMatch] = useState('');
+	const [refresh, setRefresh] = useState(false);
 
 	const results = useFind(match);
 	
@@ -31,6 +32,8 @@ export default function AddPlace(props) {
 		match,
 		setMatch,
 		results,
+		refresh,
+		setRefresh,
 		serverSettings: props.serverSettings
 	};
 
@@ -161,4 +164,17 @@ async function verifyCoordinates(coordString, setFoundPlace, setMatch, serverSet
 
 function isLatLngValid(lat,lng) {
 	return (lat !== undefined && lng !== undefined);
+}
+
+function randomPlace(setMatch, setCoordString, setRefresh) 
+{
+
+	if (refresh){
+		setMatch(0);
+	}
+	else{
+		setMatch(1);
+	}
+	setRefresh(!refresh);
+	setCoordString("");
 }
