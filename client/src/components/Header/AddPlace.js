@@ -166,15 +166,15 @@ function isLatLngValid(lat,lng) {
 	return (lat !== undefined && lng !== undefined);
 }
 
-function randomPlace(setMatch, setCoordString, setRefresh) 
+function randomPlace(props) 
 {
 
-	if (refresh){
-		setMatch(0);
+	if (props.refresh){
+		props.setMatch(0);
 	}
 	else{
-		setMatch(1);
+		props.setMatch(1);
 	}
-	setRefresh(!refresh);
-	setCoordString("");
+	props.setRefresh(!props.refresh);
+	props.setCoordString("");
 }
