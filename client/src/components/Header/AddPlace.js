@@ -116,6 +116,15 @@ function PlaceSearch(props) {
 						<FaHome/>
 					</Button>
 				</InputGroup>
+				<Col>
+					<Button
+						data-testid='random-button'
+						color="primary"
+						onClick= {() => { setCheckedResults(new Array(1).fill(false)); randomPlace(props); }}
+					>
+						Random
+					</Button>
+				</Col>
 				<PlaceInfo append = {props.append} setCoordString = {props.setCoordString} foundPlace={props.foundPlace} />
 				{ renderResults() }
 			</Col>
