@@ -43,6 +43,12 @@ public class TestConfigRequest {
     }
 
     @Test
+    @DisplayName("base: Features includes \"shorter\"")
+    public void testFeatures4(){
+        assertTrue(conf.validFeature("shorter"));
+    }
+
+    @Test
     @DisplayName("base: Team name is correct")
     public void testServerName() {
         String name = conf.getServerName();
