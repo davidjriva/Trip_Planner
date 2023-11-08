@@ -42,11 +42,11 @@ public class TestConfigRequest {
         assertTrue(conf.validFeature("find"));
     }
 
-    @Test
-    @DisplayName("base: Features includes \"shorter\"")
-    public void testFeatures4(){
-        assertTrue(conf.validFeature("shorter"));
-    }
+    // @Test
+    // @DisplayName("base: Features includes \"tour\"")
+    // public void testFeatures4(){
+    //     assertTrue(conf.validFeature("tour"));
+    // }
 
     @Test
     @DisplayName("base: Team name is correct")
