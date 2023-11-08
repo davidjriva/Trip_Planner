@@ -45,7 +45,7 @@ export default function AddPlace(props) {
 function AddPlaceHeader(props) {
 	return (
 		<ModalHeader className='ml-2' toggle={props.toggleAddPlace}>
-			Add a Place
+			Add or Search for a Place
 		</ModalHeader>
 	);
 }
