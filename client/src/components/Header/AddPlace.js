@@ -66,7 +66,7 @@ function PlaceSearch(props) {
 	};
 	
 	useEffect(() => {
-		verifyCoordinates(props.coordString, props.setFoundPlace, props.setMatch, props.serverSettings);
+		verifyCoordinates(props);
 	}, [props.coordString]);
 
 	const renderResults = () => {
@@ -154,20 +154,20 @@ function PlaceInfo(props) {
 	);
 }
 
-async function verifyCoordinates(coordString, setFoundPlace, setMatch, serverSettings) {
+async function verifyCoordinates(props) {
 	try {
-		const latLngPlace = new Coordinates(coordString);
+		const latLngPlace = new Coordinates(props.coordString);
 		const lat = latLngPlace.getLatitude();
 		const lng = latLngPlace.getLongitude();
 		if (isLatLngValid(lat,lng)) {
 			const fullPlace = await reverseGeocode({ lat, lng });
-			setFoundPlace(fullPlace);
+			props.setFoundPlace(fullPlace);
 		}
 	} catch (error) {
-		if (serverSettings.serverUrl != "testing" && coordString.length >= 3) {
-			setMatch(coordString);
+		if (props.serverSettings.serverUrl != "testing" && props.coordString.length >= 3) {
+			props.setMatch(props.coordString);
 		}
-		setFoundPlace(undefined);
+		props.setFoundPlace(undefined);
 	}
 }
 
