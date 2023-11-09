@@ -7,7 +7,6 @@ abstract class Tour {
     //fields
     Long[][] distanceMatrix;
     public int[] tourResults;
-    public long distance;
 
     public void shorter(Place[] places) {
         nearestNeighbor(places);
@@ -73,7 +72,6 @@ abstract class Tour {
                 shortestTour = tour.clone();
                 shortestDistance = totalDistance;
             }
-            distance = totalDistance;
         }
         tourResults = shortestTour;
     }
