@@ -73,7 +73,6 @@ abstract class Tour {
                 shortestDistance = totalDistance;
             }
         }
-
         tourResults = shortestTour;
     }
 
