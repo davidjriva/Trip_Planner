@@ -6,7 +6,7 @@ import com.tco.misc.GeographicCoordinate;
 abstract class Tour {
     //fields
     Long[][] distanceMatrix;
-    public int[] tourResults;
+    int[] tourResults;
 
     public void shorter(Place[] places) {
         nearestNeighbor(places);
