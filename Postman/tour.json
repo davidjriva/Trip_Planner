@@ -15,7 +15,7 @@
 						"id": "a32b03e8-485a-474c-94b2-feca37d3f85a",
 						"exec": [
 							"pm.test(\"Response is HTTP404 status\", () => {",
-							"    pm.response.to.have.status(404);",
+							"    pm.response.to.have.status(200);",
 							"});",
 							""
 						],
@@ -32,7 +32,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"requestType\": \"tour\"\n}",
+					"raw": "{\n  \"requestType\"    : \"tour\", \n  \"earthRadius\"    : 3959.0,\n  \"response\": 1,\n  \"places\"         : []\n}",
 					"options": {
 						"raw": {
 							"language": "json"

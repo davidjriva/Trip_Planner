@@ -20,13 +20,13 @@ public class ConfigRequest extends Request {
         features.add("config");
         features.add("distances");
         features.add("find");
-        //features.add("tour");
+        features.add("tour");
         log.trace("buildResponse -> {}", this);
     }
 
-  /* The following methods exist only for testing purposes and are not used
-  during normal execution, including the constructor. */
-
+    /* The following methods exist only for testing purposes and are not used
+    during normal execution, including the constructor. */
+    
     public ConfigRequest() {
         this.requestType = "config";
     }
