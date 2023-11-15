@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useToggle } from '../../../hooks/useToggle';
 import { useDistances } from '../../../hooks/useDistances';
-import { Table, Collapse } from 'reactstrap';
+import { Table, Collapse, Button } from 'reactstrap';
 import { latLngToText, placeToLatLng } from '../../../utils/transformers';
 import { BsChevronDown } from 'react-icons/bs';
 import PlaceActions from './PlaceActions';
@@ -54,6 +54,10 @@ export default function Itinerary(props) {
 }
 
 function TripHeader(props) {
+	const handleClick = () => {
+		//TODO: ADD LOGIC TO MAKE A TOUR REQUEST API CALL HERE
+    };
+
 	return (
 		<thead>
 			<tr>
@@ -68,6 +72,9 @@ function TripHeader(props) {
 				</td>
 				<td className='cumulative'>
 					Cumulative
+				</td>
+				<td className='cumulative'>
+					<Button className="optimizeButton" onClick={handleClick}> Optimize </Button>
 				</td>
 			</tr>
 		</thead>
