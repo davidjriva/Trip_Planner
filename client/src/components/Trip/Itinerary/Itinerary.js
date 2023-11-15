@@ -153,5 +153,5 @@ async function makeTourRequest(props) {
 	const requestBody = { requestType: 'tour', earthRadius: props.earthRadius, response: defaultResponse, places: props.places };
 	const serverUrl = getOriginalServerUrl();
 	const tourPlaces = await sendAPIRequest(requestBody, serverUrl);
-	console.error(tourPlaces.places);
+	//console.error(tourPlaces.places);
 }
