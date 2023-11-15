@@ -55,7 +55,7 @@ export default function Itinerary(props) {
 
 function TripHeader(props) {
 	const handleClick = () => {
-		//TODO: ADD LOGIC TO MAKE A TOUR REQUEST API CALL HERE
+		makeTourRequest(props);
     };
 
 	return (
@@ -145,4 +145,9 @@ function RowArrow(props) {
 			<BsChevronDown data-testid={`place-row-toggle-${props.index}`} onClick={props.toggleShowFullName}/>
 		</td>
 	);
+}
+
+async function makeTourRequest(props) {
+	const defaultResponse = 1; 
+	const requestBody = { requestType: 'tour', earthRadius: props.earthRadius, response: defaultResponse, places: props.places };
 }
