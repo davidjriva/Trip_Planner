@@ -76,6 +76,9 @@ function TripHeader(props) {
 				<td className='cumulative'>
 					<Button className="optimizeButton" onClick={handleClick}> Optimize </Button>
 				</td>
+				<td className='cumulative'>
+					<Button className="optimizeButton" onClick={() => props.placeActions.removeAll()}> Clear All </Button>
+				</td>
 			</tr>
 		</thead>
 	);

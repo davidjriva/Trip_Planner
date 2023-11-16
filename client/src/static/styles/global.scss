@@ -95,11 +95,11 @@ $link: $dark-slate;
 //Itinerary styles
 .leg, .cumulative {
     color: white !important;
-    background-color: darkgreen !important; 
+    background-color: #1E4D2B !important; 
 }
 
-.optimizeButton {
+.optimizeButton, .clearAllButton {
     background: transparent;
-    border : 1px solid white;
+    border : 1px solid #C8C372;
     color: white;
 }
