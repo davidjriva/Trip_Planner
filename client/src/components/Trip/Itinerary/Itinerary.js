@@ -26,24 +26,12 @@ function unitChangeHelper(newUnits, setDistanceUnits, setEarthRadius){
 export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
 	const [distanceUnits, setDistanceUnits] = useState("miles");
-	const { distances } = useDistances( props.places, earthRadius, props.serverSettings);
+	const { distances } = useDistances(props.places, earthRadius, props.serverSettings);
 
 	const handleUnitsChange = (newUnits) => { unitChangeHelper(newUnits, setDistanceUnits, setEarthRadius) };
 
-	const unitsProps = {
-		earthRadius,
-		setEarthRadius,
-		distanceUnits,
-		setDistanceUnits,
-		handleUnitsChange
-	}
-
-	const placeListProps = {
-		places: props.places,
-		distances: distances,
-		placeActions: props.placeActions,
-		selectedIndex: props.selectedIndex
-	}
+	const unitsProps = { earthRadius, setEarthRadius, distanceUnits, setDistanceUnits, handleUnitsChange }
+	const placeListProps = { places: props.places, distances: distances, placeActions: props.placeActions, selectedIndex: props.selectedIndex }
 	
 	return (
 		<Table responsive>
