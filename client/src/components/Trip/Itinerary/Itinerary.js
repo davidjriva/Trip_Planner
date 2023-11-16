@@ -8,12 +8,13 @@ import PlaceActions from './PlaceActions';
 import Distances from './Distances';
 import UnitsSelector from './UnitsSelector';
 import { sendAPIRequest, getOriginalServerUrl } from '../../../utils/restfulAPI';
+import { Place } from '../../../models/place.model';
 
 export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
 	const [distanceUnits, setDistanceUnits] = useState("miles");
 	const { distances } = useDistances( props.places, earthRadius, props.serverSettings);
-	
+
 	const handleUnitsChange = (newUnits) => {
         setDistanceUnits(newUnits);
         if (newUnits === 'miles') {
@@ -152,6 +153,14 @@ async function makeTourRequest(props) {
 	const defaultResponse = 1; 
 	const requestBody = { requestType: 'tour', earthRadius: props.earthRadius, response: defaultResponse, places: props.places };
 	const serverUrl = getOriginalServerUrl();
-	const tourPlaces = await sendAPIRequest(requestBody, serverUrl);
-	//console.error(tourPlaces.places);
+	
+	try{
+		const tourPlaces = await sendAPIRequest(requestBody, serverUrl);
+		const newPlaces = tourPlaces.places.map(place =>{
+			return new Place(place);
+		});
+		props.placeActions.setPlaces(newPlaces);
+	} catch (error) {
+		console.error("Error in makeTourRequest(): ", error);
+	}
 }
