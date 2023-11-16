@@ -10,21 +10,25 @@ import UnitsSelector from './UnitsSelector';
 import { sendAPIRequest, getOriginalServerUrl } from '../../../utils/restfulAPI';
 import { Place } from '../../../models/place.model';
 
+const unitsToEarthRadius = {
+	miles: 3959,
+	kilometers: 6371,
+	'nautical miles': 3440,
+};
+
+function unitChangeHelper(newUnits, setDistanceUnits, setEarthRadius){
+	setDistanceUnits(newUnits);
+	if (unitsToEarthRadius.hasOwnProperty(newUnits)) {
+		setEarthRadius(unitsToEarthRadius[newUnits]);
+	}
+}
+
 export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
 	const [distanceUnits, setDistanceUnits] = useState("miles");
 	const { distances } = useDistances( props.places, earthRadius, props.serverSettings);
 
-	const handleUnitsChange = (newUnits) => {
-        setDistanceUnits(newUnits);
-        if (newUnits === 'miles') {
-            setEarthRadius(3959);
-        } else if (newUnits === 'kilometers') {
-            setEarthRadius(6371);
-        } else if (newUnits === 'nautical miles') {
-            setEarthRadius(3440);
-        }
-    };
+	const handleUnitsChange = (newUnits) => { unitChangeHelper(newUnits, setDistanceUnits, setEarthRadius) };
 
 	const unitsProps = {
 		earthRadius,
@@ -56,10 +60,6 @@ export default function Itinerary(props) {
 }
 
 function TripHeader(props) {
-	const handleClick = () => {
-		makeTourRequest(props);
-    };
-
 	return (
 		<thead>
 			<tr>
@@ -76,7 +76,7 @@ function TripHeader(props) {
 					Cumulative
 				</td>
 				<td className='cumulative'>
-					<Button className="optimizeButton" onClick={handleClick}> Optimize </Button>
+					<Button className="optimizeButton" onClick={() => makeTourRequest(props) }> Optimize </Button>
 				</td>
 				<td className='cumulative'>
 					<Button className="optimizeButton" onClick={() => props.placeActions.removeAll()}> Clear All </Button>
