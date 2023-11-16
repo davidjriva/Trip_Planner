@@ -7,6 +7,7 @@ import { BsChevronDown } from 'react-icons/bs';
 import PlaceActions from './PlaceActions';
 import Distances from './Distances';
 import UnitsSelector from './UnitsSelector';
+import { sendAPIRequest, getOriginalServerUrl } from '../../../utils/restfulAPI';
 
 export default function Itinerary(props) {
 	const [earthRadius, setEarthRadius] = useState(3959);
@@ -150,4 +151,7 @@ function RowArrow(props) {
 async function makeTourRequest(props) {
 	const defaultResponse = 1; 
 	const requestBody = { requestType: 'tour', earthRadius: props.earthRadius, response: defaultResponse, places: props.places };
+	const serverUrl = getOriginalServerUrl();
+	const tourPlaces = await sendAPIRequest(requestBody, serverUrl);
+	//console.error(tourPlaces.places);
 }
