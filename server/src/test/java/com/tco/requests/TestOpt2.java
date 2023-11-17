@@ -7,17 +7,32 @@ import static java.lang.Math.PI;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestOpt2 {
+
     @Test
-    @DisplayName("aaouaj: test 1")
-    public void testOpt2() {
-        Place[] places = {
-            new Place("1.0", "2.0"),
-            new Place("3.0", "4.0"),
-            new Place("5.0", "6.0")
-        };
-        Opt2 opt2 = new Opt2();
-        //opt2.improve();
-        //assertNotNull(opt2);
+    @DisplayName("driva: test two opt improves")
+    void testTwoOptImproves() {
+        Opt2 optimizer = new Opt2();
+        int[] route = {1, 2, 3, 4, 5};
+        boolean improves = optimizer.twoOptImproves(route, 0, 3);
+        assertFalse(improves);
     }
 
+    @Test
+    @DisplayName("driva: test two opt reverse")
+    void testTwoOptReverse() {
+        Opt2 optimizer = new Opt2();
+        int[] route = {1, 2, 3, 4, 5};
+        optimizer.twoOptReverse(route, 1, 3);
+        int[] expected = {1, 4, 3, 2, 5};
+        assertArrayEquals(expected, route);
+    }
+
+    @Test
+    @DisplayName("driva: test leg dist")
+    void testLegDis() {
+        Opt2 optimizer = new Opt2();
+        int[] route = {1, 2, 3, 4, 5};
+        int distance = optimizer.legDis(route, 1, 3);
+        assertEquals(0, distance);
+    }
 }
