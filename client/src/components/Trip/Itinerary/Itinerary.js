@@ -57,17 +57,22 @@ function TripHeader(props) {
 				>
 					{props.tripName} is <Distances distance={props.distances.total}/> <UnitsSelector {...props}/>
 				</th>
+				<td>
+				<Button className="optimizeButton" onClick={() => makeTourRequest(props) }> Optimize </Button>
+				</td>
+				<td>
+				<Button className="optimizeButton" onClick={() => {if (confirm('This will clear ALL places. Are you sure you wish to continue?')) {props.placeActions.removeAll()}}}> Clear </Button>
+				</td>
+			</tr>
+			<tr>
+				<td className='places'>
+					Place
+				</td>
 				<td className='leg'>
 					Leg
 				</td>
 				<td className='cumulative'>
 					Cumulative
-				</td>
-				<td className='cumulative'>
-					<Button className="optimizeButton" onClick={() => makeTourRequest(props) }> Optimize </Button>
-				</td>
-				<td className='cumulative'>
-					<Button className="optimizeButton" onClick={() => props.placeActions.removeAll()}> Clear All </Button>
 				</td>
 			</tr>
 		</thead>
