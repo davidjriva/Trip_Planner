@@ -93,13 +93,23 @@ $link: $dark-slate;
 @import "~bootstrap/scss/bootstrap";
 
 //Itinerary styles
-.leg, .cumulative {
+.places {
     color: white !important;
-    background-color: #1E4D2B !important; 
+    background-color: $primary !important; 
+    border-right: 1px solid;
+}
+
+.leg, .cumulative
+{
+    color: white !important;
+    background-color: $primary !important; 
+    text-align: right;
+    border-right: 1px solid;
 }
 
 .optimizeButton, .clearAllButton {
-    background: transparent;
-    border : 1px solid #C8C372;
+    background: solid;
+    border : 1px solid white;
+    background-color: $primary;
     color: white;
 }
