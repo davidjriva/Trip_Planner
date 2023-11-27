@@ -86,5 +86,9 @@ abstract class Tour {
         return tourResults;
     }
 
+    public Long[][] getDistanceMatrix() {
+        return distanceMatrix;
+    }
+
     abstract void improve();
 }
