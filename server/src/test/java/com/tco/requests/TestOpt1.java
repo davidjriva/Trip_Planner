@@ -14,7 +14,7 @@ public class TestOpt1 {
 
         Opt1 op1 = new Opt1(places);
         op1.createDistanceMatrix(places);
-        Long[][] distanceMatrix = op1.distanceMatrix;
+        Long[][] distanceMatrix = op1.getDistanceMatrix();
 
         assertNotNull(distanceMatrix);
         assertEquals(places.size(), distanceMatrix.length);
@@ -32,7 +32,7 @@ public class TestOpt1 {
         Opt1 op1 = new Opt1(places);
 
         op1.createDistanceMatrix(places);
-        Long[][] distanceMatrix = op1.distanceMatrix;
+        Long[][] distanceMatrix = op1.getDistanceMatrix();
 
         assertNotNull(distanceMatrix);
         assertEquals(places.size(), distanceMatrix.length);
@@ -82,7 +82,8 @@ public class TestOpt1 {
         for (int i = 0; i < tourResults.length; i++) {
             int currCity = tourResults[i];
             int nextCity = tourResults[(i + 1) % tourResults.length];
-            totalDistance += op1.distanceMatrix[currCity][nextCity];
+            Long[][] dMat = op1.getDistanceMatrix();
+            totalDistance += dMat[currCity][nextCity];
         }
 
         assertEquals(1257L, totalDistance);
