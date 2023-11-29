@@ -34,47 +34,49 @@ abstract class Tour {
         int[] shortestTour = null;
         long shortestDistance = Long.MAX_VALUE;
 
-        for (int startCityIndex = 0; startCityIndex < numPlaces; startCityIndex++) {
-            int[] tour = new int[numPlaces];
-            int currentCity = startCityIndex;
-            boolean[] remainingCities = new boolean[numPlaces];
-            int remainingCitiesCount = numPlaces;
-            long totalDistance = 0;
+        int startCityIndex = 0;
 
-            initializeRemainingCities(remainingCities);
+        int[] tour = new int[numPlaces];
+        int currentCity = startCityIndex;
+        boolean[] remainingCities = new boolean[numPlaces];
+        int remainingCitiesCount = numPlaces;
+        long totalDistance = 0;
 
-            for (int i = 0; i < numPlaces; i++) {
-                tour[i] = currentCity;
-                remainingCities[currentCity] = false;
-                remainingCitiesCount--;
+        initializeRemainingCities(remainingCities);
 
-                if (remainingCitiesCount == 0) {
-                    break;
-                }
+        for (int i = 0; i < numPlaces; i++) {
+            tour[i] = currentCity;
+            remainingCities[currentCity] = false;
+            remainingCitiesCount--;
 
-                long minDistance = Long.MAX_VALUE;
-                int nextCity = -1;
-
-                for (int city = 0; city < numPlaces; city++) {
-                    if (remainingCities[city] && distanceMatrix[currentCity][city] < minDistance) {
-                        minDistance = distanceMatrix[currentCity][city];
-                        nextCity = city;
-                    }
-                }
-
-                totalDistance += minDistance;
-                currentCity = nextCity;
+            if (remainingCitiesCount == 0) {
+                break;
             }
 
-            totalDistance += distanceMatrix[currentCity][startCityIndex];
+            long minDistance = Long.MAX_VALUE;
+            int nextCity = -1;
 
-            if (totalDistance < shortestDistance) {
-                shortestTour = tour.clone();
-                shortestDistance = totalDistance;
+            for (int city = 0; city < numPlaces; city++) {
+                if (remainingCities[city] && distanceMatrix[currentCity][city] < minDistance) {
+                    minDistance = distanceMatrix[currentCity][city];
+                    nextCity = city;
+                }
             }
+
+            totalDistance += minDistance;
+            currentCity = nextCity;
         }
+
+        totalDistance += distanceMatrix[currentCity][startCityIndex];
+
+        if (totalDistance < shortestDistance) {
+            shortestTour = tour.clone();
+            shortestDistance = totalDistance;
+        }
+
         tourResults = shortestTour;
     }
+
 
     public static void initializeRemainingCities(boolean[] remainingCities) {
         for (int i = 0; i < remainingCities.length; i++) {
