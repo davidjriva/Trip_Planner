@@ -4,8 +4,13 @@ import com.tco.misc.DistanceCalculator;
 import com.tco.misc.GeographicCoordinate;
 
 abstract class Tour {
+    int numPlaces;
     Long[][] distanceMatrix;
     int[] tourResults;
+
+    Tour (Places places) {
+        this.numPlaces = places.size();
+    }
 
     public void shorter(Places places) {
         nearestNeighbor(places);
