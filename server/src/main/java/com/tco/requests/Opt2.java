@@ -5,6 +5,7 @@ class Opt2 extends Tour {
 
     public Opt2(Places places) {
         this.places = places;
+        this.numPlaces = places.size();
     }
 
     @Override
