@@ -30,7 +30,6 @@ public class TestOpt1 {
         places.add(new Place("5.0", "6.0"));
 
         Opt1 op1 = new Opt1(places);
-
         op1.createDistanceMatrix(places);
         Long[][] distanceMatrix = op1.getDistanceMatrix();
 
@@ -49,7 +48,7 @@ public class TestOpt1 {
         places.add(new Place("1.0", "2.0"));
 
         Opt1 op1 = new Opt1(places);
-        op1.nearestNeighbor(places);
+        op1.shorter(places);
         int[] tourResults = op1.tourResults;
 
         assertNotNull(tourResults);
@@ -66,7 +65,7 @@ public class TestOpt1 {
         places.add(new Place("5.0", "6.0"));
 
         Opt1 op1 = new Opt1(places);
-        op1.nearestNeighbor(places);
+        op1.shorter(places);
         int[] tourResults = op1.tourResults;
 
         assertNotNull(tourResults);

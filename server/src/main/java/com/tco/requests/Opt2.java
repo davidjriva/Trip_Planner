@@ -1,8 +1,11 @@
 package com.tco.requests;
 
-public class Opt2 extends Tour {
-    public Opt2() {
-        super();
+class Opt2 extends Tour {
+    public Places places;
+
+    public Opt2(Places places) {
+        this.places = places;
+        this.numPlaces = places.size();
     }
 
     @Override
