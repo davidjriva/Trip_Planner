@@ -12,9 +12,11 @@ public class TourRequest extends Request {
 
     @Override
     public void buildResponse() {
-        Opt1 optimize = new Opt1(places);
-        optimize.improve();
-        this.places = optimize.places;
+        if(response > 0.0){
+            Opt1 optimize = new Opt1(places);
+            optimize.improve();
+            this.places = optimize.places;
+        }
         log.trace("buildResponse -> {}", this);
     }
 

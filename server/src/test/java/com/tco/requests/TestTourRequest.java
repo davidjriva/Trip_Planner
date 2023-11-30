@@ -122,4 +122,35 @@ public class TestTourRequest {
         assertEquals("11.0", places.get(5).get("latitude"));
         assertEquals("12.0", places.get(5).get("longitude"));
     }
+
+    @Test
+    @DisplayName("driva: testing response time of zero(no optimizations)")
+    public void zeroResponseTourRequest() {
+        earthRadius = 6371.0;
+        response = 0.0;
+        
+        Place p1 = new Place("1.0", "2.0");
+        Place p2 = new Place("3.0", "4.0");
+        Place p3 = new Place("5.0", "6.0");
+        Place p4 = new Place("10.0", "50.0");
+        Place p5 = new Place("0.0", "0.0");
+        
+        places.add(p1);
+        places.add(p2);
+        places.add(p3);
+        places.add(p4);
+        places.add(p5);
+
+        request = new TourRequest(earthRadius, response, places);
+        request.buildResponse();
+
+        places = request.places();
+        assertEquals(5, places.size());
+        // No optimizations were made:
+        assertEquals(places.get(0), p1);
+        assertEquals(places.get(1), p2);
+        assertEquals(places.get(2), p3);
+        assertEquals(places.get(3), p4);
+        assertEquals(places.get(4), p5);
+    }
 }
