@@ -108,7 +108,7 @@ function PlaceSearch(props) {
 							props.setCoordString(input.target.value)
 							setCheckedResults(new Array(props.results.results.length).fill(false))
 						}}
-						placeholder='Enter A Search Or Coordinates (e.g. -50.0, 100.0)'
+						placeholder='Enter Search / Coordinates (e.g. -50.0 [long], 100.0 [lat])'
 						data-testid='coord-input'
 						value={props.coordString}
 					/>
