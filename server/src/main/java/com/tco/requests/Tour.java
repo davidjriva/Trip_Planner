@@ -15,7 +15,6 @@ abstract class Tour {
 
     public void createDistanceMatrix(Places places) {
         Long[][] matrix = new Long[places.size()][places.size()];
-        int numPlaces = places.size();
 
         for (int i = 0; i < numPlaces; i++) {
             for (int j = 0; j < numPlaces; j++) {
@@ -32,7 +31,6 @@ abstract class Tour {
 
     public void nearestNeighbor(Places places) {
         createDistanceMatrix(places);
-        int numPlaces = places.size();
         int[] shortestTour = null;
         long shortestDistance = Long.MAX_VALUE;
 
