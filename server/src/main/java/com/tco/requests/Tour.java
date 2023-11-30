@@ -9,13 +9,10 @@ abstract class Tour {
     int[] tourResults;
 
     public void shorter(Places places) {
-        //this.numPlaces = places.size();
         nearestNeighbor(places);
     }
 
-    public void createDistanceMatrix(Places places) {
-        Long[][] matrix = new Long[places.size()][places.size()];
-
+    public void populateMatrix(Long[][] matrix, Places places) {
         for (int i = 0; i < numPlaces; i++) {
             for (int j = 0; j < numPlaces; j++) {
                 if (i == j) {
@@ -25,7 +22,11 @@ abstract class Tour {
                 }
             }
         }
+    }
 
+    public void createDistanceMatrix(Places places) {
+        Long[][] matrix = new Long[places.size()][places.size()];
+        populateMatrix(matrix, places);
         this.distanceMatrix = matrix;
     }
 
