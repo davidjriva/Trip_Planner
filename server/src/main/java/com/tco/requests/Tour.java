@@ -8,11 +8,8 @@ abstract class Tour {
     Long[][] distanceMatrix;
     int[] tourResults;
 
-    Tour (Places places) {
-        this.numPlaces = places.size();
-    }
-
     public void shorter(Places places) {
+        this.numPlaces = places.size();
         nearestNeighbor(places);
     }
 

@@ -4,7 +4,6 @@ class Opt1 extends Tour {
     public Places places;
 
     public Opt1(Places places) {
-        super(places);
         this.places = places;
     }
 
