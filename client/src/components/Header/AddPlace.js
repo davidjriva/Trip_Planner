@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-	Button,
-	Col,
-	Modal,
-	ModalBody,
-	ModalHeader,
-	Input,
-	InputGroup,
-	Collapse
-} from 'reactstrap';
+import { Button, Col, Modal, ModalBody, ModalHeader, Input, InputGroup, Collapse} from 'reactstrap';
 import { FaHome } from 'react-icons/fa';
 import Coordinates from 'coordinate-parser';
 import { DEFAULT_STARTING_POSITION } from '../../utils/constants';
@@ -20,6 +11,12 @@ export default function AddPlace(props) {
 	const [coordString, setCoordString] = useState('');
 	const [match, setMatch] = useState('');
 	const [refresh, setRefresh] = useState(false);
+
+	const [errorMessage, setErrorMessage] = useState('');
+
+	const updateErrorMessage = (message) => {
+		setErrorMessage(message);
+	};
 
 	const results = useFind(match);
 	
@@ -34,7 +31,9 @@ export default function AddPlace(props) {
 		results,
 		refresh,
 		setRefresh,
-		serverSettings: props.serverSettings
+		serverSettings: props.serverSettings,
+		errorMessage,
+		updateErrorMessage
 	};
 
 	return (
@@ -108,7 +107,7 @@ function PlaceSearch(props) {
 							props.setCoordString(input.target.value)
 							setCheckedResults(new Array(props.results.results.length).fill(false))
 						}}
-						placeholder='Enter A Search Or Coordinates (e.g. -50.0, 100.0)'
+						placeholder='Enter A Search Or Coordinates'
 						data-testid='coord-input'
 						value={props.coordString}
 					/>
@@ -125,6 +124,7 @@ function PlaceSearch(props) {
 						Random
 					</Button>
 				</Col>
+				{props.errorMessage && <div style={{ color: 'red' }}>{props.errorMessage}</div>}
 				<PlaceInfo append = {props.append} setCoordString = {props.setCoordString} foundPlace={props.foundPlace} />
 				{ renderResults() }
 			</Col>
@@ -154,22 +154,31 @@ function PlaceInfo(props) {
 	);
 }
 
+
+
 async function verifyCoordinates(props) {
-	try {
-		const latLngPlace = new Coordinates(props.coordString);
-		const lat = latLngPlace.getLatitude();
-		const lng = latLngPlace.getLongitude();
-		if (isLatLngValid(lat,lng)) {
-			const fullPlace = await reverseGeocode({ lat, lng });
-			props.setFoundPlace(fullPlace);
-		}
-	} catch (error) {
-		if (props.serverSettings.serverUrl != "testing" && props.coordString.length >= 3) {
-			props.setMatch(props.coordString);
-		}
-		props.setFoundPlace(undefined);
-	}
+    try {
+        const latLngPlace = new Coordinates(props.coordString);
+        const lat = latLngPlace.getLatitude();
+        const lng = latLngPlace.getLongitude();
+		
+        if (isLatLngValid(lat, lng)) {
+            const fullPlace = await reverseGeocode({ lat, lng });
+            props.setFoundPlace(fullPlace);
+            props.updateErrorMessage('');
+        } else {
+            props.updateErrorMessage('Invalid coordinates(e.g. [latitude, longitude] pair)');
+            props.setFoundPlace(undefined);
+        }
+    } catch (error) {
+        if (props.serverSettings.serverUrl !== 'testing' && props.coordString.length >= 3) {
+            props.setMatch(props.coordString);
+        }
+        props.setFoundPlace(undefined);
+        props.updateErrorMessage('Invalid coordinates format(e.g. [latitude, longitude] pair)');
+    }
 }
+
 
 function isLatLngValid(lat,lng) {
 	return (lat !== undefined && lng !== undefined);
