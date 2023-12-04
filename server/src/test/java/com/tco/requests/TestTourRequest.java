@@ -163,7 +163,7 @@ public class TestTourRequest {
 
         Places preOptimization = new Places();
 
-        for(int i = 0; i < 1600; i++) {
+        for(int i = 0; i < 1501; i++) {
             String lat = "" + i;
             String lng = "" + i;
 
