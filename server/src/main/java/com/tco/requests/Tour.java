@@ -9,7 +9,6 @@ abstract class Tour {
     int[] tourResults;
 
     public void shorter(Places places) {
-        //this.numPlaces = places.size();
         nearestNeighbor(places);
     }
 

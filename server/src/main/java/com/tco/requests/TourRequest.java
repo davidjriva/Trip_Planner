@@ -2,6 +2,7 @@ package com.tco.requests;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.lang.Math;
 
 public class TourRequest extends Request {
     private static final transient Logger log = LoggerFactory.getLogger(TourRequest.class);
@@ -10,12 +11,19 @@ public class TourRequest extends Request {
     private double response;
     private Places places = new Places();
 
+    public boolean shouldPerform1Opt(int numPlaces) {
+        return response <= ((0.00032 * Math.pow(numPlaces, 2)) + (0.119 * numPlaces) + 98);
+    }
+
     @Override
     public void buildResponse() {
-        if(response > 0.0){
-            Opt1 optimize = new Opt1(places);
-            optimize.improve();
-            this.places = optimize.places;
+        int numPlaces = places.size();
+        if (response != 0.0){
+            if(shouldPerform1Opt(numPlaces)){
+                Opt1 optimize = new Opt1(places);
+                optimize.improve();
+                this.places = optimize.places;
+            }
         }
         log.trace("buildResponse -> {}", this);
     }
