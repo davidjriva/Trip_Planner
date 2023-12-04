@@ -146,11 +146,37 @@ public class TestTourRequest {
 
         places = request.places();
         assertEquals(5, places.size());
+
         // No optimizations were made:
         assertEquals(places.get(0), p1);
         assertEquals(places.get(1), p2);
         assertEquals(places.get(2), p3);
         assertEquals(places.get(3), p4);
         assertEquals(places.get(4), p5);
+    }
+
+    @Test
+    @DisplayName("driva: 1Opt is passed since there's not enough time")
+    public void Opt1Skipped() {
+        earthRadius = 6371.0;
+        response = 1.0;
+
+        Places preOptimization = new Places();
+
+        for(int i = 0; i < 1600; i++) {
+            String lat = "" + i;
+            String lng = "" + i;
+
+            Place tmp = new Place(lat, lng);
+            preOptimization.add(tmp);
+            places.add(tmp);
+        }
+
+        request = new TourRequest(earthRadius, response, places);
+        request.buildResponse();
+        
+        for(int j = 0; j < places.size(); j++){
+            assertEquals(preOptimization.get(j), places.get(j)); // ensures no optimizations occured
+        }
     }
 }

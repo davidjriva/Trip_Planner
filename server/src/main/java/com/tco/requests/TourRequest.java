@@ -10,12 +10,19 @@ public class TourRequest extends Request {
     private double response;
     private Places places = new Places();
 
+    public boolean shouldPerform1Opt(int numPlaces) {
+        return response <= ((0.0001 * numPlaces) + (0.45 * numPlaces) + 100);
+    }
+
     @Override
     public void buildResponse() {
-        if(response > 0.0){
-            Opt1 optimize = new Opt1(places);
-            optimize.improve();
-            this.places = optimize.places;
+        int numPlaces = places.size();
+        if (response != 0.0){
+            if(shouldPerform1Opt(numPlaces)){
+                Opt1 optimize = new Opt1(places);
+                optimize.improve();
+                this.places = optimize.places;
+            }
         }
         log.trace("buildResponse -> {}", this);
     }
