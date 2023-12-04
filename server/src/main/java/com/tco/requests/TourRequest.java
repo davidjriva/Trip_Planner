@@ -12,7 +12,7 @@ public class TourRequest extends Request {
     private Places places = new Places();
 
     public boolean shouldPerform1Opt(int numPlaces) {
-        return response <= ((0.0001 * Math.pow(numPlaces, 2)) + (0.45 * numPlaces) + 100);
+        return response <= ((0.00032 * Math.pow(numPlaces, 2)) + (0.119 * numPlaces) + 98);
     }
 
     @Override
