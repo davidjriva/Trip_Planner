@@ -83,6 +83,28 @@ abstract class Tour {
         }
     }
 
+    public static void sortByIndices(Places places, int[] indices) {
+        for (int i = 0; i < indices.length; i++) {
+            while (i != indices[i]) {
+                int index = indices[i];
+                swap(places, i, index);
+                swap(indices, i, index);
+            }
+        }
+    }
+
+    public static void swap(Places places, int i, int j) {
+        Place temp = places.get(i);
+        places.set(i, places.get(j));
+        places.set(j, temp);
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
     public int[] getTourResults() {
         return tourResults;
     }
