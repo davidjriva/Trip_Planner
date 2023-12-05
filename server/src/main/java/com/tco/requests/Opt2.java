@@ -25,6 +25,7 @@ class Opt2 extends Tour {
                 }
             }
         }
+        sortByIndices(places, tourResults);
     }
 
     public boolean twoOptImproves(int[] route, int i, int k) {
