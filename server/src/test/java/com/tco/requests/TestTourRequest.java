@@ -163,7 +163,7 @@ public class TestTourRequest {
 
         Places preOptimization = new Places();
 
-        for(int i = 0; i < 1501; i++) {
+        for(int i = 0; i < 1600; i++) {
             String lat = "" + i;
             String lng = "" + i;
 
@@ -171,6 +171,9 @@ public class TestTourRequest {
             preOptimization.add(tmp);
             places.add(tmp);
         }
+
+        assertEquals(preOptimization.size(), 1600);
+        assertEquals(places.size(), 1600);
 
         request = new TourRequest(earthRadius, response, places);
         request.buildResponse();
