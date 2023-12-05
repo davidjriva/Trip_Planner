@@ -21,10 +21,6 @@ class Opt1 extends Tour {
     }
 
     private static void sortByIndices(Places places, int[] indices) {
-        if (places == null || indices == null || places.size() != indices.length) {
-            return;
-        }
-
         for (int i = 0; i < indices.length; i++) {
             while (i != indices[i]) {
                 int index = indices[i];
