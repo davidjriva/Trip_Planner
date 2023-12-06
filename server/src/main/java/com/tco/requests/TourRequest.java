@@ -18,13 +18,9 @@ public class TourRequest extends Request {
     @Override
     public void buildResponse() {
         int numPlaces = places.size();
-        if (response != 0.0){
-            if(shouldPerform1Opt(numPlaces)){
-                Opt1 optimize = new Opt1(places);
-                optimize.improve();
-                this.places = optimize.places;
-            }
-        }
+        Opt1 optimize = new Opt1(places);
+        optimize.improve();
+        this.places = optimize.places;
         log.trace("buildResponse -> {}", this);
     }
 
