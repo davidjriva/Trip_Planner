@@ -19,7 +19,7 @@ class Opt1 extends Tour {
 
             for (int i : tourResults)
             {
-                Place curPlace = places.get(tourResults[i]);
+                Place curPlace = places.get(i);
                 reorderedPlaces.add(curPlace);
             }
             this.places = reorderedPlaces;
