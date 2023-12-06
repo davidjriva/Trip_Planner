@@ -16,7 +16,23 @@ class Opt1 extends Tour {
             shorter(places);
             int[] tourResults = getTourResults();
 
-            sortByIndices(places, tourResults);
+            Places reorderedPlaces = new Places();
+            for (int city : tourResults) {
+                Place cityPlace = places.get(city);
+                if (cityPlace != null) {
+                    String cityName = cityPlace.get("name");
+
+                    String defaultDisplayName = cityPlace.get("defaultDisplayName");
+                    if (defaultDisplayName != null && !defaultDisplayName.isEmpty()) {
+                        cityPlace.put("name", defaultDisplayName);
+                    } else {
+                        cityPlace.put("name", null);
+                    }
+
+                    reorderedPlaces.add(cityPlace);
+                }
+            }
+            this.places = reorderedPlaces;
         }
     }
 }
