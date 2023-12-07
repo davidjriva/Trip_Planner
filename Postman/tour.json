@@ -51,6 +51,220 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "alexr11: test db place sort",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a32b03e8-485a-474c-94b2-feca37d3f85a",
+						"exec": [
+							"pm.test(\"Response is HTTP404 status\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"alexr11: Request type is tour\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"tour\")",
+							"})",
+							"pm.test(\"alexr11: Response contains the expected number of places\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(6)",
+							"});",
+							"",
+							"pm.test(\"alexr11: test first place is equal\", function () {",
+							"    var reqBody = JSON.parse(request.data);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(reqBody.places[0]).to.eql(jsonData.places[0]);",
+							"});",
+							"",
+							"pm.test(\"alexr11: test places sorted\", function () {",
+							"    var reqBody = JSON.parse(request.data);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(reqBody.places[0]).to.eql(jsonData.places[0]);",
+							"    pm.expect(reqBody.places[4]).to.eql(jsonData.places[1]);",
+							"    pm.expect(reqBody.places[2]).to.eql(jsonData.places[2]);",
+							"    pm.expect(reqBody.places[1]).to.eql(jsonData.places[3]);",
+							"    pm.expect(reqBody.places[3]).to.eql(jsonData.places[4]);",
+							"    pm.expect(reqBody.places[5]).to.eql(jsonData.places[5]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "8591bfe5-e327-4e9a-86c9-55fca3520088",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"requestType\"    : \"tour\", \n  \"earthRadius\"    : 3959.0,\n  \"response\": 1,\n  \"places\"         : [{\"name\":\"Thirty Thirty Matlock Office Center Heliport\",\"streetAddress\":\"Matlock Road\",\"latitude\":\"32.69419860839844\",\"longitude\":\"-97.11579895019531\",\"municipality\":\"Arlington\",\"region\":\"Texas\",\"country\":\"United States\",\"postcode\":\"76015\",\"defaultDisplayName\":\"Thirty Thirty Matlock Office Center Heliport\"},{\"name\":\"Bagby Thirsk Prv Airport\",\"streetAddress\":\"Bagby Lane, Bagby\",\"latitude\":\"54.211101532\",\"longitude\":\"-1.2899999618499998\",\"municipality\":\"Bagby\",\"region\":\"England\",\"country\":\"United Kingdom\",\"postcode\":\"YO7 2EJ\",\"defaultDisplayName\":\"Bagby Thirsk Prv Airport\"},{\"name\":\"Felixkirk Airstrip\",\"streetAddress\":\"Marderby Lane\",\"latitude\":\"54.2518757\",\"longitude\":\"-1.2949511\",\"municipality\":\"Thirsk\",\"region\":\"England\",\"country\":\"United Kingdom\",\"postcode\":\"YO7 2DP\",\"defaultDisplayName\":\"Felixkirk Airstrip\"},{\"name\":\"Kithira Airport\",\"streetAddress\":\"Καστριτσιάνικων - Παλαιοπόλεως\",\"latitude\":\"36.2742996216\",\"longitude\":\"23.0170001984\",\"municipality\":\"Municipality of Kythira\",\"region\":\"Attica\",\"country\":\"Greece\",\"postcode\":\"802 00\",\"defaultDisplayName\":\"Kithira Airport\"},{\"name\":\"Station Thirty Heliport\",\"streetAddress\":\"92219 Nehalem Highway\",\"latitude\":\"46.15190124511719\",\"longitude\":\"-123.79399871826172\",\"municipality\":\"Astoria\",\"region\":\"Oregon\",\"country\":\"United States\",\"postcode\":\"97103\",\"defaultDisplayName\":\"Station Thirty Heliport\"},{\"name\":\"Trivandrum International Airport\",\"streetAddress\":\"Manava Nagar Road, Eanchakkal\",\"latitude\":\"8.48211956024\",\"longitude\":\"76.9200973511\",\"municipality\":\"Thiruvananthapuram\",\"region\":\"Kerala\",\"country\":\"India\",\"postcode\":\"695001\",\"defaultDisplayName\":\"Trivandrum International Airport\"}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/tour",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"tour"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test cobrews",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a32b03e8-485a-474c-94b2-feca37d3f85a",
+						"exec": [
+							"pm.test('Response is HTTP404 status', () => {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"pm.test('alexr11: Request type is tour', function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql('tour');",
+							"})",
+							"",
+							"pm.test('alexr11: Response contains the expected number of places', function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null);",
+							"    pm.expect(jsonData.places.length).to.equal(143);",
+							"})",
+							"",
+							"pm.test('alexr11: test first place', function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places[0].latitude).to.equal('39.174930');",
+							"    pm.expect(jsonData.places[0].id).to.equal('atlat');",
+							"    pm.expect(jsonData.places[0].longitude).to.equal('-106.955120');",
+							"})",
+							"",
+							"pm.test(\"alexr11: test first place is equal\", function () {",
+							"    var reqBody = JSON.parse(request.data);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(reqBody.places[0]).to.eql(jsonData.places[0]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "ab427c9f-14af-4e06-b5ba-85360641b93b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"requestType\"    : \"tour\", \n  \"earthRadius\"    : 3959.0,\n  \"response\": 1,\n  \"places\"         : [\n        {\"id\": \"atlat\", \"team\": \"t17\", \"name\": \"High Alpine Brewing Company\", \"municipality\": \"Gunnison\", \"latitude\": \"39.174930\", \"longitude\": \"-106.955120\", \"altitude\": \"10997\"}\n,{\"id\": \"cruzfm\", \"team\": \"t33\", \"name\": \"South Park Brewing\", \"municipality\": \"Fairplay\", \"latitude\": \"39.22031\", \"longitude\": \"-105.99261\", \"altitude\": \"9950\"}\n,{\"id\": \"awbrown0\", \"team\": \"t38\", \"name\": \"Breckenridge Brewery & Pub\", \"municipality\": \"Breckenridge\", \"latitude\": \"39.476208363683554\", \"longitude\": \"-106.04374235120592\", \"altitude\": \"9633\"}\n,{\"id\": \"jernberg\", \"team\": \"t23\", \"name\": \"Broken Compass Brewing\", \"municipality\": \"Breckenridge\", \"latitude\": \"39.51636970604681\", \"longitude\": \"-106.0536025249597\", \"altitude\": \"9623\"}\n,{\"id\": \"cross35\", \"team\": \"t34\", \"name\": \"Outer Range Brewing Co\", \"municipality\": \"Frisco\", \"latitude\": \"39.58944\", \"longitude\": \"-106.09915\", \"altitude\": \"9,200\"}\n,{\"id\": \"shliu\", \"team\": \"t25\", \"name\": \"The Noble Buck\", \"municipality\": \"Winter Park\", \"latitude\": \"39.92412263433858\", \"longitude\": \"-105.7863620851514\", \"altitude\": \"9121\"}\n,{\"id\": \"cgramey\", \"team\": \"t22\", \"name\": \"Paradox Beer Company\", \"municipality\": \"Divide\", \"latitude\": \"38.94437\", \"longitude\": \"-105.15521\", \"altitude\": \"9117\"}\n,{\"id\": \"boolinn\", \"team\": \"t15\", \"name\": \"Dillon DAM Brewery\", \"municipality\": \"Summit\", \"latitude\": \"39.627659\", \"longitude\": \"-106.060387\", \"altitude\": \"9111\"}\n,{\"id\": \"dineshg\", \"team\": \"t33\", \"name\": \"Sky High Brewing\", \"municipality\": \"Frisco\", \"latitude\": \"40.165460\", \"longitude\": \"-105.061300\", \"altitude\": \"9097\"}\n,{\"id\": \"kitten\", \"team\": \"t31\", \"name\": \"Irwin Brewing Company's Public House\", \"municipality\": \"Crested Butte\", \"latitude\": \"38.86973\", \"longitude\": \"-106.98740\", \"altitude\": \"8885\"}\n,{\"id\": \"driva\", \"team\": \"t11\", \"name\": \"Big Trout Brewing\", \"municipality\": \"Winter Park\", \"latitude\": \"39.91747\", \"longitude\": \"-105.78511\", \"altitude\": \"8812\"}\n,{\"id\": \"dschmuck\", \"team\": \"t29\", \"name\": \"Vicious Cycle Brewing Company\", \"municipality\": \"Fraser\", \"latitude\": \"39.941180\", \"longitude\": \"-105.807100\", \"altitude\": \"8579\"}\n,{\"id\": \"Dstreeb\", \"team\": \"t21\", \"name\": \"Golden Block Brewery\", \"municipality\": \"Silverton\", \"latitude\": \"37.4839\", \"longitude\": \"-107.3947\", \"altitude\": \"8508\"}\n,{\"id\": \"riggsx2\", \"team\": \"t27\", \"name\": \"Cabin Creek Brewing\", \"municipality\": \"Georgetown\", \"latitude\": \"39.723801\", \"longitude\": \"-105.692326\", \"altitude\": \"8451\"}\n,{\"id\": \"natebenn\", \"team\": \"t36\", \"name\": \"Busey Brews\", \"municipality\": \"Nederland\", \"latitude\": \"39.96180\", \"longitude\": \"-105.50891\", \"altitude\": \"8234\"}\n,{\"id\": \"toreskey\", \"team\": \"t37\", \"name\": \"Eddyline Brewery and Taproom\", \"municipality\": \"Buena Vista\", \"latitude\": \"38.840614\", \"longitude\": \"-106.132644\", \"altitude\": \"7960\"}\n,{\"id\": \"emsims\", \"team\": \"t31\", \"name\": \"T Road Brewing Company\", \"municipality\": \"Crestone\", \"latitude\": \"37.99418762159231\", \"longitude\": \"-105.69936317747097\", \"altitude\": \"7923\"}\n,{\"id\": \"wadem\", \"team\": \"t18\", \"name\": \"Aspen Brewing Company\", \"municipality\": \"Aspen\", \"latitude\": \"39.189784\", \"longitude\": \"-106.818409\", \"altitude\": \"7908\"}\n        ,{\"id\": \"clayroby\", \"team\": \"t26\", \"name\": \"Three Barrels Brewing Company\", \"municipality\": \"Del Norte\", \"latitude\": \"37.678726\", \"longitude\": \"-106.356653\", \"altitude\": \"7874\"}\n,{\"id\": \"sofia02c\", \"team\": \"t20\", \"name\": \"High Alpine Brewing Company\", \"municipality\": \"Gunnison\", \"latitude\": \"38.54475\", \"longitude\": \"-106.92713\", \"altitude\": \"7703\"}\n,{\"id\": \"netsirt\", \"team\": \"t34\", \"name\": \"The Colorado Farm Brewery\", \"municipality\": \"Alamosa\", \"latitude\": \"37.4002033\", \"longitude\": \"-106.0010391\", \"altitude\": \"7585\"}\n,{\"id\": \"scott20\", \"team\": \"t33\", \"name\": \"Rock Cut Brewing Company\", \"municipality\": \"Estes Park\", \"latitude\": \"40.371828\", \"longitude\": \"-105.522949\", \"altitude\": \"7522\"}\n        ,{\"id\": \"peasleed\", \"team\": \"t24\", \"name\": \"Grand Adventure Brewing Co.\", \"municipality\": \"Kremmling\", \"latitude\": \"40.0601681\", \"longitude\": \"-106.3930637\", \"altitude\": \"7357\"}\n,{\"id\": \"bli45\", \"team\": \"t21\", \"name\": \"Riff Raff Brewing Company\", \"municipality\": \"Pagosa Springs\", \"latitude\": \"37.269015\", \"longitude\": \"-107.007373\", \"altitude\": \"7171\"}\n,{\"id\": \"mikemc24\", \"team\": \"t16\", \"name\": \"Pikes Peak Brewing Company\", \"municipality\": \"Monument\", \"latitude\": \"39.095429\", \"longitude\": \"-104.860185\", \"altitude\": \"7136\"}\n,{\"id\": \"ejpitera\", \"team\": \"t26\", \"name\": \"Soulcraft Brewing\", \"municipality\": \"Salida\", \"latitude\": \"38.524444\", \"longitude\": \"-106.0061111111\", \"altitude\": \"7083\"}\n,{\"id\": \"pbmcg\", \"team\": \"t38\", \"name\": \"Mountain Merman Brewing Company\", \"municipality\": \"La veta\", \"latitude\": \"37.51\", \"longitude\": \"-105.01\", \"altitude\": \"7030\"}\n,{\"id\": \"dbh2001\", \"team\": \"t15\", \"name\": \"San Luis Valley Brewing Company\", \"municipality\": \"Alamosa\", \"latitude\": \"37.2805\", \"longitude\": \"-105.5201\", \"altitude\": \"6897\"}\n,{\"id\": \"jackwob\", \"team\": \"t37\", \"name\": \"Mountain Tap Brewery\", \"municipality\": \"Steamboat Springs\", \"latitude\": \"40.486549\", \"longitude\": \"-106.836990\", \"altitude\": \"6699\"}\n        ,{\"id\": \"hsteve\", \"team\": \"t12\", \"name\": \"Storm Peak Brewing Company\", \"municipality\": \"Steamboat Springs\", \"latitude\": \"40.502218\", \"longitude\": \"-106.854965\", \"altitude\": \"6677\"}\n        ,{\"id\": \"rossp\", \"team\": \"t30\", \"name\": \"Colorado Mountain Brewery\", \"municipality\": \"Colorado Springs\", \"latitude\": \"38.992820\", \"longitude\": \"-104.810554\", \"altitude\": \"6638\"}\n,{\"id\": \"minibray\", \"team\": \"t24\", \"name\": \"Eagle River Brewing Company\", \"municipality\": \"Gypsum\", \"latitude\": \"39.633020\", \"longitude\": \"-106.909170\", \"altitude\": \"6614\"}\n,{\"id\": \"qmeisman\", \"team\": \"t33\", \"name\": \"Anarchy Brewing Company\", \"municipality\": \"Durango\", \"latitude\": \"37.26481\", \"longitude\": \"-107.87361\", \"altitude\": \"6522\"}\n,{\"id\": \"bdunahu\",\"team\":\"t27\",\"name\":\"Ska Brewing Company\",\"municipality\":\"Durango\",\"latitude\":\"37.238849\",\"longitude\":\"-107.876131\",\"altitude\":\"6512\"}\n,{\"id\": \"kade5\", \"team\": \"t31\", \"name\": \"Animas Brewing Company\", \"municipality\": \"Durango\", \"latitude\": \"37.2799866\", \"longitude\": \"-107.8768544\", \"altitude\": \"6512\"}\n,{\"id\": \"glemicnt\", \"team\": \"t39\", \"name\": \"Yampa Valley Brewing Company\", \"municipality\": \"Hayden\", \"latitude\": \"40.535567\", \"longitude\": \"-107.550550\", \"altitude\": \"6434\"}\n,{\"id\": \"ethanju\", \"team\": \"t32\", \"name\": \"FH Beerworks\", \"municipality\": \"Colorado Springs\", \"latitude\": \"38.86770\", \"longitude\": \"-104.72193\", \"altitude\": \"6391\"}\n,{\"id\": \"tauren\", \"team\": \"t39\", \"name\": \"Trinity Brewing Company\", \"municipality\": \"Colorado Springs\", \"latitude\": \"38.897360\", \"longitude\": \"-104.855101\", \"altitude\": \"6372\"}\n,{\"id\": \"rocarrol\", \"team\": \"t38\", \"name\": \"Raices Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.73948\", \"longitude\": \"-105.01716\", \"altitude\": \"6326\"}\n,{\"id\": \"cdegen\", \"team\": \"t34\", \"name\": \"Great Divide Brewery & Roadhouse\", \"municipality\": \"Castle Rock\", \"latitude\": \"39.37178\", \"longitude\": \"-104.86045\", \"altitude\": \"6224\"}\n,{\"id\": \"dmcyde\", \"team\": \"t16\", \"name\": \"105 West Brewing Company\", \"municipality\": \"Castle Rock\", \"latitude\": \"39.3806825\", \"longitude\": \"-104.865804\", \"altitude\": \"6224\"}\n,{\"id\": \"pavanomp\", \"team\": \"t38\", \"name\": \"WildEdge Brewing Collective\", \"municipality\": \"Cortez\", \"latitude\": \"37.349972\", \"longitude\": \"-108.585663\", \"altitude\": \"6191\"}\n,{\"id\": \"alifayed\", \"team\": \"t30\", \"name\": \"OCC Brewing\", \"municipality\": \"Colorado Springs\", \"latitude\": \"38.8459045\", \"longitude\": \"-104.8602721\", \"altitude\": \"6104\"}\n,{\"id\": \"blakebri\", \"team\": \"t19\", \"name\": \"Bell Brothers Brewing\", \"municipality\": \"Colorado Springs\", \"latitude\": \"38.83580732\", \"longitude\": \"-104.82369864\", \"altitude\": \"6043\"}\n,{\"id\": \"coreydc\", \"team\": \"t37\", \"name\": \"Red Swing Brewhouse\", \"municipality\": \"Colorado Springs\", \"latitude\": \"38.82608281668586\", \"longitude\": \"-104.82374814602203\", \"altitude\": \"6033\"}\n        ,{\"id\": \"rpcme\", \"team\": \"t28\", \"name\": \"Cannonball Creek Brewing Company\", \"municipality\": \"Golden\", \"latitude\": \"39.768578\", \"longitude\": \"-105.235097\", \"altitude\": \"5881\"}\n,{\"id\": \"goron117\", \"team\": \"t25\", \"name\": \"Barnett & Son Brewing Company\", \"municipality\": \"Parker\", \"latitude\": \"39.52224\", \"longitude\": \"-104.77501\", \"altitude\": \"5869\"}\n,{\"id\": \"kypes\", \"team\": \"t27\", \"name\": \"Downhill Brewing Company\", \"municipality\": \"Parker\", \"latitude\": \"39.52715\", \"longitude\": \"-104.77019\", \"altitude\": \"5869\"}\n,{\"id\": \"motley3\", \"team\": \"t17\", \"name\": \"Horsefly Brewing Company\", \"municipality\": \"Montrose\", \"latitude\": \"38.482931939772804\", \"longitude\": \"-107.8714099892221\", \"altitude\": \"5807\"}\n,{\"id\": \"elisong\", \"team\": \"t36\", \"name\": \"Two22 Brew\", \"municipality\": \"Centennial\", \"latitude\": \"39.3810\", \"longitude\": \"-104.4526\", \"altitude\": \"5804\"}\n        ,{\"id\": \"jonwc\", \"team\": \"t23\", \"name\": \"Lone Tree Brewing Company\", \"municipality\": \"Lone Tree\", \"latitude\": \"39.562528\", \"longitude\": \"-104.892941\", \"altitude\": \"5778\"}\n        ,{\"id\": \"martel\", \"team\": \"t25\", \"name\": \"Resolute Brewing Company\", \"municipality\": \"Centennial\", \"latitude\": \"39.584501\", \"longitude\": \"-104.884805\", \"altitude\": \"5777\"}\n,{\"id\": \"harvin\", \"team\": \"t13\", \"name\": \"Spice Trade Brewing Company\", \"municipality\": \"Greenwood Village\", \"latitude\": \"39.610060\", \"longitude\": \"-104.887780\", \"altitude\": \"5705\"}\n        ,{\"id\": \"mattm936\", \"team\": \"t39\", \"name\": \"Molson Coors\", \"municipality\": \"Golden\", \"latitude\": \"39.767286\", \"longitude\": \"-105.228963\", \"altitude\": \"5675\"}\n,{\"id\": \"johnh9\", \"team\": \"t25\", \"name\": \"Coal Mine Ave Brewing Company\", \"municipality\": \"Littleton\", \"latitude\": \"39.596170\", \"longitude\": \"-105.106130\", \"altitude\": \"5670\"}\n,{\"id\": \"jakobp\", \"team\": \"t17\", \"name\": \"6 and 40 Brewery\", \"municipality\": \"Lakewood\", \"latitude\": \"39.73056\", \"longitude\": \"-105.1219\", \"altitude\": \"5624\"}\n        ,{\"id\": \"voleskyj\", \"team\": \"t13\", \"name\": \"Ohm Brewing Company\", \"municipality\": \"Golden\", \"latitude\": \"39.74647712801897\", \"longitude\": \"-105.14412536924108\", \"altitude\": \"5600\"}\n,{\"id\": \"malinj\", \"team\": \"t18\", \"name\": \"A Bit Twisted Brewpub\", \"municipality\": \"Aurora\", \"latitude\": \"39.660833\", \"longitude\": \"-104.847778\", \"altitude\": \"5597\"}\n,{\"id\": \"omarwrs\", \"team\": \"t36\", \"name\": \"Old 121 Brewhouse\", \"municipality\": \"Lakewood\", \"latitude\": \"39.698200\", \"longitude\": \"-105.082387\", \"altitude\": \"5544\"}\n,{\"id\": \"cribbs\", \"team\": \"t21\", \"name\": \"Living The Dream Brewing Company\", \"municipality\": \"Littleton\", \"latitude\": \"39.54073131640608\", \"longitude\": \"-105.03981678579733\", \"altitude\": \"5541\"}\n,{\"id\": \"ahanna1\", \"team\": \"t29\", \"name\": \"Great Frontier Brewing Company\", \"municipality\": \"Lakewood\", \"latitude\": \"39.681505\", \"longitude\": \"-105.117626\", \"altitude\": \"5518\"}\n,{\"id\": \"aryanadv\", \"team\": \"t25\", \"name\": \"4 Noses Brewing Company\", \"municipality\": \"Broomfield\", \"latitude\": \"39.90665\", \"longitude\": \"-105.09865327408876\", \"altitude\": \"5515\"}\n,{\"id\": \"alexr11\", \"team\": \"t11\", \"name\": \"Green Mountain Beer Company\", \"municipality\": \"Lakewood\", \"latitude\": \"39.669090\", \"longitude\": \"-105.113120\", \"altitude\": \"5512\"}\n        ,{\"id\": \"abby5655\", \"team\": \"t14\", \"name\": \"Bambei Brewing\", \"municipality\": \"Superior\", \"latitude\": \"39.95674\", \"longitude\": \"-105.16399\", \"altitude\": \"5499\"}\n,{\"id\": \"cjbeall\", \"team\": \"t26\", \"name\": \"Cervecería Colorado\", \"municipality\": \"Denver\", \"latitude\": \"39.75824506662939\", \"longitude\": \"-105.00750798832297\", \"altitude\": \"5485\"}\n,{\"id\": \"ally426\", \"team\": \"t18\", \"name\": \"Rocks & Hops Brewing\", \"municipality\": \"Boulder\", \"latitude\": \"40.0117\", \"longitude\": \"-105.1409\", \"altitude\": \"5430\"}\n        ,{\"id\": \"eldridg\", \"team\": \"t20\", \"name\": \"Brewery Rickoli\", \"municipality\": \"Wheat Ridge\", \"latitude\": \"39.77597\", \"longitude\": \"-105.08192\", \"altitude\": \"5423\"}\n,{\"id\": \"jaispuro\", \"team\": \"t23\", \"name\": \"Southern Sun Pub & Brewery\", \"municipality\": \"Boulder\", \"latitude\": \"39.98432837686606\", \"longitude\": \"-105.24937565537086\", \"altitude\": \"5420\"}\n        ,{\"id\": \"kmjager\", \"team\": \"t35\", \"name\": \"Rails End Beer Company\", \"municipality\": \"Broomfield\", \"latitude\": \"39.908633\", \"longitude\": \"-105.075117\", \"altitude\": \"5420\"}\n        ,{\"id\": \"jacob3\", \"team\": \"t16\", \"name\": \"Fiction Beer Company\", \"municipality\": \"Denver\", \"latitude\": \"39.740334\", \"longitude\": \"-104.905694\", \"altitude\": \"5417\"}\n,{\"id\": \"TristanTruxal\", \"team\": \"t17\", \"name\": \"Banded Oak Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.72388\", \"longitude\": \"-104.98709\", \"altitude\": \"5417\"}\n,{\"id\": \"dmorigea\", \"team\": \"t28\", \"name\": \"Ursula Brewery\", \"municipality\": \"Aurora\", \"latitude\": \"39.7483128\", \"longitude\": \"-104.83804719999999\", \"altitude\": \"5415\"}\n,{\"id\": \"maxinego\", \"team\": \"t14\", \"name\": \"Cerebral Brewing (Aurora Arts)\", \"municipality\": \"Aurora\", \"latitude\": \"39.740889\", \"longitude\": \"-104.830027\", \"altitude \": \"5403\"}\n        ,{\"id\": \"sharling\", \"team\": \"t37\", \"name\": \"Launchpad Brewery\", \"municipality\": \"Aurora\", \"latitude\": \"39.70147695574206\", \"longitude\": \"-104.7901606193607\", \"altitude\": \"5403\"}\n,{\"id\": \"ryanc70\", \"team\": \"t27\", \"name\": \"Berkeley Alley Beer Company\", \"municipality\": \"Denver\", \"latitude\": \"39.776113\", \"longitude\": \"-105.043747\", \"altitude\": \"5400\"}\n,{\"id\": \"Tsyber\", \"team\": \"t31\", \"name\": \"The Grateful Gnome Sandwich Shoppe & Brewery\", \"municipality\": \"Denver\", \"latitude\": \"39.7764\", \"longitude\": \"-105.0432\", \"altitude\": \"5397\"}\n,{\"id\": \"jacopo\",\"team\": \"t19\", \"name\": \"Hogshead Brewery\", \"municipality\": \"Denver\", \"latitude\": \"39.7583302\", \"longitude\": \"-105.0446342\", \"altitude\": \"5392\"}\n        ,{\"id\": \"bachrock\", \"team\": \"t11\", \"name\": \"Windfall Brewing Company\", \"municipality\": \"Westminster\", \"latitude\": \"39.8931819\", \"longitude\": \"-105.083037\", \"altitude\": \"5364\"}\n        ,{\"id\": \"ingjacob\", \"team\": \"t28\", \"name\": \"Satire Brewing Company\", \"municipality\": \"Thornton\", \"latitude\": \"39.917271\", \"longitude\": \"-104.983040\", \"altitude\": \"5351\"}\n,{\"id\": \"tamo\", \"team\": \"t26\", \"name\": \"World's End Brewing Company\", \"municipality\": \"Canon\", \"latitude\": \"38.4402777778\", \"longitude\": \"-105.2419444444\", \"altitude\": \"5351\"}\n,{\"id\": \"jpoppa\", \"team\": \"t36\", \"name\": \"Joyride Brewing Company\", \"municipality\": \"Edgewater\", \"latitude\": \"39.753134\", \"longitude\": \"-105.053452\", \"altitude\": \"5349\"}\n,{\"id\": \"yuj\", \"team\": \"t22\", \"name\": \"12Degree Brewing\", \"municipality\": \"Louisville\", \"latitude\": \"39.978273\", \"longitude\": \"-105.131921\", \"altitude\": \"5347\"}\n,{\"id\": \"dpoppa4\", \"team\": \"t38\", \"name\": \"Danico Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.815673\", \"longitude\": \"-104.771739\", \"altitude\": \"5342\"}\n        ,{\"id\": \"aaouaj\", \"team\": \"t11\", \"name\": \"Second Dawn Brewing\", \"municipality\": \"Aurora\", \"latitude\": \"39.751464\", \"longitude\": \"-104.874902\", \"altitude\": \"5310\"}\n,{\"id\": \"cnading\", \"team\": \"t30\", \"name\": \"Dozens Brewery\",\"municipality\": \"Denver\", \"latitude\": \"39.4409\", \"longitude\": \"-104.5921\", \"altitude\": \"5306\"}\n,{\"id\": \"krisbarn\", \"team\": \"t14\", \"name\": \"Wonderland Brewing Company\", \"municipality\": \"Broomfield\", \"latitude\": \"39.913502\", \"longitude\": \"-105.056061\", \"altitude\": \"5304\"}     \n        ,{\"id\": \"olivern\", \"team\": \"t22\", \"name\": \"Zuni Street Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.75939\", \"longitude\": \"-105.01518\", \"altitude\": \"5282\"}\n,{\"id\": \"Janette\", \"team\": \"t18\", \"name\": \"Alpine Dog Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.7430807\", \"longitude\": \"-104.9705853\", \"altitude\": \"5276\"}\n        ,{\"id\": \"nael\", \"team\": \"t15\", \"name\": \"Baere Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.73168687\", \"longitude\": \"-104.9826502\", \"altitude\": \"5276\"}\n,{\"id\": \"tste\", \"team\": \"t23\", \"name\": \"Wynkoop Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.75341912645649\", \"longitude\": \"-104.99855134627802\", \"altitude\": \"5276\"}\n        ,{\"id\": \"pie2003\", \"team\": \"t12\", \"name\": \"Grandma's House\", \"municipality\": \"Denver\", \"latitude\": \"39.68548\", \"longitude\": \"-104.98736\", \"altitude\": \"5274\"}\n,{\"id\": \"Jstaut53\", \"team\": \"t30\", \"name\": \"Dos Luces\", \"municipality\": \"Denver\", \"latitude\": \"39.694158\", \"longitude\": \"-104.987249\", \"altitude\": \"5269\"}\n,{\"id\": \"jasoncur\", \"team\": \"t16\", \"name\": \"Black Sky Brewery\", \"municipality\": \"Denver\", \"latitude\": \"39.72408\", \"longitude\": \"-104.99839\", \"altitude\": \"5265\"}\n        ,{\"id\": \"bleple\", \"team\": \"t31\", \"name\": \"Altitude Brewing & Supply\", \"municipality\": \"Denver\", \"latitude\": \"39.7796433\", \"longitude\": \"-105.0067514\", \"altitude\": \"5255\"}\n,{\"id\": \"oli\", \"team\": \"t35\", \"name\": \"So Many Roads Museum and Brewery\", \"municipality\": \"Denver\", \"latitude\": \"39.71762\", \"longitude\": \"-104.99922\", \"altitude\": \"5238\"}\n,{\"id\": \"timand\", \"team\": \"t30\", \"name\": \"Pints Pub Brewery & Freehouse\", \"municipality\": \"Denver\", \"latitude\": \"39.736980\", \"longitude\": \"-104.990860\", \"altitude\": \"5236\"}\n,{\"id\": \"nfotis\", \"team\": \"t36\", \"name\": \"Bruz Beers\", \"municipality\": \"Denver\", \"latitude\": \"39.711660\", \"longitude\": \"-104.900660\", \"altitude\": \"5227.4\"}\n,{\"id\": \"mpoppa1\", \"team\": \"t12\", \"name\": \"Wild Provisions Beer Project\" , \"municipality\": \"Boulder\", \"latitude\": \"40.021681\", \"longitude\": \"-105.219027\", \"altitude\": \"5213\"}\n,{\"id\": \"jennifar\", \"team\": \"t20\", \"name\": \"Avery Brewing Company\", \"municipality\": \"Boulder\", \"latitude\": \"40.062586\", \"longitude\": \"-105.204699\", \"altitude\": \"5210\"}\n,{\"id\": \"sethhyde\", \"team\": \"t34\", \"name\": \"The Sandlot Brewery\", \"municipality\": \"Denver\", \"latitude\": \"39.75559\", \"longitude\": \"-104.99280\", \"altitude\": \"5206\"}\n,{\"id\": \"sereno\", \"team\": \"t32\", \"name\": \"Sparge Brewing\", \"municipality\": \"Wellington\", \"latitude\": \"40.68187144779669\", \"longitude\": \"-105.00183367743314\", \"altitude\": \"5200\"}\n        ,{\"id\": \"anjoke\", \"team\": \"t11\", \"name\": \"14er Brewing & Beer Garden\", \"municipality\": \"Denver\", \"latitude\": \"39.76502831732196\", \"longitude\": \"-104.98016041640788\", \"altitude\": \"5194\"}\n,{\"id\": \"chris310\", \"team\": \"t35\", \"name\": \"New Belgium Brewing – The Woods at The Source\", \"municipality\": \"Denver\", \"latitude\": \"39.768704998521\", \"longitude\": \"-104.98052180121299\", \"altitude\": \"5190\"}\n,{\"id\": \"norwick\", \"team\": \"t12\", \"name\": \"Intersect Brewing\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.554209\", \"longitude\": \"-105.117830\", \"altitude\": \"5098\"}\n,{\"id\": \"royaliz\", \"team\": \"t14\", \"name\": \"Fritz Family Brewers\", \"municipality\": \"Niwot\", \"latitude\": \"40.099860\", \"longitude\": \"-105.168398\", \"altitude\": \"5097\"}\n,{\"id\": \"jecircen\", \"team\": \"t15\", \"name\": \"Stodgy Brewing Company\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.58954\", \"longitude\": \"-105.10858\", \"altitude\": \"5053\"}\n        ,{\"id\": \"filip\", \"team\": \"t23\", \"name\": \"Berthoud Brewing Loveland\", \"municipality\": \"Loveland\", \"latitude\": \"40.40768\", \"longitude\": \"-105.12956\", \"altitude\": \"5049\"}\n,{\"id\": \"rollo\", \"team\": \"t32\", \"name\": \"The Handlebar Factory\", \"municipality\": \"Erie\", \"latitude\": \"40.04604794934224\", \"longitude\": \"-105.05605478954911\", \"altitude\": \"5048\"}\n,{\"id\": \"tyseef\", \"team\": \"t37\", \"name\": \"Zwei Brewing Co.\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.522710\", \"longitude\": \"-105.078185\", \"altitude\": \"5026\"}\n        ,{\"id\": \"rnuguru\", \"team\": \"t22\", \"name\": \"Black Bottle Brewery\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.5663803\", \"longitude\": \"-105.0786476\", \"altitude\": \"5006\"}\n,{\"id\": \"elleryno\", \"team\": \"t18\", \"name\": \"Envy Brewing\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.52284913708447\", \"longitude\": \"-105.02121984684504\", \"altitude\": \"5003\"}\n,{\"id\": \"emmars\", \"team\": \"t35\", \"name\": \"Funkwerks\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.583111\", \"longitude\": \"-105.042204\", \"altitude\": \"5003\"}\n        ,{\"id\": \"ewc97712\", \"team\": \"t16\", \"name\": \"Prost Biergarten\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.568148\", \"longitude\": \"-105.076515\", \"altitude\": \"5003\"}\n,{\"id\": \"ian1363\", \"team\": \"t15\", \"name\": \"Snowbank Brewing\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.59016\", \"longitude\": \"-105.05821\", \"altitude\": \"5003\"}\n,{\"id\": \"frogman3\", \"team\": \"t34\", \"name\": \"Sky Bear Brewery and Pub\", \"municipality\": \"Loveland\", \"latitude\": \"40.39610\", \"longitude\": \"-105.07393\", \"altitude\": \"5000\"}\n,{\"id\": \"delta27\", \"team\": \"t21\", \"name\": \"Verboten Brewing & Barrel Project\", \"municipality\": \"Loveland\", \"latitude\": \"40.396824\", \"longitude\": \"-105.075219\", \"altitude\": \"4993\"}\n,{\"id\": \"gabimcd\", \"team\": \"t33\", \"name\": \"Maxline Brewing\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.5497\", \"longitude\": \"-105.0793\", \"altitude\": \"4982\"}\n,{\"id\": \"truongak\", \"team\": \"t28\", \"name\": \"Mountain Cowboy Brewing Company\", \"municipality\": \"Frederick\", \"latitude\": \"40.098690\", \"longitude\": \"-104.938019\", \"altitude\": \"4980\"}\n,{\"id\": \"zakider\", \"team\": \"t39\", \"name\": \"Equinox Brewing Company\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.586410\", \"longitude\": \"-105.075834\", \"altitude\": \"4980\"}\n,{\"id\": \"cookls\", \"team\": \"t35\", \"name\": \"Bootstrap Brewing Company\", \"municipality\": \"Longmont\", \"latitude\": \"40.161449\", \"longitude\": \"-105.106316\", \"altitude\": \"4979\"}\n   ,{\"id\": \"gerardov\",\"team\": \"t19\", \"name\": \"Knuckle Puck Brewery Kombucha & Beer\", \"municipality\": \"Longmont\", \"latitude\": \"40.2017984\", \"longitude\": \"-104.9768242\", \"altitude\": \"4979\"}\n,{\"id\": \"hridayab\", \"team\": \"t28\", \"name\": \"300 Suns Brewing\", \"municipality\": \"Longmont\", \"latitude\": \"40.1599201\", \"longitude\": \"-105.101274\", \"altitude\": \"4979\"}\n,{\"id\": \"jthiggin\", \"team\": \"t29\", \"name\": \"Wibby Brewing\", \"municipality\": \"Longmont\", \"latitude\": \"40.162431\", \"longitude\": \"-105.100185\", \"altitude\": \"4979\"}\n,{\"id\": \"arapport\", \"team\": \"t22\", \"name\": \"Mirror Image Brewing\", \"municipality\": \"Frederick\", \"latitude\": \"40.111690\", \"longitude\": \"-104.945500\", \"altitude\": \"4975\"}\n   ,{\"id\":\"adavachi\", \"team\":\"t32\",\"name\":\"Left Hand Brewing Company\",\"municipality\":\"Longmont\",\"latitude\":\"40.15849516304544\",\"longitude\":\"-105.11496429492485\",\"altitude\":\"4964\"}\n        ,{\"id\": \"evanloy\", \"team\": \"t26\", \"name\": \"Odell Brewing Company\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.58912\", \"longitude\": \"-105.06324\", \"altitude\": \"4964\"}\n,{\"id\": \"humaid99\", \"team\": \"t17\", \"name\": \"Verboten Brewing\", \"municipality\": \"Loveland\", \"latitude\": \"40.398857\", \"longitude\": \"-105.052643\", \"altitude\": \"4964\"}    \n,{\"id\": \"ballard2\", \"team\": \"t24\", \"name\": \"Großen Bart Brewery\", \"municipality\": \"Longmont\", \"latitude\": \"40.154415\", \"longitude\": \"-105.109234\", \"altitude\": \"4957\"}\n,{\"id\": \"ahuss12\", \"team\": \"t13\", \"name\": \"Collision Brewing Company & Restaurant\", \"municipality\": \"Longmont\", \"latitude\": \"40.157553\", \"longitude\": \"-105.033192\", \"altitude\": \"4947\"}\n,{\"id\": \"bmattes\", \"team\": \"t39\", \"name\": \"Horse and Dragon Brewing Company\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.589662\", \"longitude\": \"-105.045625\", \"altitude\": \"4945\"}\n,{\"id\": \"cjsahlen\", \"team\": \"t13\", \"name\": \"DC Oakes Brewhouse and Eatery\", \"municipality\": \"Fort Collins\", \"latitude\": \"40.522711\", \"longitude\": \"-105.011722\", \"altitude\": \"4935\"}\n,{\"id\": \"evelynn\", \"team\": \"t35\", \"name\": \"Crabtree Brewing Company\", \"municipality\": \"Greeley\", \"latitude\": \"40.39083333\", \"longitude\": \"-104.72694444\", \"altitude\": \"4836\"}\n        ,{\"id\": \"ver\", \"team\": \"t24\", \"name\": \"Rule105 Brewing Company\", \"municipality\": \"Greeley\", \"latitude\": \"40.4219313\", \"longitude\": \"-104.7576368\", \"altitude\": \"4806\"}\n,{\"id\": \"lnlarson\", \"team\": \"t20\", \"name\": \"Brues Alehouse Brewing Company\" , \"municipality\": \"Pueblo\", \"latitude\": \"38.265665\", \"longitude\": \"-104.610022\", \"altitude\": \"4692\"}\n        ,{\"id\": \"erikrc\", \"team\": \"t27\", \"name\": \"WeldWerks Brewing Company\", \"municipality\": \"Greeley\", \"latitude\": \"40.42803\", \"longitude\": \"-104.69059\", \"altitude\": \"4675\"}\n,{\"id\": \"drakeem\", \"team\": \"t14\", \"name\": \"Trail Life Brewing\", \"municipality\": \"Grand Junction\", \"latitude\": \"39.067721\", \"longitude\": \"-108.565264\", \"altitude\": \"4612\"}\n        ,{\"id\": \"ivans\", \"team\": \"t20\", \"name\": \"Kannah Creek: Edgewater Brewery\", \"municipality\": \"Grand Junction\", \"latitude\": \"39.055013\", \"longitude\": \"-108.557216\", \"altitude\":\"4603\"}\n,{\"id\": \"jacobrp\", \"team\": \"t24\", \"name\": \"Suds Brothers Brewery II\", \"municipality\": \"Fruita\", \"latitude\": \"39.15913\", \"longitude\": \"-108.73272\", \"altitude\": \"4514\"}\n,{\"id\": \"kedrick\", \"team\": \"t13\", \"name\": \"Copper Club Brewing Company\", \"municipality\": \"Fruita\", \"latitude\": \"39.160036\", \"longitude\": \"-108.732756\", \"altitude\": \"4503\"}\n        ,{\"id\": \"birch1\", \"team\": \"t29\", \"name\": \"Tumbleweed Brewing and Wine Company\", \"municipality\": \"Yuma\", \"latitude\": \"40.12469104079743\", \"longitude\": \"-102.72420543220821\", \"altitude\": \"4144\"}\n,{\"id\": \"colekump\", \"team\": \"t32\", \"name\": \"Parts and Labor Brewing Company\", \"municipality\": \"Sterling\", \"latitude\": \"40.62503974\", \"longitude\": \"-103.20977744\", \"altitude\": \"3875\"}    \n        ,{\"id\": \"davematt\", \"team\": \"t00\", \"name\": \"Steamworks Brewing Company\", \"municipality\": \"Durango\", \"latitude\": \"37.278887\", \"longitude\": \"-107.873908\", \"altitude\": \"0\"}\n        ,{\"id\": \"spencebl\", \"team\": \"t00\", \"name\": \"Copper Kettle Brewing Company\", \"municipality\": \"Denver\", \"latitude\": \"39.69201\", \"longitude\": \"-104.8896\", \"altitude\": \"5485\"}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/tour",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"tour"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alexr11: test nonstandard fields",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a32b03e8-485a-474c-94b2-feca37d3f85a",
+						"exec": [
+							"pm.test(\"Response is HTTP404 status\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"alexr11: Request type is tour\", function() {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.requestType).to.eql(\"tour\")",
+							"})",
+							"pm.test(\"alexr11: Response contains the expected number of places\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.places).to.not.equal(null)",
+							"    pm.expect(jsonData.places.length).to.equal(6)",
+							"});",
+							"",
+							"pm.test(\"alexr11: test first place is equal\", function () {",
+							"    var reqBody = JSON.parse(request.data);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(reqBody.places[0]).to.eql(jsonData.places[0]);",
+							"});",
+							"",
+							"pm.test(\"alexr11: test places sorted\", function () {",
+							"    var reqBody = JSON.parse(request.data);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(reqBody.places[0]).to.eql(jsonData.places[0]);",
+							"    pm.expect(reqBody.places[3]).to.eql(jsonData.places[1]);",
+							"    pm.expect(reqBody.places[5]).to.eql(jsonData.places[2]);",
+							"    pm.expect(reqBody.places[2]).to.eql(jsonData.places[3]);",
+							"    pm.expect(reqBody.places[1]).to.eql(jsonData.places[4]);",
+							"    pm.expect(reqBody.places[4]).to.eql(jsonData.places[5]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "4a4de27d-8362-4729-96fa-d0ccd8cbe329",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"requestType\"    : \"tour\", \n  \"earthRadius\"    : 3959.0,\n  \"response\": 1,\n  \"places\"         : [\n        {\n            \"name\": \"Landmark Plaza Heliport\",\n            \"streetAddress\": \"Whitestone Expressway, Queens County\",\n            \"latitude\": \"40.78200149536133\",\n            \"longitude\": \"-73.82569885253906\",\n            \"municipality\": \"Whitestone\",\n            \"region\": \"New York\",\n            \"country\": \"United States\",\n            \"postcode\": \"11354\",\n            \"defaultDisplayName\": \"Landmark Plaza Heliport\",\n            \"test2\": \"soidhgioshg\",\n            \"oijoai\": \"soidhgio\",\n            \"test\": \"the quick brown fox jumps over the lazy dog\"\n        },\n        {\n            \"name\": \"Yaerbashi Test Range\",\n            \"streetAddress\": \"Z502\",\n            \"latitude\": \"43.07720184326172\",\n            \"longitude\": \"92.80809783935547\",\n            \"municipality\": \"Hami\",\n            \"region\": \"Xinjiang Autonomous Region\",\n            \"country\": \"China\",\n            \"defaultDisplayName\": \"Yaerbashi Test Range\",\n            \"test2\": \"uyjkuy\",\n            \"test\": \"the quick brown fox jumps over the lazy dog\",\n            \"orighso\": \"ifjaweiojfeawo\"\n\n        },\n        {\n            \"name\": \"Centre Hospitalier Heliport\",\n            \"streetAddress\": \"10 Rue des Saponaires\",\n            \"latitude\": \"44.63138961791992\",\n            \"longitude\": \"-1.1627780199050903\",\n            \"municipality\": \"Arcachon\",\n            \"region\": \"Metropolitan France\",\n            \"country\": \"France\",\n            \"postcode\": \"33260\",\n            \"defaultDisplayName\": \"Centre Hospitalier Heliport\",\n            \"test2\": \"yjtjrth\",\n            \"test\": \"the quick brown fox jumps over the lazy dog\",\n            \"retyw\": \"5768356 32r\"\n        },\n        {\n            \"name\": \"Eglin Test Site B6 Airport\",\n            \"streetAddress\": \"\",\n            \"latitude\": \"30.631900787353516\",\n            \"longitude\": \"-86.74720001220703\",\n            \"municipality\": \"Valparaiso\",\n            \"region\": \"Florida\",\n            \"country\": \"United States\",\n            \"defaultDisplayName\": \"Eglin Test Site B6 Airport\",\n            \"test2\": \"4198489\",\n            \"test\": \"the quick brown fox jumps over the lazy dog\",\n            \"grgser98h34\": \"vneiorn89823\"\n        },\n        {\n            \"name\": \"Testega Airstrip\",\n            \"streetAddress\": \"\",\n            \"latitude\": \"-1.3781\",\n            \"longitude\": \"133.5952\",\n            \"municipality\": \"Testega\",\n            \"region\": \"Western New Guinea\",\n            \"country\": \"Indonesia\",\n            \"defaultDisplayName\": \"Testega Airstrip\",\n            \"test2\": \"loipoi\",\n            \"test\": \"the quick brown fox jumps over the lazy dog\",\n            \"retswq\": \"iuloipopte\"\n        },\n        {\n            \"name\": \"Whitestone Airport\",\n            \"streetAddress\": \"Airport Road\",\n            \"latitude\": \"48.7227777778\",\n            \"longitude\": \"-119.467222222\",\n            \"municipality\": \"Tonasket\",\n            \"region\": \"Washington\",\n            \"country\": \"United States\",\n            \"postcode\": \"98855\",\n            \"defaultDisplayName\": \"Whitestone Airport\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/tour",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"tour"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
