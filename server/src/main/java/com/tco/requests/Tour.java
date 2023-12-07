@@ -9,8 +9,15 @@ abstract class Tour {
     int[] tourResults;
 
     public void shorter(Places places) {
-        //this.numPlaces = places.size();
         nearestNeighbor(places);
+    }
+
+    public void populateMatrix(Long[][] matrix, Places places, int i, int j) {
+        if (i == j) {
+            matrix[i][j] = 0L;
+        } else {
+            matrix[i][j] = DistanceCalculator.calculate(places.get(i), places.get(j), 6371);
+        }
     }
 
     public void createDistanceMatrix(Places places) {
@@ -18,14 +25,10 @@ abstract class Tour {
 
         for (int i = 0; i < numPlaces; i++) {
             for (int j = 0; j < numPlaces; j++) {
-                if (i == j) {
-                    matrix[i][j] = 0L;
-                } else {
-                    matrix[i][j] = DistanceCalculator.calculate(places.get(i), places.get(j), 6371);
-                }
+                populateMatrix(matrix, places, i, j);
             }
         }
-
+        
         this.distanceMatrix = matrix;
     }
 
@@ -82,6 +85,28 @@ abstract class Tour {
         for (int i = 0; i < remainingCities.length; i++) {
             remainingCities[i] = true;
         }
+    }
+
+    public static void sortByIndices(Places places, int[] indices) {
+        for (int i = 0; i < indices.length; i++) {
+            while (i != indices[i]) {
+                int index = indices[i];
+                swap(places, i, index);
+                swap(indices, i, index);
+            }
+        }
+    }
+
+    public static void swap(Places places, int i, int j) {
+        Place temp = places.get(i);
+        places.set(i, places.get(j));
+        places.set(j, temp);
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     public int[] getTourResults() {

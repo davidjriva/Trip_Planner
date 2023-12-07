@@ -1,5 +1,7 @@
 package com.tco.requests;
 
+import java.util.ArrayList;
+
 class Opt1 extends Tour {
     public Places places;
 
@@ -13,22 +15,12 @@ class Opt1 extends Tour {
         if (places != null && !places.isEmpty()) {
             shorter(places);
             int[] tourResults = getTourResults();
-
             Places reorderedPlaces = new Places();
-            for (int city : tourResults) {
-                Place cityPlace = places.get(city);
-                if (cityPlace != null) {
-                    String cityName = cityPlace.get("name");
 
-                    String defaultDisplayName = cityPlace.get("defaultDisplayName");
-                    if (defaultDisplayName != null && !defaultDisplayName.isEmpty()) {
-                        cityPlace.put("name", defaultDisplayName);
-                    } else {
-                        cityPlace.put("name", null);
-                    }
-                    
-                    reorderedPlaces.add(cityPlace);
-                }
+            for (int i : tourResults)
+            {
+                Place curPlace = places.get(i);
+                reorderedPlaces.add(curPlace);
             }
             this.places = reorderedPlaces;
         }
