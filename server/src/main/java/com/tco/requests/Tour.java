@@ -12,19 +12,23 @@ abstract class Tour {
         nearestNeighbor(places);
     }
 
+    public void populateMatrix(Long[][] matrix, Places places, int i, int j) {
+        if (i == j) {
+            matrix[i][j] = 0L;
+        } else {
+            matrix[i][j] = DistanceCalculator.calculate(places.get(i), places.get(j), 6371);
+        }
+    }
+
     public void createDistanceMatrix(Places places) {
         Long[][] matrix = new Long[places.size()][places.size()];
 
         for (int i = 0; i < numPlaces; i++) {
             for (int j = 0; j < numPlaces; j++) {
-                if (i == j) {
-                    matrix[i][j] = 0L;
-                } else {
-                    matrix[i][j] = DistanceCalculator.calculate(places.get(i), places.get(j), 6371);
-                }
+                populateMatrix(matrix, places, i, j);
             }
         }
-
+        
         this.distanceMatrix = matrix;
     }
 
