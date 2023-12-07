@@ -10,7 +10,7 @@ class Opt2 extends Tour {
 
     @Override
     public void improve() {
-        int[] route = tourResults;
+        int[] route = getTourResults();
         Places reorderedPlaceList = new Places();
         boolean improvement = true;
         int n = route.length;
