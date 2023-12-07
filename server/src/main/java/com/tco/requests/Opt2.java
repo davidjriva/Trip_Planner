@@ -11,6 +11,7 @@ class Opt2 extends Tour {
     @Override
     public void improve() {
         int[] route = tourResults;
+        Places reorderedPlaceList = new Places();
         boolean improvement = true;
         int n = route.length;
 
@@ -25,7 +26,12 @@ class Opt2 extends Tour {
                 }
             }
         }
-        sortByIndices(places, tourResults);
+        //sortByIndices(places, tourResults);
+        for(int city : tourResults) {
+            Place currentPlace = places.get(city);
+            reorderedPlaceList.add(currentPlace);
+        }
+        this.places = reorderedPlaceList;
     }
 
     public boolean twoOptImproves(int[] route, int i, int k) {
