@@ -87,4 +87,41 @@ public class TestOpt1 {
 
         assertEquals(1257L, totalDistance);
     }
+
+    @Test
+    @DisplayName("alexr11: test places sort")
+    public void testopt1sort() {
+        Places places = new Places();
+        places.add(new Place("50.0", "50.0"));
+        places.add(new Place("25.0", "90.0"));
+        places.add(new Place("0.0", "0.0"));
+        places.add(new Place("-90.0", "-180.0"));
+        places.add(new Place("90.0", "180.0"));
+        places.add(new Place("-90.0", "180.0"));
+        places.add(new Place("90.0", "-180.0"));
+
+        Places startPlaces = new Places();
+
+        for (int i = 0; i < places.size(); i++)
+        {
+            startPlaces.add(places.get(i));
+        }
+
+        Opt1 op1 = new Opt1(places);
+        op1.improve();
+        int[] tourResults = op1.tourResults;
+        places = op1.places;
+
+        assertNotNull(tourResults);
+        assertEquals(places.size(), tourResults.length);
+        assertEquals(places.size(), startPlaces.size());
+
+        assertEquals(places.get(0), startPlaces.get(0));
+        assertEquals(places.get(1), startPlaces.get(1));
+        assertEquals(places.get(2), startPlaces.get(4));
+        assertEquals(places.get(3), startPlaces.get(6));
+        assertEquals(places.get(4), startPlaces.get(2));
+        assertEquals(places.get(5), startPlaces.get(3));
+        assertEquals(places.get(6), startPlaces.get(5));
+    }
 }

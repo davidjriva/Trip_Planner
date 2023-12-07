@@ -146,6 +146,7 @@ public class TestTourRequest {
 
         places = request.places();
         assertEquals(5, places.size());
+
         // No optimizations were made:
         assertEquals(places.get(0), p1);
         assertEquals(places.get(1), p2);
