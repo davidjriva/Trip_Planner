@@ -1,4 +1,6 @@
-# README
+# Trip Planning Application
+
+![Image Description](https://github.com/davidjriva/Trip_Planner/raw/main/README_Images/Screenshot%202023-12-14%20at%2012.53.51%20PM.png)
 
 If you have not yet completed the instructions in [LOCAL-SETUP.md](./LOCAL-SETUP.md), start with them. They will help you download the tools required
 to run the code as described in this file.
