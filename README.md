@@ -119,3 +119,4 @@ checkin, use the run.sh script with the `-d` flag set:
 This will create a directory called `target` if it does not already exist and
 write the jar file to this directory. This jar can then be copied and ran on 
 any other machine with java.
+
